@@ -1,0 +1,101 @@
+{%- comment -%}
+  Badge « Livraison offerte » — pastille verte clignotante
+  Fichier : snippets/livraison-offerte.liquid
+
+  Utilisation :
+    {% render 'livraison-offerte' %}
+    {% render 'livraison-offerte', texte: 'Livraison offerte dès 49 €' %}
+    {% render 'livraison-offerte', couleur: '#16A34A', taille: 14, style: 'chip', anim: 'pulse' %}
+    {% render 'livraison-offerte', seuil: 4900 %}
+
+  Paramètres :
+    texte   — le libellé affiché (défaut : Livraison offerte)
+    couleur — code hexadécimal (défaut : #16A34A)
+    taille  — taille du texte en px (défaut : 13)
+    style   — 'plain' (texte seul), 'chip' (fond doux), 'outline' (contour)
+    anim    — 'pulse' (halo), 'blink' (clignotement), 'beat' (battement), 'none'
+    seuil   — montant en centimes ; sous ce seuil, le badge affiche le reste à ajouter
+{%- endcomment -%}
+
+{%- liquid
+  assign lo_texte   = texte   | default: 'Livraison offerte'
+  assign lo_couleur = couleur | default: '#16A34A'
+  assign lo_taille  = taille  | default: 13
+  assign lo_style   = style   | default: 'chip'
+  assign lo_anim    = anim    | default: 'pulse'
+
+  if seuil != blank
+    assign lo_restant = seuil | minus: cart.total_price
+    if lo_restant > 0
+      assign lo_montant = lo_restant | money
+      assign lo_texte = 'Plus que ' | append: lo_montant | append: ' pour la livraison offerte'
+    endif
+  endif
+-%}
+
+{% style %}
+  .lo-badge {
+    --lo-color: {{ lo_couleur }};
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: {{ lo_taille }}px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--lo-color);
+  }
+  .lo-badge--chip {
+    padding: 0.5em 0.8em;
+    border-radius: 999px;
+    background: {{ lo_couleur | color_modify: 'alpha', 0.12 }};
+  }
+  .lo-badge--outline {
+    padding: 0.5em 0.8em;
+    border-radius: 999px;
+    border: 1px solid {{ lo_couleur | color_modify: 'alpha', 0.35 }};
+  }
+  .lo-badge__dot {
+    position: relative;
+    flex: none;
+    width: 0.55em;
+    height: 0.55em;
+    border-radius: 50%;
+    background: var(--lo-color);
+  }
+  .lo-badge__dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--lo-color);
+  }
+  .lo-badge--pulse .lo-badge__dot::after { animation: lo-pulse 1.8s ease-out infinite; }
+  .lo-badge--blink .lo-badge__dot { animation: lo-blink 1.2s ease-in-out infinite; }
+  .lo-badge--blink .lo-badge__dot::after { display: none; }
+  .lo-badge--beat  .lo-badge__dot { animation: lo-beat 1.4s ease-in-out infinite; }
+  .lo-badge--beat  .lo-badge__dot::after { display: none; }
+  .lo-badge--none  .lo-badge__dot::after { display: none; }
+
+  @keyframes lo-pulse {
+    0%        { transform: scale(1);   opacity: 0.65; }
+    70%, 100% { transform: scale(2.8); opacity: 0; }
+  }
+  @keyframes lo-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.15; }
+  }
+  @keyframes lo-beat {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.45); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lo-badge__dot,
+    .lo-badge__dot::after { animation: none !important; }
+  }
+{% endstyle %}
+
+<span class="lo-badge lo-badge--{{ lo_style }} lo-badge--{{ lo_anim }}">
+  <span class="lo-badge__dot" aria-hidden="true"></span>
+  <span class="lo-badge__text">{{ lo_texte }}</span>
+</span>
