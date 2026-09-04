@@ -679,6 +679,8 @@ a{ color:inherit; }
 .profilo:nth-child(2n){ border-right:0; }
 .profilo:nth-last-child(-n+2){ border-bottom:0; }
 .profilo[aria-selected="true"]{ background:var(--oro); color:#1A1208; font-weight:600; }
+/* nombre impair de profils : le dernier prend toute la largeur au lieu de laisser un trou */
+.profili > .profilo:last-child:nth-child(odd){ grid-column:1 / -1; border-right:0; }
 .profilo:focus-visible{ outline:2px solid var(--bianco); outline-offset:-3px; }
 @media (min-width:940px){
   .profili{ grid-template-columns:repeat(4,1fr); max-width:760px; margin-inline:auto; }
@@ -963,3 +965,173 @@ a{ color:inherit; }
   font-size:8.5px; font-weight:800; color:#25324C;
 }
 .carrello__vuoto{ padding:60px 24px; text-align:center; color:var(--c-tenue); font-size:16px; }
+
+/* ==========================================================================
+   20. Page d'accueil — bannière
+   ========================================================================== */
+.eroe{
+  position:relative; min-height:min(88vh,760px);
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; overflow:hidden;
+  margin-inline:calc(var(--pad) * -1);
+}
+.eroe__sfondo{ position:absolute; inset:0; }
+.eroe__sfondo .ph{ height:100%; border:0; border-radius:0; align-items:flex-end; padding-bottom:18px; }
+.eroe__sfondo::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(18,18,18,.55) 0%,rgba(18,18,18,.35) 45%,rgba(18,18,18,.8) 100%);
+}
+.eroe__testo{ position:relative; z-index:1; padding:70px var(--pad); max-width:640px; }
+.eroe__occhiello{
+  margin:0 0 16px; font-size:12.5px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:#DCDCDC;
+}
+.eroe h1{
+  margin:0 0 18px; font-size:clamp(31px,8vw,54px); line-height:1.1;
+  font-weight:500; letter-spacing:-.02em; text-wrap:balance;
+}
+.eroe__sotto{
+  margin:0 0 28px; font-size:16.5px; line-height:1.55; color:#D2D2D2;
+}
+.eroe__sotto b{ color:#fff; font-weight:600; }
+.eroe .acquista{ width:auto; display:inline-block; padding:18px 42px; font-size:17px; }
+.eroe__voto{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-top:22px; font-size:15px; color:#E4E4E4;
+}
+.eroe__voto .voto__stelle svg{ width:18px; height:18px; }
+
+/* ==========================================================================
+   21. Bandeaux de confiance et de promotion
+   ========================================================================== */
+.striscia{
+  background:var(--verde); overflow:hidden; height:60px;
+  display:flex; align-items:center;
+  margin-inline:calc(var(--pad) * -1);
+}
+.striscia__piste{ display:flex; align-items:center; animation:scorri 26s linear infinite; white-space:nowrap; }
+.striscia__voce{
+  display:flex; align-items:center; gap:10px; padding-inline:26px;
+  font-size:13px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--beige-100);
+}
+.striscia__voce svg{ width:22px; height:22px; stroke:var(--beige-100); fill:none; stroke-width:1.2; }
+@media (prefers-reduced-motion:reduce){ .striscia__piste{ animation:none; } }
+
+.promo-verde{
+  display:flex; align-items:center; gap:14px;
+  background:var(--verde); border-block:1px solid var(--verde-2);
+  padding:20px var(--pad); margin-inline:calc(var(--pad) * -1);
+  color:var(--beige-100); font-size:15.5px; line-height:1.35;
+  text-decoration:none;
+}
+.promo-verde b{ color:#fff; text-decoration:underline; text-underline-offset:4px; }
+.promo-verde svg{ width:26px; height:26px; margin-left:auto; flex:none; stroke:currentColor; fill:none; stroke-width:1.5; }
+@media (min-width:940px){
+  .promo-verde{ justify-content:center; gap:20px; font-size:17px; }
+  .promo-verde svg{ margin-left:0; }
+}
+
+/* ==========================================================================
+   22. Bloc produits — une carte aujourd'hui, une grille demain
+   ========================================================================== */
+.testa-sezione{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; margin-bottom:26px; flex-wrap:wrap;
+}
+.testa-sezione .sezione__titolo{ margin:0; text-align:left; flex:1; min-width:200px; }
+@media (min-width:940px){ .testa-sezione .sezione__titolo{ text-align:left; } }
+
+.prodotti{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px;
+}
+.prodotto-carta{
+  position:relative; background:var(--nero-2);
+  border:1px solid #2E2E2E; border-radius:var(--radius-lg); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.prodotto-carta__badge{
+  position:absolute; top:14px; left:14px; z-index:1;
+  background:var(--rosso); color:#fff; border-radius:8px;
+  padding:7px 13px; font-size:13px; font-weight:600;
+}
+.prodotto-carta__foto{ aspect-ratio:1/1; }
+.prodotto-carta__foto .ph{ height:100%; border:0; border-radius:0; }
+.prodotto-carta__corpo{ padding:20px 18px 22px; display:flex; flex-direction:column; gap:9px; flex:1; }
+.prodotto-carta__nome{ margin:0; font-size:18px; font-weight:600; line-height:1.3; }
+.prodotto-carta__testo{ margin:0; font-size:14.5px; line-height:1.5; color:var(--grigio); flex:1; }
+.prodotto-carta__prezzi{ display:flex; align-items:baseline; gap:10px; margin-top:4px; }
+.prodotto-carta__barrato{ font-size:17px; color:var(--grigio-2); text-decoration:line-through; }
+.prodotto-carta__prezzo{ font-size:23px; font-weight:700; }
+
+/* ==========================================================================
+   23. « Il tuo corpo merita » — liste qui s'allume au défilement
+   ========================================================================== */
+.merita{
+  background:var(--verde); margin-inline:calc(var(--pad) * -1);
+  padding:70px var(--pad) 0; text-align:center; overflow:hidden;
+}
+.merita__titolo{
+  margin:0 0 40px; color:var(--beige); font-size:clamp(27px,7vw,38px);
+  font-weight:500; line-height:1.2;
+}
+.merita__elenco{ list-style:none; margin:0 0 50px; padding:0; display:flex; flex-direction:column; gap:26px; }
+.merita__voce{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  font-size:clamp(17px,4.6vw,23px); line-height:1.3; color:var(--beige-100);
+  opacity:.3; transition:opacity .5s ease;
+}
+.merita__voce svg{ width:30px; height:30px; flex:none; stroke:currentColor; fill:none; stroke-width:1.2; }
+.merita__voce.accesa{ opacity:1; color:#fff; font-weight:500; }
+@media (prefers-reduced-motion:reduce){ .merita__voce{ opacity:1; } }
+.merita__foto{ max-width:520px; margin:0 auto; }
+.merita__foto .ph{ aspect-ratio:1/1; border-color:#123A2A; color:#4E7A66; background:none; }
+
+/* ==========================================================================
+   24. Bloc de marque
+   ========================================================================== */
+.marca{
+  position:relative; margin-inline:calc(var(--pad) * -1);
+  padding:74px var(--pad); overflow:hidden;
+}
+.marca__sfondo{ position:absolute; inset:0; }
+.marca__sfondo .ph{ height:100%; border:0; border-radius:0; align-items:flex-end; padding-bottom:14px; }
+.marca__sfondo::after{ content:""; position:absolute; inset:0; background:rgba(18,18,18,.82); }
+.marca__testo{ position:relative; z-index:1; max-width:660px; margin-inline:auto; }
+.marca h2{
+  margin:0 0 24px; font-size:clamp(28px,7vw,42px); line-height:1.15; font-weight:500;
+}
+.marca h2 em{ font-style:normal; color:var(--beige); }
+.marca p{ margin:0 0 16px; font-size:16px; line-height:1.65; color:var(--grigio); }
+.marca p i{ color:#fff; font-style:italic; }
+.marca__firma{ margin-top:30px; display:flex; align-items:center; gap:14px; }
+.marca__firma span{ font-size:15px; color:var(--grigio); }
+
+/* ==========================================================================
+   25. Infolettre
+   ========================================================================== */
+.lettera{
+  background:var(--verde); margin-inline:calc(var(--pad) * -1);
+  padding:60px var(--pad); text-align:center;
+}
+.lettera h2{
+  margin:0 0 16px; font-size:clamp(25px,6.4vw,36px); line-height:1.2; font-weight:500;
+  color:#fff; text-wrap:balance;
+}
+.lettera h2 em{ font-style:normal; color:var(--beige); }
+.lettera p{ margin:0 auto 28px; max-width:52ch; font-size:15.5px; line-height:1.6; color:var(--beige-100); }
+.lettera__forma{
+  display:flex; max-width:480px; margin-inline:auto;
+  border:1px solid #2E5A47; border-radius:999px; overflow:hidden; background:transparent;
+}
+.lettera__forma input{
+  flex:1; min-width:0; padding:16px 22px; border:0; background:transparent;
+  color:#fff; font:inherit; font-size:16px;
+}
+.lettera__forma input::placeholder{ color:#7D9A8C; }
+.lettera__forma input:focus{ outline:none; }
+.lettera__forma button{
+  padding:16px 28px; border:0; cursor:pointer; background:#fff; color:#0D1F18;
+  font-size:16px; font-weight:600; border-radius:999px;
+}
+.lettera__nota{ margin:16px 0 0; font-size:13.5px; color:#6F8C7E; }
