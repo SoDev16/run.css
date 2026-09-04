@@ -53,6 +53,25 @@ pas de « 389 € » rayé, pas de badge de remise.
 `tv-carte`, `tv-rivelazione` et `tv-testo` servent plusieurs fois avec des
 contenus différents : ajoutes-en autant que tu veux.
 
+## Brancher une application
+
+Trois sections acceptent les blocs d'application : le bloc d'achat, les avis
+clients et les témoignages.
+
+Dans le personnalisateur, ouvre la section, **Ajouter un bloc**, et
+l'application installée apparaît dans la liste. Tu la fais glisser où tu veux
+dans la section.
+
+- **Judge.me** se pose dans « Avis clients ». Ses étoiles peuvent aussi aller
+  dans le bloc d'achat, sous le titre.
+- **Une application de bundles** se pose dans le bloc d'achat, juste au-dessus
+  du bouton — c'est là que l'emplacement est prévu.
+
+Le thème ne leur impose que l'espacement et la largeur : elles gardent leur
+propre habillage et ne cassent pas la mise en page.
+
+Si tu n'installes aucune application, ces emplacements restent invisibles.
+
 ## Un point sur la grille de produits
 
 `tv-prodotti` affiche une carte aujourd'hui et une grille dès que la collection
@@ -63,7 +82,7 @@ ou le couvercle.
 
 - **Relecture de l'italien par un natif.** Voir `TRADUZIONI.md`.
 - **Les photos.** Chaque emplacement porte la description de l'image attendue.
-- **Les applications** — avis clients et offres groupées. Les emplacements sont
-  prêts ; il reste à y brancher les applications choisies.
+- **Les photos des sections.** Chaque emplacement porte la description de
+  l'image attendue et son format.
 - **Le tiroir panier.** La maquette en contient un ; il utilise pour l'instant
   celui de Dawn, à réhabiller quand tu auras validé le reste.

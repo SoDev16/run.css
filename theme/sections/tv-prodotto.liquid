@@ -156,6 +156,14 @@
         </div>
       {%- endif -%}
 
+
+      {%- comment -%} Emplacement pour les blocs d'application (Judge.me, bundles…) {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          <div class="blocco-app" {{ block.shopify_attributes }}>{% render block %}</div>
+        {%- endif -%}
+      {%- endfor -%}
+
       <button class="acquista" type="submit" {% unless v.available %}disabled{% endunless %}>
         {%- if v.available -%}{{ section.settings.bottone }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
       </button>
@@ -230,43 +238,200 @@
   "name": "Bloc d'achat",
   "tag": "section",
   "settings": [
-    { "type": "product", "id": "prodotto", "label": "Produit",
-      "info": "À renseigner sur la page d'accueil. Sur une fiche produit, laisser vide." },
-    { "type": "header", "content": "Habillage promotionnel de la photo" },
-    { "type": "text", "id": "promo_titolo", "label": "Titre", "default": "Offerta di lancio" },
-    { "type": "text", "id": "promo_sotto", "label": "Sous-titre", "default": "Coperchio premium incluso con ogni padella" },
-    { "type": "text", "id": "promo_etichetta", "label": "Mention", "default": "GRATIS!" },
-    { "type": "text", "id": "promo_valore", "label": "Valeur barrée", "default": "49,00 €" },
-    { "type": "header", "content": "Note" },
-    { "type": "text", "id": "voto", "label": "Note affichée", "default": "4,9" },
-    { "type": "text", "id": "voto_nota", "label": "Mention à côté de la note", "default": "recensioni verificate" },
-    { "type": "header", "content": "Textes" },
-    { "type": "richtext", "id": "sommario", "label": "Résumé sous le titre" },
-    { "type": "text", "id": "pillola", "label": "Pastille verte à côté du prix", "default": "Offerta valida oggi" },
-    { "type": "text", "id": "etichetta_misura", "label": "Titre du sélecteur de variante", "default": "Scegli la misura" },
-    { "type": "text", "id": "guida_testo", "label": "Libellé du lien guide", "default": "Guida alle misure" },
-    { "type": "url", "id": "guida_link", "label": "Lien du guide des tailles" },
-    { "type": "text", "id": "etichetta_offerte", "label": "Titre des offres groupées", "default": "Oppure risparmia con un set" },
-    { "type": "text", "id": "bottone", "label": "Bouton d'achat", "default": "Aggiungi al carrello" },
-    { "type": "richtext", "id": "laboratorio", "label": "Bandeau laboratoire" },
-    { "type": "header", "content": "Paiement" },
-    { "type": "checkbox", "id": "mostra_pagamenti", "label": "Afficher les moyens de paiement", "default": true },
-    { "type": "text", "id": "pagamenti_testo", "label": "Mention", "default": "Pagamento sicuro e garantito" }
+    {
+      "type": "product",
+      "id": "prodotto",
+      "label": "Produit",
+      "info": "À renseigner sur la page d'accueil. Sur une fiche produit, laisser vide."
+    },
+    {
+      "type": "header",
+      "content": "Habillage promotionnel de la photo"
+    },
+    {
+      "type": "text",
+      "id": "promo_titolo",
+      "label": "Titre",
+      "default": "Offerta di lancio"
+    },
+    {
+      "type": "text",
+      "id": "promo_sotto",
+      "label": "Sous-titre",
+      "default": "Coperchio premium incluso con ogni padella"
+    },
+    {
+      "type": "text",
+      "id": "promo_etichetta",
+      "label": "Mention",
+      "default": "GRATIS!"
+    },
+    {
+      "type": "text",
+      "id": "promo_valore",
+      "label": "Valeur barrée",
+      "default": "49,00 €"
+    },
+    {
+      "type": "header",
+      "content": "Note"
+    },
+    {
+      "type": "text",
+      "id": "voto",
+      "label": "Note affichée",
+      "default": "4,9"
+    },
+    {
+      "type": "text",
+      "id": "voto_nota",
+      "label": "Mention à côté de la note",
+      "default": "recensioni verificate"
+    },
+    {
+      "type": "header",
+      "content": "Textes"
+    },
+    {
+      "type": "richtext",
+      "id": "sommario",
+      "label": "Résumé sous le titre"
+    },
+    {
+      "type": "text",
+      "id": "pillola",
+      "label": "Pastille verte à côté du prix",
+      "default": "Offerta valida oggi"
+    },
+    {
+      "type": "text",
+      "id": "etichetta_misura",
+      "label": "Titre du sélecteur de variante",
+      "default": "Scegli la misura"
+    },
+    {
+      "type": "text",
+      "id": "guida_testo",
+      "label": "Libellé du lien guide",
+      "default": "Guida alle misure"
+    },
+    {
+      "type": "url",
+      "id": "guida_link",
+      "label": "Lien du guide des tailles"
+    },
+    {
+      "type": "text",
+      "id": "etichetta_offerte",
+      "label": "Titre des offres groupées",
+      "default": "Oppure risparmia con un set"
+    },
+    {
+      "type": "text",
+      "id": "bottone",
+      "label": "Bouton d'achat",
+      "default": "Aggiungi al carrello"
+    },
+    {
+      "type": "richtext",
+      "id": "laboratorio",
+      "label": "Bandeau laboratoire"
+    },
+    {
+      "type": "header",
+      "content": "Paiement"
+    },
+    {
+      "type": "checkbox",
+      "id": "mostra_pagamenti",
+      "label": "Afficher les moyens de paiement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "pagamenti_testo",
+      "label": "Mention",
+      "default": "Pagamento sicuro e garantito"
+    }
   ],
   "blocks": [
-    { "type": "argomento", "name": "Argument à pictogramme", "limit": 4, "settings": [
-      { "type": "richtext", "id": "testo", "label": "Texte" } ]},
-    { "type": "pastiglia", "name": "Pastille d'usage", "limit": 6, "settings": [
-      { "type": "text", "id": "testo", "label": "Texte", "default": "Adatta al forno" },
-      { "type": "image_picker", "id": "icona", "label": "Pictogramme (facultatif)" } ]},
-    { "type": "offerta", "name": "Offre groupée", "limit": 4, "settings": [
-      { "type": "product", "id": "prodotto", "label": "Produit du set" },
-      { "type": "text", "id": "nome", "label": "Nom affiché" },
-      { "type": "text", "id": "dettaglio", "label": "Détail" },
-      { "type": "text", "id": "badge", "label": "Badge d'angle", "default": "Più venduto" },
-      { "type": "text", "id": "prezzo", "label": "Prix si aucun produit n'est lié" },
-      { "type": "text", "id": "valore", "label": "Valeur barrée", "default": "(valore 899 €)" } ]}
+    {
+      "type": "argomento",
+      "name": "Argument à pictogramme",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "testo",
+          "label": "Texte"
+        }
+      ]
+    },
+    {
+      "type": "pastiglia",
+      "name": "Pastille d'usage",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "testo",
+          "label": "Texte",
+          "default": "Adatta al forno"
+        },
+        {
+          "type": "image_picker",
+          "id": "icona",
+          "label": "Pictogramme (facultatif)"
+        }
+      ]
+    },
+    {
+      "type": "offerta",
+      "name": "Offre groupée",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "product",
+          "id": "prodotto",
+          "label": "Produit du set"
+        },
+        {
+          "type": "text",
+          "id": "nome",
+          "label": "Nom affiché"
+        },
+        {
+          "type": "text",
+          "id": "dettaglio",
+          "label": "Détail"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge d'angle",
+          "default": "Più venduto"
+        },
+        {
+          "type": "text",
+          "id": "prezzo",
+          "label": "Prix si aucun produit n'est lié"
+        },
+        {
+          "type": "text",
+          "id": "valore",
+          "label": "Valeur barrée",
+          "default": "(valore 899 €)"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
   ],
-  "presets": [{ "name": "Bloc d'achat" }]
+  "presets": [
+    {
+      "name": "Bloc d'achat"
+    }
+  ]
 }
 {% endschema %}

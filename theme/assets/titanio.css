@@ -1150,3 +1150,14 @@ a{ color:inherit; }
 .piega summary::marker{ content:""; }
 .shopify-section{ margin:0; }
 .tv-nascosto{ display:none !important; }
+
+/* ==========================================================================
+   27. Emplacements pour les blocs d'application
+       Judge.me, applications de bundles : elles injectent leur propre
+       balisage. On ne leur impose que l'espacement et la largeur, pour
+       qu'elles s'insèrent sans casser la mise en page.
+   ========================================================================== */
+.blocco-app{ margin-block:26px; }
+.blocco-app:empty{ display:none; margin:0; }
+.acquisto .blocco-app{ margin-block:20px; }
+.blocco-app img{ max-width:100%; height:auto; }
