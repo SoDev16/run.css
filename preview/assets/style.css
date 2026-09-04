@@ -52,10 +52,11 @@ button{ font:inherit; color:inherit; }
 a{ color:inherit; }
 
 .wrap{ padding-inline:var(--pad); }
-@media (min-width:900px){
-  :root{ --pad:40px; }
+@media (min-width:940px){
+  :root{ --pad:48px; }
   .wrap{ max-width:var(--max); margin-inline:auto; }
 }
+@media (min-width:1240px){ :root{ --pad:0px; } .wrap{ padding-inline:24px; } }
 
 /* ---------- emplacements provisoires pour tes photos ------------------- */
 .ph{
@@ -130,6 +131,21 @@ a{ color:inherit; }
 }
 
 /* ==========================================================================
+   Mise en page du produit — une colonne sur mobile, deux sur ordinateur
+   ========================================================================== */
+@media (min-width:940px){
+  .prodotto{
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:56px;
+    align-items:start;
+    padding-top:34px;
+  }
+  .prodotto > .galleria{ position:sticky; top:94px; padding-top:0; }
+  .prodotto > .acquisto{ padding-top:0; max-width:540px; }
+}
+
+/* ==========================================================================
    3. Galerie produit
    ========================================================================== */
 .galleria{ padding-top:10px; }
@@ -186,6 +202,12 @@ a{ color:inherit; }
 }
 .miniature__play svg{ width:26px; height:26px; fill:#fff; }
 
+@media (min-width:940px){
+  .miniature__voce{ width:88px; }
+  .promo__titolo{ font-size:26px; }
+  .promo__sotto{ font-size:17px; }
+}
+
 /* ==========================================================================
    4. Bloc d'achat
    ========================================================================== */
@@ -196,7 +218,7 @@ a{ color:inherit; }
   font-size:27px; line-height:1.18; font-weight:600;
   letter-spacing:-.015em; text-wrap:balance;
 }
-@media (min-width:900px){ .titolo{ font-size:34px; } }
+@media (min-width:940px){ .titolo{ font-size:33px; } }
 
 .voto{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
 .voto__stelle{ display:flex; gap:2px; }
@@ -256,6 +278,11 @@ a{ color:inherit; }
   height:3px; background:#2A2A2A; border-radius:2px; margin-bottom:26px;
   max-width:50%;
 }
+@media (min-width:940px){
+  .pastiglie{ overflow:visible; justify-content:space-between; }
+  .pastiglia{ width:auto; flex:1; }
+  .barra-scorrimento{ display:none; }
+}
 .barra-scorrimento i{ display:block; height:100%; width:40%; background:#555; border-radius:2px; }
 
 /* sélecteur de taille */
@@ -295,7 +322,7 @@ a{ color:inherit; }
 .offerta:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
 .offerta__nome{ grid-column:1; min-width:0; margin:0; font-size:16.5px; font-weight:700; line-height:1.3; }
 .offerta__dettaglio{ min-width:0; margin:0; font-size:13.5px; line-height:1.4; color:var(--grigio); grid-column:1; }
-.offerta__prezzi{ grid-column:2; grid-row:1/3; text-align:right; align-self:start; }
+.offerta__prezzi{ grid-column:2; grid-row:1/3; text-align:right; align-self:start; padding-top:9px; }
 .offerta__prezzo{ display:block; font-size:23px; font-weight:700; }
 .offerta__valore{ display:block; font-size:13px; color:var(--grigio); margin-top:2px; }
 .offerta__badge{
@@ -390,7 +417,16 @@ a{ color:inherit; }
   color:var(--grigio); margin:0 0 8px; text-transform:uppercase;
 }
 .barra-fissa .acquista{ padding:15px; font-size:17px; }
-@media (min-width:900px){ .barra-fissa{ display:none; } }
+@media (min-width:940px){ .barra-fissa{ display:none; } }
+
+/* titre de section, commun aux blocs suivants */
+.sezione{ padding:56px 0; }
+.sezione__titolo{
+  margin:0 0 10px; color:var(--beige);
+  font-size:29px; line-height:1.2; font-weight:600; letter-spacing:-.01em;
+  text-wrap:balance;
+}
+@media (min-width:940px){ .sezione__titolo{ font-size:38px; text-align:center; } }
 
 /* pied de page provisoire */
 .segnaposto-fine{
