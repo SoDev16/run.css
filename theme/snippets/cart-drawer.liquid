@@ -74,6 +74,14 @@
           </span>
         </button>
       </div>
+
+      {%- comment -%} Titanio Vero — bandeau de réservation {%- endcomment -%}
+      {%- if settings.tv_timer_testo != blank and cart != empty -%}
+        <div class="carrello__timer tv-timer">
+          {{ settings.tv_timer_testo }} <b data-tv-conto>{{ settings.tv_timer_minuti }}:00</b> ⏰
+        </div>
+      {%- endif -%}
+
       <cart-drawer-items
         view-event-payload="{{ cart | standard_event_data: 'view', context: 'dialog' | escape }}"
         view-event-trigger="manual"
@@ -589,6 +597,16 @@
           </button>
         </div>
       </div>
+          {%- comment -%} Titanio Vero — rassurance sous le bouton {%- endcomment -%}
+          {%- if settings.tv_fiducia != blank -%}
+            <p class="carrello__fiducia tv-fiducia">{{ settings.tv_fiducia }}</p>
+          {%- endif -%}
+          {%- if shop.enabled_payment_types.size > 0 -%}
+            <div class="carrello__pagamenti tv-pagamenti">
+              {%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag }}{%- endfor -%}
+            </div>
+          {%- endif -%}
+
     </div>
   </div>
 </cart-drawer>

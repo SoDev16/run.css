@@ -1161,3 +1161,119 @@ a{ color:inherit; }
 .blocco-app:empty{ display:none; margin:0; }
 .acquisto .blocco-app{ margin-block:20px; }
 .blocco-app img{ max-width:100%; height:auto; }
+
+/* ==========================================================================
+   28. Tiroir panier — habillage du panier de Dawn
+       On ne réécrit pas son balisage : sa mécanique AJAX (ajout, quantité,
+       suppression, re-rendu des sections) est éprouvée et dépend de ses
+       classes. On ne remplace que l'apparence.
+   ========================================================================== */
+.cart-drawer{
+  --c-fondo:#F5F5F5; --c-carta:#FFFFFF; --c-grigio:#E4E4E4;
+  --c-testo:#1A1A1A; --c-tenue:#6B6B6B; --c-linea:#D6D6D6;
+  --c-rosso:#9A2230; --c-pill:#D6F5DC; --c-pill-testo:#146B36;
+}
+.cart-drawer__overlay{ background:rgba(0,0,0,.55); }
+
+.cart-drawer .drawer__inner{
+  background:var(--c-fondo); color:var(--c-testo);
+  width:min(100%,460px); max-width:100%;
+  padding:0; border:0; box-shadow:-14px 0 40px rgba(0,0,0,.45);
+  display:flex; flex-direction:column;
+}
+
+/* en-tête */
+.cart-drawer .drawer__header{
+  position:relative; flex:none; margin:0;
+  background:var(--c-carta); border-bottom:1px solid var(--c-linea);
+  padding:18px 56px; text-align:center;
+}
+.cart-drawer .drawer__heading{
+  margin:0; font-family:var(--font); font-size:19px; font-weight:500;
+  letter-spacing:0; text-transform:none; color:var(--c-testo);
+}
+.cart-drawer .drawer__close{
+  position:absolute; top:50%; right:10px; transform:translateY(-50%);
+  width:44px; height:44px; color:var(--c-testo);
+}
+.cart-drawer .drawer__close svg{ width:20px; height:20px; }
+
+/* bandeau de réservation */
+.cart-drawer .tv-timer{
+  flex:none; background:var(--c-grigio); padding:13px 16px;
+  text-align:center; font-size:14.5px; color:var(--c-rosso);
+}
+.cart-drawer .tv-timer b{ font-weight:700; font-variant-numeric:tabular-nums; }
+
+/* corps */
+.cart-drawer cart-drawer-items{ flex:1; overflow-y:auto; background:var(--c-carta); }
+.cart-drawer .drawer__contents{ padding:0; }
+.cart-drawer .cart-items,
+.cart-drawer .cart-items td,
+.cart-drawer .cart-items th{ border:0; background:transparent; }
+.cart-drawer .cart-items thead{ display:none; }
+.cart-drawer .cart-item{
+  display:grid; grid-template-columns:74px 1fr auto; gap:0 14px;
+  padding:16px; border-bottom:1px solid var(--c-linea);
+}
+.cart-drawer .cart-item__media{ grid-row:1 / span 3; width:74px; }
+.cart-drawer .cart-item__image{ width:74px; height:74px; object-fit:cover; border-radius:8px; }
+.cart-drawer .cart-item__details{ padding:0; }
+.cart-drawer .cart-item__name{
+  font-family:var(--font); font-size:17px; font-weight:700; line-height:1.25;
+  color:var(--c-testo); text-decoration:none;
+}
+.cart-drawer .product-option{ font-size:15px; color:var(--c-tenue); margin-top:6px; }
+.cart-drawer .cart-item__totals{ grid-column:3; grid-row:1 / span 2; text-align:right; padding:0; }
+.cart-drawer .cart-item__old-price{ font-size:16px; color:#9A9A9A; }
+.cart-drawer .cart-item__final-price,
+.cart-drawer .cart-item__price-wrapper .price{ font-size:19px; font-weight:700; color:var(--c-testo); }
+.cart-drawer .cart-item__quantity{ grid-column:2 / span 2; padding:14px 0 0; }
+.cart-drawer .cart-item__quantity-wrapper{ display:flex; align-items:center; gap:14px; }
+.cart-drawer .quantity{
+  border:1px solid var(--c-linea); border-radius:8px; overflow:hidden;
+  background:var(--c-carta); width:auto; min-height:0;
+}
+.cart-drawer .quantity__button{ width:42px; height:42px; color:var(--c-testo); }
+.cart-drawer .quantity__input{
+  width:44px; color:var(--c-testo); font-size:16px;
+  border-inline:1px solid var(--c-linea); background:transparent;
+}
+.cart-drawer .quantity::after{ display:none; }
+.cart-drawer cart-remove-button{ margin-left:auto; }
+.cart-drawer cart-remove-button .button{ color:var(--c-testo); min-width:42px; min-height:42px; padding:0; }
+.cart-drawer .unit-price{ color:var(--c-tenue); }
+
+/* pied */
+.cart-drawer .drawer__footer{
+  flex:none; background:var(--c-grigio); border-top:1px solid var(--c-linea);
+  padding:18px 16px calc(18px + env(safe-area-inset-bottom));
+}
+.cart-drawer .cart-drawer__footer{ padding:0; border:0; }
+.cart-drawer .totals{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+.cart-drawer .totals__total{
+  font-family:var(--font); font-size:20px; font-weight:700; margin:0; color:var(--c-testo);
+}
+.cart-drawer .totals__total-value{ font-size:20px; font-weight:700; margin:0; color:var(--c-testo); }
+.cart-drawer .tax-note{ font-size:13px; color:var(--c-tenue); margin:0 0 6px; }
+.cart-drawer .discounts__discount{ color:var(--c-pill-testo); }
+.cart-drawer #CartDrawer-Checkout{
+  width:100%; margin-top:14px; padding:19px 16px;
+  background:var(--c-rosso); color:#F4EAEA; border:0; border-radius:10px;
+  font-size:20px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  box-shadow:none;
+}
+.cart-drawer #CartDrawer-Checkout::after,
+.cart-drawer #CartDrawer-Checkout::before{ display:none; }
+.cart-drawer #CartDrawer-Checkout:hover{ background:#851C29; }
+.cart-drawer .tv-fiducia{
+  margin:16px 0 14px; text-align:center; font-size:14px; font-weight:600;
+  color:#5E5E5E; line-height:1.4;
+}
+.cart-drawer .tv-pagamenti{ display:flex; justify-content:center; gap:7px; flex-wrap:wrap; }
+.cart-drawer .tv-pagamenti svg{ width:52px; height:34px; border-radius:6px; background:#fff; border:1px solid #DADADA; }
+
+/* panier vide */
+.cart-drawer .drawer__inner-empty{ background:var(--c-fondo); padding:60px 24px; }
+.cart-drawer .cart__empty-text{ font-family:var(--font); color:var(--c-testo); }
+.cart-drawer .drawer__inner-empty .drawer__close{ position:static; transform:none; }

@@ -8,6 +8,34 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Titanio Vero — panier",
+    "settings": [
+      {
+        "type": "text",
+        "id": "tv_timer_testo",
+        "label": "Texte du compte à rebours",
+        "default": "I tuoi articoli scontati sono riservati per",
+        "info": "Laisser vide pour masquer le bandeau."
+      },
+      {
+        "type": "range",
+        "id": "tv_timer_minuti",
+        "min": 3,
+        "max": 30,
+        "step": 1,
+        "unit": "min",
+        "label": "Durée de la réservation",
+        "default": 10
+      },
+      {
+        "type": "text",
+        "id": "tv_fiducia",
+        "label": "Mention sous le bouton de paiement",
+        "default": "Prova di 120 giorni · Garanzia a vita · Spedizione gratuita"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

@@ -53,6 +53,23 @@ pas de « 389 € » rayé, pas de badge de remise.
 `tv-carte`, `tv-rivelazione` et `tv-testo` servent plusieurs fois avec des
 contenus différents : ajoutes-en autant que tu veux.
 
+## Le tiroir panier
+
+Il reprend l'apparence claire de la maquette : en-tête blanc, bandeau de
+réservation, lignes produit, bouton de paiement rouge, rassurance et moyens de
+paiement.
+
+La mécanique reste celle de Dawn — ajout, quantité, suppression, mise à jour
+sans rechargement. Seul l'habillage a changé, ce qui évite de réécrire du code
+éprouvé et de casser le panier à la première mise à jour de Shopify.
+
+Trois réglages dans **Personnalisateur → Paramètres du thème → Titanio Vero —
+panier** :
+
+- le texte du compte à rebours (le vider masque le bandeau)
+- sa durée, de 3 à 30 minutes
+- la mention sous le bouton de paiement
+
 ## Brancher une application
 
 Trois sections acceptent les blocs d'application : le bloc d'achat, les avis
@@ -84,5 +101,4 @@ ou le couvercle.
 - **Les photos.** Chaque emplacement porte la description de l'image attendue.
 - **Les photos des sections.** Chaque emplacement porte la description de
   l'image attendue et son format.
-- **Le tiroir panier.** La maquette en contient un ; il utilise pour l'instant
-  celui de Dawn, à réhabiller quand tu auras validé le reste.
+Le tiroir panier est habillé.
