@@ -631,3 +631,186 @@ a{ color:inherit; }
 @media (min-width:940px){
   .mosaico{ margin-inline:0; border-radius:var(--radius-lg); overflow:hidden; gap:4px; }
 }
+
+/* ==========================================================================
+   14. Carrousel de témoignages vidéo
+   ========================================================================== */
+.video-fila{
+  display:flex; gap:12px; overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  margin-inline:calc(var(--pad) * -1); padding-inline:var(--pad);
+}
+.video-fila::-webkit-scrollbar{ display:none; }
+.video-carta{ flex:none; width:min(64vw,270px); scroll-snap-align:center; }
+.video-carta__schermo{
+  position:relative; aspect-ratio:9/16; border-radius:var(--radius);
+  overflow:hidden; background:#1A1A1A;
+}
+.video-carta__schermo .ph{ position:absolute; inset:0; border:0; border-radius:0; }
+.video-carta__play{
+  position:absolute; inset:0; display:grid; place-items:center;
+  background:rgba(0,0,0,.2); pointer-events:none;
+}
+.video-carta__play svg{ width:46px; height:46px; fill:#fff; filter:drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
+.video-carta__citazione{
+  margin:14px 0 8px; font-size:15px; line-height:1.4; font-style:italic;
+  color:var(--bianco); text-align:center;
+}
+.video-carta__stelle{ display:flex; justify-content:center; gap:2px; }
+.video-carta__stelle svg{ width:15px; height:15px; fill:var(--oro); }
+@media (min-width:940px){
+  .video-fila{ justify-content:center; margin-inline:0; padding-inline:0; gap:20px; }
+  .video-carta{ width:240px; }
+}
+
+/* ==========================================================================
+   15. Avis par profil
+   ========================================================================== */
+.profili{
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  border:1px solid #3A3A3A; border-radius:10px; overflow:hidden;
+  margin-bottom:30px;
+}
+.profilo{
+  padding:15px 10px; cursor:pointer; background:none; border:0;
+  border-right:1px solid #3A3A3A; border-bottom:1px solid #3A3A3A;
+  color:var(--grigio); font-size:14.5px; line-height:1.25;
+}
+.profilo:nth-child(2n){ border-right:0; }
+.profilo:nth-last-child(-n+2){ border-bottom:0; }
+.profilo[aria-selected="true"]{ background:var(--oro); color:#1A1208; font-weight:600; }
+.profilo:focus-visible{ outline:2px solid var(--bianco); outline-offset:-3px; }
+@media (min-width:940px){
+  .profili{ grid-template-columns:repeat(4,1fr); max-width:760px; margin-inline:auto; }
+  .profilo{ border-bottom:0; }
+  .profilo:nth-child(2n){ border-right:1px solid #3A3A3A; }
+  .profilo:last-child{ border-right:0; }
+}
+
+.testimonianze{
+  display:flex; gap:14px; overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  margin-inline:calc(var(--pad) * -1); padding-inline:var(--pad);
+}
+.testimonianze::-webkit-scrollbar{ display:none; }
+.testimonianze[hidden]{ display:none; }
+.testimonianza{
+  flex:none; width:min(84vw,340px); scroll-snap-align:start;
+  background:var(--crema); color:#1E1B16;
+  border-radius:var(--radius-lg); padding:22px 20px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.testimonianza__testa{ display:flex; align-items:center; gap:12px; }
+.testimonianza__ritratto{
+  width:46px; height:46px; border-radius:10px; flex:none;
+  background:repeating-linear-gradient(135deg,#DCD5C8 0 8px,#E4DED3 8px 16px);
+  display:grid; place-items:center; font-size:9px; color:#9A9184;
+}
+.testimonianza__nome{ font-size:15.5px; font-weight:600; }
+.testimonianza__stelle{ display:flex; gap:2px; margin-top:3px; }
+.testimonianza__stelle svg{ width:15px; height:15px; fill:var(--oro); }
+.testimonianza p{ margin:0; font-size:15px; line-height:1.55; }
+.frecce{ display:flex; justify-content:center; gap:12px; margin-top:26px; }
+.freccia{
+  width:52px; height:46px; border-radius:10px; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; display:grid; place-items:center;
+}
+.freccia svg{ width:20px; height:20px; stroke:var(--bianco); fill:none; stroke-width:1.8; }
+.freccia:hover{ border-color:#666; }
+.freccia:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
+@media (min-width:940px){ .testimonianze{ margin-inline:0; padding-inline:0; } }
+
+/* ==========================================================================
+   16. Vue éclatée des couches
+   ========================================================================== */
+.strati{
+  display:grid; grid-template-columns:44% 1fr; gap:0 14px;
+  background:var(--verde); border-radius:var(--radius-lg);
+  padding:30px 20px 34px;
+  margin-inline:calc(var(--pad) * -1);
+}
+.strati__foto{ grid-row:1 / span 5; }
+.strati__foto .ph{ height:100%; min-height:340px; background:none; border-color:#123A2A; color:#4E7A66; }
+.strato{ display:flex; gap:12px; align-items:flex-start; padding-block:14px; }
+.strato__trattino{ width:32px; height:1px; background:var(--oro); flex:none; margin-top:12px; }
+.strato b{ display:block; font-size:15px; font-weight:600; line-height:1.28; }
+.strato span{ display:block; margin-top:5px; font-size:13.5px; line-height:1.4; color:var(--beige-100); }
+@media (min-width:940px){
+  .strati{ margin-inline:0; padding:48px 44px; grid-template-columns:46% 1fr; gap:0 40px; }
+  .strati__foto .ph{ min-height:520px; }
+  .strato b{ font-size:17px; }
+  .strato span{ font-size:15px; }
+}
+
+/* ==========================================================================
+   17. Widget d'avis clients
+   ========================================================================== */
+.valutazioni{ display:flex; flex-direction:column; gap:14px; margin-bottom:26px; }
+.valutazione{ display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:14px; }
+.valutazione__nome{ font-size:15.5px; font-weight:600; }
+.valutazione__barre{ display:flex; gap:5px; }
+.valutazione__barre i{ display:block; width:26px; height:9px; background:#3A3A3A; border-radius:2px; }
+.valutazione__barre i.piena{ background:var(--bianco); }
+.valutazione__voto{ font-size:16px; font-weight:600; min-width:30px; text-align:right; font-variant-numeric:tabular-nums; }
+
+.riga-recensioni{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding-block:18px; border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  margin-bottom:22px;
+}
+.riga-recensioni__stelle{ display:flex; gap:2px; }
+.riga-recensioni__stelle svg{ width:20px; height:20px; fill:#F2C037; }
+.riga-recensioni__conteggio{ font-size:16px; }
+.scrivi{
+  margin-left:auto; padding:12px 22px; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; border-radius:9px;
+  color:var(--bianco); font-size:15px;
+}
+.scrivi:hover{ border-color:#666; }
+
+.griglia-recensioni{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (min-width:940px){ .griglia-recensioni{ grid-template-columns:repeat(4,1fr); gap:16px; } }
+.recensione{ background:#2E2E2E; border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
+.recensione__foto{ aspect-ratio:1/1; }
+.recensione__foto .ph{ height:100%; border:0; border-radius:0; font-size:10px; }
+.recensione__foto .ph::after{ display:none; }
+.recensione__corpo{ padding:14px 14px 16px; }
+.recensione__nome{ font-size:15px; font-weight:700; margin:0 0 6px; }
+.recensione__stelle{ display:flex; gap:1px; margin-bottom:8px; }
+.recensione__stelle svg{ width:14px; height:14px; fill:#F2C037; }
+.recensione__testo{ margin:0; font-size:13.5px; line-height:1.5; color:#D8D8D8; }
+
+/* ==========================================================================
+   18. Pied de page
+   ========================================================================== */
+.piede{
+  margin-top:60px; padding:44px 0 0;
+  border-top:1px solid var(--linea);
+}
+.piede__logo img{ height:30px; width:auto; margin-bottom:22px; }
+.piede__colonne{
+  display:grid; grid-template-columns:1fr 1fr; gap:30px 20px; margin-bottom:34px;
+}
+@media (min-width:940px){ .piede__colonne{ grid-template-columns:repeat(4,1fr); } }
+.piede__colonne h3{
+  margin:0 0 14px; font-size:11.5px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--beige);
+}
+.piede__colonne ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.piede__colonne a{ font-size:14.5px; color:var(--grigio); text-decoration:none; }
+.piede__colonne a:hover{ color:var(--bianco); text-decoration:underline; text-underline-offset:3px; }
+.piede__assistenza{
+  background:var(--verde); border:1px solid var(--verde-2); border-radius:var(--radius);
+  padding:18px 20px; margin-bottom:30px;
+}
+.piede__assistenza b{ display:block; font-size:13px; color:var(--beige); margin-bottom:5px;
+  letter-spacing:.06em; text-transform:uppercase; }
+.piede__assistenza span{ font-size:19px; font-weight:600; }
+.piede__basso{
+  display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center;
+  padding:22px 0 130px; border-top:1px solid var(--linea);
+  font-size:13px; color:var(--grigio-2);
+}
+.piede__basso .pagamenti__loghi{ margin-left:auto; }
+.piede__basso .pagamenti__loghi div{ width:44px; height:28px; font-size:8px; }
+@media (min-width:940px){ .piede__basso{ padding-bottom:40px; } }

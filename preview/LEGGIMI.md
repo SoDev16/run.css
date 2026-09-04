@@ -15,21 +15,32 @@ conversion en sections Shopify est mécanique.
 
 Le CSS écrit ici est celui qui partira dans le thème : rien n'est jeté.
 
-## Ce qui est construit
+## Les sections, dans l'ordre
 
 1. Bandeau d'annonce défilant
 2. En-tête avec logo et panier
-3. Galerie produit avec habillage promotionnel et miniatures
-4. Bloc d'achat — titre, note, prix, arguments, pastilles, sélecteur de taille,
-   offres groupées, bouton d'achat, bandeau laboratoire, moyens de paiement
+3. Galerie produit, habillage promotionnel et miniatures
+4. Bloc d'achat — titre, note, prix, arguments, pastilles d'usage, sélecteur de
+   taille, offres groupées, bouton, bandeau laboratoire, moyens de paiement
 5. Panneau vert des garanties
-6. Barre d'achat collante, qui apparaît quand le bouton principal sort de l'écran
+6. Barre d'achat collante
+7. Onglets — bénéfices, pureté, comparatif
+8. Tableau titane contre antiadhésif et acier
+9. Accordéons détails, avis, questions, expédition
+10. Panneau d'engagement
+11. Comparatif des revêtements concurrents
+12. Bloc à révélation au défilement
+13. Bénéfices du titane
+14. Mosaïque clients
+15. Second bloc à révélation
+16. Témoignages vidéo
+17. Avis par profil — chefs, bien-être, sportifs, familles
+18. Vue éclatée des cinq couches
+19. Questions fréquentes
+20. Avis clients avec notes détaillées
+21. Pied de page
 
-## Ce qui reste
-
-Preuve scientifique, onglets, accordéons, ventes croisées, témoignages vidéo,
-comparatif des revêtements, blocs de texte à révélation, mosaïque clients,
-avis par profil, vue éclatée, FAQ, widget d'avis, pied de page.
+La page est complète. Reste la conversion en sections Liquid.
 
 ## Les emplacements photo
 
