@@ -208,9 +208,152 @@
   </section>
   </div>
 
+
+  <!-- 7 ───────────────────────────────────────── onglets et arguments -->
+  <section class="sezione" id="argomenti">
+
+    <div class="schede" role="tablist">
+      <button class="scheda" role="tab" aria-selected="true"  aria-controls="p1">Benefici<br>per la salute</button>
+      <button class="scheda" role="tab" aria-selected="false" aria-controls="p2">Purezza<br>certificata</button>
+      <button class="scheda" role="tab" aria-selected="false" aria-controls="p3">Titanio<br>vs il resto</button>
+    </div>
+
+    <!-- panneau 1 -->
+    <div class="pannello" id="p1" role="tabpanel">
+      <h2 class="sezione__titolo">Un nuovo standard di sicurezza, prestazioni e durata.</h2>
+      <ul class="spunte" id="elenco">
+        <li>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.6L15.7 9.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Titanio puro — il metallo più sicuro a contatto con il corpo</b>
+          <p>Usato da decenni negli impianti medici per la sua biocompatibilità. Non è tossico e non reagisce con gli alimenti.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.6L15.7 9.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Antiaderente senza sostanze chimiche</b>
+          <p>La superficie è microincisa, non rivestita. Nessuna pellicola che si stacca col tempo, perché non c'è pellicola.</p>
+        </li>
+        <li data-nascosto>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.6L15.7 9.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Nessun trasferimento di metalli nel cibo</b>
+          <p>Il titanio non rilascia particelle, nemmeno con pomodoro, limone o aceto — dove acciaio e alluminio cedono.</p>
+        </li>
+        <li data-nascosto>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.6L15.7 9.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Resiste agli utensili in metallo, al forno e alla lavastoviglie</b>
+          <p>Nessuna precauzione particolare. È la padella che sopravvive all'uso quotidiano di una famiglia.</p>
+        </li>
+      </ul>
+      <button class="mostra-altro" id="mostraAltro" aria-expanded="false" aria-controls="elenco">Mostra tutto</button>
+    </div>
+
+    <!-- panneau 2 -->
+    <div class="pannello" id="p2" role="tabpanel" hidden>
+      <h2 class="sezione__titolo">Verificata, non solo dichiarata.</h2>
+      <div class="ph" style="aspect-ratio:16/10;margin-bottom:22px">
+        <span>Rapport de laboratoire ou certificat, photographié à plat</span>
+      </div>
+      <ul class="spunte">
+        <li>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.6L15.7 9.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Analisi di laboratorio indipendente</b>
+          <p>Da completare con il tuo rapporto reale : laboratorio, data, sostanze ricercate. Finché non ce l'hai, questo blocco resta vuoto — nessuna affermazione senza prova.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12 2.5 2.6L15.7 9.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Conforme al contatto alimentare</b>
+          <p>Regolamento europeo sui materiali destinati a venire a contatto con gli alimenti. Da documentare con il certificato del tuo fornitore.</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- panneau 3 -->
+    <div class="pannello" id="p3" role="tabpanel" hidden>
+      <h2 class="sezione__titolo">Il titanio contro il resto.</h2>
+      <table class="confronto">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Antiaderente</th>
+            <th>Acciaio inox</th>
+            <th class="noi">Titanio Vero</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Superficie non tossica</th><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><th>Resiste alle alte temperature</th><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><th>Facile da pulire</th><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><th>Non si deforma</th><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><th>Lavabile in lavastoviglie</th><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><th>Utensili in metallo</th><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><th>Manutenzione minima</th><td><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td><svg class="no" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"/></svg></td><td class="noi"><svg class="si" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr>
+            <th>Quanto dura</th>
+            <td><span class="durata">1 anno</span></td>
+            <td><span class="durata">5–7 anni</span></td>
+            <td class="noi"><span class="durata forte">Per sempre</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- 8 ───────────────────────────────────────── accordéons -->
+  <section class="sezione" style="padding-top:0">
+    <div class="fisarmonica">
+      <details class="piega">
+        <summary class="piega__testa">
+          <svg class="piega__icona" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke-linecap="round"/></svg>
+          Dettagli, cura e utilizzo
+          <span class="piega__piu" aria-hidden="true"></span>
+        </summary>
+        <div class="piega__corpo">
+          <p>Costruzione a 5 strati, fondo compatibile con tutti i piani cottura, induzione compresa. Manico che resta freddo.</p>
+          <p>Al primo utilizzo, lava con acqua calda e sapone. Scalda a fuoco medio: il titanio conduce meglio dell'acciaio, serve meno fiamma di quanto pensi.</p>
+        </div>
+      </details>
+      <details class="piega">
+        <summary class="piega__testa">
+          <svg class="piega__icona" viewBox="0 0 24 24"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.2l5.9-.9L12 3Z" stroke-linejoin="round"/></svg>
+          In sintesi dalle recensioni
+          <span class="piega__piu" aria-hidden="true"></span>
+        </summary>
+        <div class="piega__corpo">
+          <p>Da riempire con le tue vere recensioni, una volta raccolte. Questo blocco riassume in tre righe ciò che i clienti ripetono più spesso.</p>
+        </div>
+      </details>
+      <details class="piega">
+        <summary class="piega__testa">
+          <svg class="piega__icona" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.2 2.4c-.5.2-.8.6-.8 1.1v.6" stroke-linecap="round"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>
+          Le domande che ci fate più spesso
+          <span class="piega__piu" aria-hidden="true"></span>
+        </summary>
+        <div class="piega__corpo">
+          <p>« Si attacca davvero meno di una padella antiaderente ? » « Cambia colore con il calore ? » « Regge il forno ? » — le risposte brevi qui, quelle lunghe nella sezione domande più in basso.</p>
+        </div>
+      </details>
+      <details class="piega">
+        <summary class="piega__testa">
+          <svg class="piega__icona" viewBox="0 0 24 24"><path d="M3 8h13v9H3zM16 11h3.2l1.8 3v3h-5" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+          Spedizione, resi e garanzia
+          <span class="piega__piu" aria-hidden="true"></span>
+        </summary>
+        <div class="piega__corpo">
+          <p>Spedizione gratuita in tutta Italia. Consegna in 2–4 giorni lavorativi.</p>
+          <p>Diritto di recesso di 14 giorni previsto dalla legge, esteso da noi a 120 giorni. Se la padella non ti convince, la rimandi indietro.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="impegno">
+      <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.6 12 20 12 20Z" stroke-linejoin="round"/></svg>
+      <p>Una parte del tuo ordine finanzia lo sviluppo della prossima generazione di utensili da cucina senza sostanze tossiche.</p>
+    </div>
+  </section>
+
   <p class="segnaposto-fine">
     Fin de la partie construite — les 24 sections suivantes arrivent&nbsp;:<br>
-    preuve scientifique, comparatifs, témoignages, vue éclatée, FAQ, avis clients.
+    ventes croisées, témoignages vidéo, comparatif des revêtements, blocs à révélation,<br>mosaïque clients, avis par profil, vue éclatée, FAQ, avis, pied de page.
   </p>
 
 </div>
@@ -245,6 +388,23 @@ const barra=document.getElementById('barraFissa');
 new IntersectionObserver(([e])=>{
   barra.classList.toggle('visibile', !e.isIntersecting && e.boundingClientRect.top < 0);
 },{threshold:0}).observe(principale);
+
+// onglets
+document.querySelectorAll('.scheda').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.scheda').forEach(x=>{
+    x.setAttribute('aria-selected','false');
+    document.getElementById(x.getAttribute('aria-controls')).hidden = true;
+  });
+  t.setAttribute('aria-selected','true');
+  document.getElementById(t.getAttribute('aria-controls')).hidden = false;
+}));
+// « mostra tutto »
+const bMostra=document.getElementById('mostraAltro'), elenco=document.getElementById('elenco');
+bMostra.addEventListener('click',()=>{
+  const aperta=elenco.classList.toggle('aperta');
+  bMostra.setAttribute('aria-expanded', aperta);
+  bMostra.textContent = aperta ? 'Mostra meno' : 'Mostra tutto';
+});
 </script>
 </body>
 </html>

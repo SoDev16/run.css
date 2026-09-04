@@ -433,3 +433,109 @@ a{ color:inherit; }
   margin:46px 0 130px; padding:26px 0; border-top:1px solid var(--linea);
   color:var(--grigio-2); font-size:13.5px; text-align:center;
 }
+
+/* ==========================================================================
+   7. Onglets
+   ========================================================================== */
+.schede{
+  display:flex; border-bottom:1px solid var(--linea);
+  margin-bottom:26px; gap:0;
+}
+.scheda{
+  flex:1; padding:14px 8px 13px; cursor:pointer;
+  background:none; border:0; border-bottom:2px solid transparent;
+  color:var(--grigio); font-size:15px; line-height:1.25; font-weight:500;
+  transition:color .15s, border-color .15s;
+}
+.scheda[aria-selected="true"]{ color:var(--bianco); border-bottom-color:var(--bianco); font-weight:600; }
+.scheda:focus-visible{ outline:2px solid var(--oro); outline-offset:-2px; }
+.pannello[hidden]{ display:none; }
+
+/* liste à coches */
+.spunte{ list-style:none; margin:0 0 22px; padding:0; display:flex; flex-direction:column; gap:22px; }
+.spunte li{ display:grid; grid-template-columns:26px 1fr; gap:0 12px; }
+.spunte svg{ width:22px; height:22px; grid-row:1/3; margin-top:2px; stroke:var(--bianco); fill:none; stroke-width:1.4; }
+.spunte b{ font-size:16.5px; font-weight:600; line-height:1.32; }
+.spunte p{ margin:6px 0 0; font-size:15px; line-height:1.5; color:var(--grigio); }
+.spunte li[data-nascosto]{ display:none; }
+.spunte.aperta li[data-nascosto]{ display:grid; }
+
+.mostra-altro{
+  display:block; width:100%; padding:16px; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; border-radius:10px;
+  color:var(--bianco); font-size:16.5px; font-weight:500;
+}
+.mostra-altro:hover{ border-color:#5A5A5A; }
+.mostra-altro:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
+
+/* ==========================================================================
+   8. Tableau comparatif
+   ========================================================================== */
+.confronto{ width:100%; border-collapse:collapse; font-size:14px; }
+.confronto th, .confronto td{
+  padding:13px 6px; text-align:center; border-bottom:1px solid var(--linea);
+  vertical-align:middle;
+}
+.confronto thead th{
+  font-size:12.5px; font-weight:600; line-height:1.25; color:var(--grigio);
+  padding-bottom:14px; border-bottom-color:#3A3A3A;
+}
+.confronto thead th.noi{ color:var(--beige); font-size:13.5px; font-weight:700; }
+.confronto tbody th{
+  text-align:left; font-weight:400; color:var(--bianco); font-size:14px;
+  padding-left:0; width:40%;
+}
+.confronto td.noi{ background:rgba(189,165,137,.07); }
+.confronto tbody tr:last-child th, .confronto tbody tr:last-child td{ border-bottom:0; }
+.confronto svg{ width:19px; height:19px; }
+.si{ stroke:#42C216; fill:none; stroke-width:2.2; }
+.no{ stroke:#7A7A7A; fill:none; stroke-width:2.2; }
+.durata{ font-size:13.5px; font-weight:600; }
+.durata.forte{ color:var(--beige); }
+
+/* ==========================================================================
+   9. Accordéons
+   ========================================================================== */
+.fisarmonica{ border-top:1px solid var(--linea); }
+.piega{ border-bottom:1px solid var(--linea); }
+.piega__testa{
+  width:100%; display:flex; align-items:center; gap:14px;
+  padding:20px 0; cursor:pointer; text-align:left;
+  background:none; border:0; font-size:16.5px; font-weight:500; line-height:1.3;
+}
+.piega__testa:focus-visible{ outline:2px solid var(--oro); outline-offset:-2px; }
+.piega__icona{ width:26px; height:26px; flex:none; stroke:var(--grigio); fill:none; stroke-width:1.2; }
+.piega__piu{
+  margin-left:auto; width:20px; height:20px; flex:none; position:relative;
+}
+.piega__piu::before, .piega__piu::after{
+  content:""; position:absolute; inset:50% 0 auto 0; height:1.6px;
+  background:var(--bianco); transform:translateY(-50%);
+  transition:transform .22s ease, opacity .22s ease;
+}
+.piega__piu::after{ transform:translateY(-50%) rotate(90deg); }
+.piega[open] .piega__piu::after{ transform:translateY(-50%) rotate(0); opacity:0; }
+.piega__corpo{
+  padding:0 0 22px; margin:0; font-size:15px; line-height:1.6; color:var(--grigio);
+  max-width:66ch;
+}
+.piega__corpo p{ margin:0 0 12px; }
+.piega__corpo p:last-child{ margin-bottom:0; }
+
+/* ==========================================================================
+   10. Panneau d'engagement
+   ========================================================================== */
+.impegno{
+  display:flex; gap:16px; align-items:flex-start;
+  background:var(--verde); border:1px solid var(--verde-2);
+  border-radius:var(--radius-lg); padding:22px 20px; margin-top:30px;
+}
+.impegno svg{ width:32px; height:32px; flex:none; stroke:var(--beige); fill:none; stroke-width:1.2; }
+.impegno p{
+  margin:0; padding-left:16px; border-left:1px solid var(--verde-2);
+  font-size:14.5px; line-height:1.55; color:var(--beige-100);
+}
+@media (min-width:940px){
+  .impegno{ padding:26px 28px; }
+  .impegno p{ font-size:15.5px; }
+}
