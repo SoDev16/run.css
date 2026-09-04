@@ -13,18 +13,33 @@ CH = 8.0           # profondeur du biseau
 
 
 # ------------------------------------------------- ligne haute : glyphes pleins
-def heavy(ch):
-    """Retourne (avance, path rempli). Terminaisons coupees en diagonale."""
+def heavy(ch, t_style="bevel-bas", bar_a=False):
+    """Retourne (avance, path rempli).
+
+    t_style : dessin du T, seul endroit du mot ou le parti pris se voit.
+      plat        terminaisons droites
+      bevel-bas   coins bas exterieurs coupes
+      bevel-haut  coins haut exterieurs coupes
+      piede       pied du fut evase, comme un poincon frappe
+    """
     w, c = W_STEM, CH
     if ch == "T":
         W = 78.0
         m0, m1 = (W - w) / 2, (W + w) / 2
-        pts = [(0,0),(W,0),(W,w-c),(W-c,w),(m1,w),(m1,H),(m0,H),(m0,w),(c,w),(0,w-c)]
+        if t_style == "plat":
+            pts = [(0,0),(W,0),(W,w),(m1,w),(m1,H),(m0,H),(m0,w),(0,w)]
+        elif t_style == "bevel-haut":
+            pts = [(c,0),(W-c,0),(W,c),(W,w),(m1,w),(m1,H),(m0,H),(m0,w),(0,w),(0,c)]
+        elif t_style == "piede":
+            f, fy = 9.0, 15.0
+            pts = [(0,0),(W,0),(W,w),(m1,w),(m1,H-fy),(m1+f,H),(m0-f,H),(m0,H-fy),(m0,w),(0,w)]
+        else:
+            pts = [(0,0),(W,0),(W,w-c),(W-c,w),(m1,w),(m1,H),(m0,H),(m0,w),(c,w),(0,w-c)]
     elif ch == "I":
         W = w
         pts = [(0,0),(W,0),(W,H),(0,H)]
     elif ch == "A":
-        W, lw, top = 86.0, 25.0, 18.0
+        W, lw, top = 86.0, 22.0, 13.0
         ax0, ax1 = (W - top) / 2, (W + top) / 2
         u = (ax1 - ax0 - 0.0)
         run = ax0                                   # deport horizontal d'une jambe
@@ -37,6 +52,17 @@ def heavy(ch):
         uu = (W - 2 * lw) / (2 * run)
         yn = H * (1 - uu)
         pts = [(0,H),(ax0,0),(ax1,0),(W,H),(W-lw,H),(W/2,yn),(lw,H)]
+        if bar_a:                       # barre transversale : nous eloigne du A en chevron
+            by = H * 0.72
+            y0, y1 = by - w * 0.43, by + w * 0.43
+            xl = lambda y: ax0 * (1 - y / H)
+            xr = lambda y: W - ax0 * (1 - y / H)
+            bar = ("M {a},{y0} L {b},{y0} L {c},{y1} L {d},{y1} Z"
+                   .format(a=round(xl(y0),2), b=round(xr(y0),2),
+                           c=round(xr(y1),2), d=round(xl(y1),2),
+                           y0=round(y0,2), y1=round(y1,2)))
+            return W, ("M " + " L ".join("{0},{1}".format(round(x,2), round(y,2)) for x,y in pts)
+                       + " Z " + bar)
     elif ch == "N":
         W, d = 88.0, 68.0
         pts = [(0,0),(w,0),(d,d),(d,0),(W,0),(W,H),(d,H),(w,H-d),(w,H),(0,H)]
@@ -47,7 +73,7 @@ def heavy(ch):
                    "M {a},{cy} A {ix},{iy} 0 1 1 {b},{cy} A {ix},{iy} 0 1 1 {a},{cy} Z"
                    .format(cy=ry, rx=rx, ry=ry, w=W, ix=ix, iy=iy, a=w, b=W - w))
     elif ch == "V":
-        W, lw, top = 86.0, 25.0, 18.0
+        W, lw, top = 86.0, 22.0, 13.0
         run = (W - top) / 2
         uu = (W - 2 * lw) / (2 * run)
         yn = H * uu
@@ -109,10 +135,10 @@ def light(ch, sw):
     raise KeyError(ch)
 
 
-def heavy_line(txt, track):
+def heavy_line(txt, track, t_style="bevel-bas", bar_a=False):
     x, parts = 0.0, []
     for i, ch in enumerate(txt):
-        adv, p = heavy(ch)
+        adv, p = heavy(ch, t_style, bar_a)
         parts.append('<path d="{d}" transform="translate({x} 0)"/>'.format(d=p, x=round(x, 2)))
         x += adv + (track if i < len(txt) - 1 else 0)
     return x, '<g fill-rule="evenodd">{0}</g>'.format("".join(parts))
@@ -137,8 +163,9 @@ GAP_L2   = 26.0
 W2_RATIO = 0.62
 
 
-def logotipo(w1_txt, w2_txt, fg, bg=None, tm=False, track=TRACK1):
-    w1, g1 = heavy_line(w1_txt, track)
+def logotipo(w1_txt, w2_txt, fg, bg=None, tm=False, track=TRACK1,
+             t_style="bevel-bas", bar_a=False, l2="filet", band_fg=None):
+    w1, g1 = heavy_line(w1_txt, track, t_style, bar_a)
     nat = sum(DW[c] + SW2 for c in w2_txt)
     t2 = max(0.0, ((w1 * W2_RATIO) / CAP2 - nat) / (len(w2_txt) - 1))
     w2, g2 = light_line(w2_txt, SW2, t2)
@@ -149,9 +176,19 @@ def logotipo(w1_txt, w2_txt, fg, bg=None, tm=False, track=TRACK1):
     total_h = y_l2 + H * CAP2
 
     body = g1
-    body += '<rect x="0" y="{y}" width="{w}" height="{r}"/>'.format(y=round(y_rule,2), w=round(w1,2), r=RULE)
-    body += ('<g transform="translate({x} {y}) scale({s})" stroke="{fg}">{g}</g>'
-             .format(x=round((w1-w2)/2,2), y=round(y_l2,2), s=CAP2, fg=fg, g=g2))
+    if l2 == "bandeau":
+        bh = H * CAP2 + 34
+        by = H + 24
+        total_h = by + bh
+        body += ('<rect x="0" y="{y}" width="{w}" height="{h}"/>'
+                 .format(y=round(by,2), w=round(w1,2), h=round(bh,2)))
+        body += ('<g transform="translate({x} {y}) scale({s})" stroke="{c}">{g}</g>'
+                 .format(x=round((w1-w2)/2,2), y=round(by+(bh-H*CAP2)/2,2), s=CAP2,
+                         c=band_fg or "#F5F0E8", g=g2))
+    else:
+        body += '<rect x="0" y="{y}" width="{w}" height="{r}"/>'.format(y=round(y_rule,2), w=round(w1,2), r=RULE)
+        body += ('<g transform="translate({x} {y}) scale({s})" stroke="{fg}">{g}</g>'
+                 .format(x=round((w1-w2)/2,2), y=round(y_l2,2), s=CAP2, fg=fg, g=g2))
     if tm:
         body += ('<g transform="translate({x} -6) scale(0.26)" fill="none" stroke="{fg}" '
                  'stroke-width="13"><path d="M 6,8 H 76 M 41,8 V 66 M 98,66 V 8 L 126,46 '
@@ -169,10 +206,10 @@ def logotipo(w1_txt, w2_txt, fg, bg=None, tm=False, track=TRACK1):
             .format(x=vx, y=round(vy,2), w=round(vw,1), h=round(vh,1), fg=fg, r=rect, b=body))
 
 
-def monogramma(fg, bg=None, letters="TV", pad=48.0, radius=0.18):
+def monogramma(fg, bg=None, letters="TV", pad=48.0, radius=0.18, t_style="bevel-bas"):
     x, parts = 0.0, []
     for i, ch in enumerate(letters):
-        adv, p = heavy(ch)
+        adv, p = heavy(ch, t_style)
         parts.append('<path d="{d}" transform="translate({x} 0)"/>'.format(d=p, x=round(x,2)))
         x += adv + (22.0 if i < len(letters)-1 else 0)
     side = max(x, H) + pad*2
