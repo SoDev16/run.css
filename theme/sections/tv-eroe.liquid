@@ -1,0 +1,82 @@
+<div class="wrap">
+  <section class="eroe">
+    <div class="eroe__sfondo">
+      {%- if section.settings.video != blank -%}
+        {{ section.settings.video | video_tag: image_size: '1600x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+      {%- elsif section.settings.immagine != blank -%}
+        {{ section.settings.immagine | image_url: width: 1800 | image_tag: alt: '', loading: 'eager', sizes: '100vw', widths: '600,900,1200,1800' }}
+      {%- else -%}
+        <div class="ph"><span>Vidéo ou photo plein écran</span></div>
+      {%- endif -%}
+    </div>
+    <div class="eroe__testo">
+      {%- if section.settings.occhiello != blank -%}<p class="eroe__occhiello">{{ section.settings.occhiello }}</p>{%- endif -%}
+      <h1>{{ section.settings.titolo }}</h1>
+      {%- if section.settings.sotto != blank -%}<div class="eroe__sotto">{{ section.settings.sotto }}</div>{%- endif -%}
+      {%- if section.settings.bottone != blank -%}
+        <a class="acquista" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.bottone }}</a>
+      {%- endif -%}
+      {%- if section.settings.voto != blank -%}
+        <p class="eroe__voto"><span class="voto__stelle"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></span> {{ section.settings.voto }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Bannière",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Vidéo de fond"
+    },
+    {
+      "type": "image_picker",
+      "id": "immagine",
+      "label": "Photo de fond"
+    },
+    {
+      "type": "text",
+      "id": "occhiello",
+      "label": "Sur-titre",
+      "default": "Offerta di lancio"
+    },
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Passa a una cucina senza sostanze tossiche."
+    },
+    {
+      "type": "richtext",
+      "id": "sotto",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "bottone",
+      "label": "Bouton",
+      "default": "Scopri la padella"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Lien du bouton"
+    },
+    {
+      "type": "text",
+      "id": "voto",
+      "label": "Mention de note",
+      "default": "4,9 — recensioni verificate"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bannière"
+    }
+  ]
+}
+{% endschema %}

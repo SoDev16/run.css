@@ -1,0 +1,58 @@
+<div class="wrap">
+  <section class="sezione" style="padding-block:0">
+    <div class="lettera">
+      <h2>{{ section.settings.titolo }}</h2>
+      {%- if section.settings.testo != blank -%}<p>{{ section.settings.testo }}</p>{%- endif -%}
+      {%- form 'customer', class: 'lettera__forma' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" required
+               placeholder="{{ section.settings.segnaposto }}" aria-label="{{ section.settings.segnaposto }}">
+        <button type="submit">{{ section.settings.bottone }}</button>
+      {%- endform -%}
+      {%- if section.settings.nota != blank -%}<p class="lettera__nota">{{ section.settings.nota }}</p>{%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Inscription à la newsletter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Meriti di meglio di un'altra newsletter."
+    },
+    {
+      "type": "textarea",
+      "id": "testo",
+      "label": "Texte"
+    },
+    {
+      "type": "text",
+      "id": "segnaposto",
+      "label": "Champ email",
+      "default": "La tua email"
+    },
+    {
+      "type": "text",
+      "id": "bottone",
+      "label": "Bouton",
+      "default": "Iscriviti"
+    },
+    {
+      "type": "text",
+      "id": "nota",
+      "label": "Mention sous le formulaire",
+      "default": "Detestiamo lo spam quanto te."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inscription à la newsletter"
+    }
+  ]
+}
+{% endschema %}

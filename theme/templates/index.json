@@ -1,75 +1,372 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "eroe": {
+      "type": "tv-eroe",
+      "settings": {
+        "occhiello": "Offerta di lancio",
+        "titolo": "Passa a una cucina senza sostanze tossiche.",
+        "sotto": "<p>Cucina serenamente con il titanio puro. Niente PFAS. Nessun rivestimento. Nessuna sostanza chimica. <strong>Risparmia fino al 55% sul lancio.</strong></p>",
+        "bottone": "Scopri la padella",
+        "voto": "4,9 — recensioni verificate"
+      }
+    },
+    "promo": {
+      "type": "tv-promo",
+      "settings": {
+        "testo": "<p>Risparmia 200 € sulla nostra <strong>padella in titanio puro</strong></p>"
+      }
+    },
+    "prodotti": {
+      "type": "tv-prodotti",
+      "settings": {
+        "titolo": "I nostri prodotti",
+        "quanti": 8,
+        "bottone": "Vedi tutto",
+        "badge": "Risparmia"
+      }
+    },
+    "striscia": {
+      "type": "tv-striscia",
+      "settings": {},
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "s1": {
+          "type": "voce",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "testo": "Senza PFAS"
           }
         },
-        "button": {
-          "type": "buttons",
+        "s2": {
+          "type": "voce",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "testo": "100% senza tossine"
+          }
+        },
+        "s3": {
+          "type": "voce",
+          "settings": {
+            "testo": "Garanzia a vita"
+          }
+        },
+        "s4": {
+          "type": "voce",
+          "settings": {
+            "testo": "Spedizione gratuita"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
-      ],
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    "video": {
+      "type": "tv-video",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "titolo": "Approvata da chi cucina ogni giorno."
+      },
+      "blocks": {
+        "w1": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : pâtes qui glissent",
+            "citazione": "« Antiaderente senza rivestimento: è tutta un'altra cosa »"
+          }
+        },
+        "w2": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : œuf sans matière grasse",
+            "citazione": "« L'uovo scivola via da solo, senza olio »"
+          }
+        },
+        "w3": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : nettoyage à l'éponge",
+            "citazione": "« Si pulisce in tre secondi, senza sfregare »"
+          }
+        },
+        "w4": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : viande saisie",
+            "citazione": "« Rosola come una padella da ristorante »"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ]
+    },
+    "salute": {
+      "type": "tv-testo",
+      "settings": {
+        "titolo": "La tua salute viene prima di tutto il resto.",
+        "colore_titolo": "#BDA589",
+        "testo": "<p>Il titanio è usato da decenni in medicina e nell'aerospaziale, ma lavorarlo per oggetti quotidiani restava troppo complesso e costoso. È quello che abbiamo deciso di cambiare: rendere accessibile in cucina il metallo più biocompatibile che esista.</p>"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "rivelazione": {
+      "type": "tv-rivelazione",
+      "settings": {},
+      "blocks": {
+        "r1": {
+          "type": "riga",
+          "settings": {
+            "testo": "Da noi"
+          }
+        },
+        "r2": {
+          "type": "riga",
+          "settings": {
+            "testo": "l'assenza di tossine"
+          }
+        },
+        "r3": {
+          "type": "riga",
+          "settings": {
+            "testo": "non è un dettaglio."
+          }
+        },
+        "r4": {
+          "type": "riga",
+          "settings": {
+            "testo": "È il punto di partenza.",
+            "forte": true
+          }
+        },
+        "r5": {
+          "type": "riga",
+          "settings": {
+            "testo": "La perfezione non è un obiettivo."
+          }
+        },
+        "r6": {
+          "type": "riga",
+          "settings": {
+            "testo": "È il minimo."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ]
+    },
+    "confronto": {
+      "type": "tv-carte",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "titolo": "Il titanio non compete. Sostituisce.",
+        "intro": "Tra rischi tossici, batteri e manutenzione difficile, questi materiali non sono più all'altezza."
+      },
+      "blocks": {
+        "c1": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Antiaderente / Teflon",
+            "testo": "Il rivestimento rilascia PFAS. Si scheggia e non regge il calore: quello che se ne va finisce nel piatto.",
+            "nota_foto": "Poêle antiadhésive écaillée"
+          }
+        },
+        "c2": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Acciaio inox",
+            "testo": "Richiede molto olio e reagisce con gli alimenti acidi — altera il sapore e cede metalli.",
+            "nota_foto": "Poêle en acier avec aliments collés"
+          }
+        },
+        "c3": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Ghisa",
+            "testo": "Pesante, lenta a scaldarsi, va ricondizionata. Un errore di lavaggio e arrugginisce.",
+            "nota_foto": "Poêle en fonte rouillée"
+          }
+        },
+        "c4": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Ceramica",
+            "testo": "Antiaderente all'inizio, poi non più. Perde efficacia in pochi mesi.",
+            "nota_foto": "Poêle céramique ternie"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
+    },
+    "merita": {
+      "type": "tv-merita",
+      "settings": {
+        "titolo": "Il tuo corpo merita di meglio."
+      },
+      "blocks": {
+        "m1": {
+          "type": "voce",
+          "settings": {
+            "testo": "Senza PFAS e senza microplastiche"
+          }
+        },
+        "m2": {
+          "type": "voce",
+          "settings": {
+            "testo": "Sicura a qualsiasi temperatura"
+          }
+        },
+        "m3": {
+          "type": "voce",
+          "settings": {
+            "testo": "Costruita per durare"
+          }
+        },
+        "m4": {
+          "type": "voce",
+          "settings": {
+            "testo": "Non si consuma mai"
+          }
+        },
+        "m5": {
+          "type": "voce",
+          "settings": {
+            "testo": "Facile da pulire"
+          }
+        },
+        "m6": {
+          "type": "voce",
+          "settings": {
+            "testo": "Senza metalli pesanti"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6"
+      ]
+    },
+    "profili": {
+      "type": "tv-recensioni-profili",
+      "settings": {
+        "titolo": "Cosa ne pensano, profilo per profilo."
+      },
+      "blocks": {
+        "pr1": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Chef"
+          }
+        },
+        "pr2": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Benessere"
+          }
+        },
+        "pr3": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Famiglie"
+          }
+        },
+        "te4": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Chef",
+            "nome": "Jason",
+            "testo": "« Cucino tutti i giorni per lavoro. Rosola bene, niente punti caldi. »"
+          }
+        },
+        "te5": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Chef",
+            "nome": "Elena",
+            "testo": "« La uso per il pesce, che è la prova del nove. Si stacca intero. »"
+          }
+        },
+        "te6": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Benessere",
+            "nome": "Giulia",
+            "testo": "« Ho eliminato tutte le padelle antiaderenti di casa. »"
+          }
+        },
+        "te7": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Famiglie",
+            "nome": "Francesca",
+            "testo": "« Tre figli, cucino due volte al giorno. Nessun graffio dopo mesi. »"
+          }
+        }
+      },
+      "block_order": [
+        "pr1",
+        "pr2",
+        "pr3",
+        "te4",
+        "te5",
+        "te6",
+        "te7"
+      ]
+    },
+    "marca": {
+      "type": "tv-marca",
+      "settings": {
+        "titolo": "Radicato nella tradizione. Costruito per sopravviverti.",
+        "testo": "<p>Non produciamo semplicemente utensili da cucina. Abbiamo scelto il titanio non perché fosse la via più facile, ma perché è l'unica che non chiede compromessi.</p><p>Abbiamo scelto l'integrità invece delle scorciatoie. Il senso invece del profitto. La durata invece della produzione di massa.</p><p>Ogni pezzo è pensato per guadagnarsi la tua fiducia, non la tua attenzione.</p>"
+      }
+    },
+    "missione": {
+      "type": "tv-testo",
+      "settings": {
+        "titolo": "La nostra missione è semplice.",
+        "colore_titolo": "#FFFFFF",
+        "testo": "<p>Creare utensili da cucina così sicuri, così duraturi e così semplici da usare che tu non debba più pensarci.</p><p>Tutto qui.</p>"
+      }
+    },
+    "lettera": {
+      "type": "tv-lettera",
+      "settings": {
+        "titolo": "Meriti di meglio di un'altra newsletter.",
+        "testo": "Ti scriviamo solo quando ne vale la pena: novità vere, lanci riservati e consigli per una cucina senza sostanze tossiche.",
+        "segnaposto": "La tua email",
+        "bottone": "Iscriviti",
+        "nota": "Detestiamo lo spam quanto te."
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "eroe",
+    "promo",
+    "prodotti",
+    "striscia",
+    "video",
+    "salute",
+    "rivelazione",
+    "confronto",
+    "merita",
+    "profili",
+    "marca",
+    "missione",
+    "lettera"
   ]
 }

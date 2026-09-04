@@ -1,0 +1,82 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    <div class="strati">
+      <div class="strati__foto">
+        {%- if section.settings.foto != blank -%}
+          {{ section.settings.foto | image_url: width: 900 | image_tag: alt: '', loading: 'lazy' }}
+        {%- else -%}
+          <div class="ph"><span>Vue éclatée des couches</span></div>
+        {%- endif -%}
+      </div>
+      {%- for block in section.blocks -%}
+        <div class="strato" {{ block.shopify_attributes }}>
+          <span class="strato__trattino"></span>
+          <span><b>{{ block.settings.titolo }}</b><span>{{ block.settings.testo }}</span></span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Vue éclatée",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Progettata dall'interno verso l'esterno."
+    },
+    {
+      "type": "image_picker",
+      "id": "foto",
+      "label": "Photo de la vue éclatée"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "strato",
+      "name": "Couche",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "titolo",
+          "label": "Titre",
+          "default": "Titanio puro in superficie"
+        },
+        {
+          "type": "textarea",
+          "id": "testo",
+          "label": "Texte"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vue éclatée",
+      "blocks": [
+        {
+          "type": "strato"
+        },
+        {
+          "type": "strato"
+        },
+        {
+          "type": "strato"
+        },
+        {
+          "type": "strato"
+        },
+        {
+          "type": "strato"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+{%- comment -%} Pied de page : menus Shopify, assistance, mentions {%- endcomment -%}
+<footer class="piede">
+  <div class="wrap">
+    {%- if section.settings.logo != blank -%}
+      <div class="piede__logo">
+        {{ section.settings.logo | image_url: width: 500 | image_tag: alt: shop.name, style: 'height:30px;width:auto' }}
+      </div>
+    {%- endif -%}
+
+    <div class="piede__colonne">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'colonna' -%}
+          <div {{ block.shopify_attributes }}>
+            <h3>{{ block.settings.titolo }}</h3>
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.assistenza != blank -%}
+      <div class="piede__assistenza">
+        <b>{{ section.settings.assistenza_titolo }}</b>
+        <span>{{ section.settings.assistenza }}</span>
+      </div>
+    {%- endif -%}
+
+    <div class="piede__basso">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}{% if section.settings.piva != blank %} · {{ section.settings.piva }}{% endif %}</span>
+      {%- if section.settings.mostra_pagamenti and shop.enabled_payment_types.size > 0 -%}
+        <div class="pagamenti__loghi">
+          {%- for tipo in shop.enabled_payment_types -%}
+            {{ tipo | payment_type_svg_tag: class: 'tv-pagamento' }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pied de page",
+  "tag": "section",
+  "class": "shopify-section-group-footer-group",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "text", "id": "assistenza_titolo", "label": "Titre de l'encadré assistance", "default": "Assistenza clienti" },
+    { "type": "text", "id": "assistenza", "label": "Téléphone ou email d'assistance" },
+    { "type": "text", "id": "piva", "label": "Numéro de TVA (P. IVA)" },
+    { "type": "checkbox", "id": "mostra_pagamenti", "label": "Afficher les moyens de paiement", "default": true }
+  ],
+  "blocks": [
+    { "type": "colonna", "name": "Colonne de liens", "limit": 4, "settings": [
+      { "type": "text", "id": "titolo", "label": "Titre", "default": "Prodotto" },
+      { "type": "link_list", "id": "menu", "label": "Menu" }
+    ]}
+  ],
+  "presets": [{ "name": "Pied de page", "blocks": [
+    { "type": "colonna" }, { "type": "colonna" }, { "type": "colonna" }, { "type": "colonna" }
+  ]}]
+}
+{% endschema %}

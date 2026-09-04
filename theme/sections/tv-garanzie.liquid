@@ -1,0 +1,74 @@
+<div class="wrap">
+  <div class="garanzie">
+    {%- if section.settings.titolo != blank -%}
+      <div class="garanzie__testa">
+        {%- if section.settings.bandiera != blank -%}
+          {{ section.settings.bandiera | image_url: width: 90 | image_tag: alt: '', class: 'garanzie__bandiera' }}
+        {%- endif -%}
+        <h2>{{ section.settings.titolo }}</h2>
+      </div>
+    {%- endif -%}
+    <div class="garanzie__griglia">
+      {%- for block in section.blocks -%}
+        <div class="garanzia" {{ block.shopify_attributes }}>
+          <svg viewBox="0 0 24 24"><path d="m12 3 8 5-8 13-8-13 8-5Z" stroke-linejoin="round"/></svg>
+          <span>{{ block.settings.testo }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Panneau de garanties",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Spedito dall'Italia"
+    },
+    {
+      "type": "image_picker",
+      "id": "bandiera",
+      "label": "Drapeau ou pictogramme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "garanzia",
+      "name": "Garantie",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "testo",
+          "label": "Texte",
+          "default": "Spedizione gratuita e resi facili"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Panneau de garanties",
+      "blocks": [
+        {
+          "type": "garanzia"
+        },
+        {
+          "type": "garanzia"
+        },
+        {
+          "type": "garanzia"
+        },
+        {
+          "type": "garanzia"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

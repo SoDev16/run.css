@@ -1,0 +1,38 @@
+{%- comment -%} Bandeau d'annonce défilant {%- endcomment -%}
+<div class="annuncio" style="background:{{ section.settings.sfondo }}">
+  <div class="annuncio__piste"{% if section.settings.velocita %} style="animation-duration:{{ section.settings.velocita }}s"{% endif %}>
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <div class="annuncio__voce" {{ block.shopify_attributes }}{% if i == 2 %} aria-hidden="true"{% endif %}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">{{ block.settings.testo }}</a>
+          {%- else -%}
+            {{ block.settings.testo }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bandeau d'annonce",
+  "tag": "section",
+  "class": "shopify-section-group-header-group",
+  "settings": [
+    { "type": "color", "id": "sfondo", "label": "Couleur de fond", "default": "#BF092F" },
+    { "type": "range", "id": "velocita", "min": 10, "max": 60, "step": 2, "unit": "s",
+      "label": "Durée d'un défilement complet", "default": 22 }
+  ],
+  "blocks": [
+    { "type": "messaggio", "name": "Message", "limit": 6, "settings": [
+      { "type": "text", "id": "testo", "label": "Texte", "default": "Spedizione gratuita · Garanzia a vita" },
+      { "type": "url", "id": "link", "label": "Lien (facultatif)" }
+    ]}
+  ],
+  "presets": [{ "name": "Bandeau d'annonce", "blocks": [
+    { "type": "messaggio" }, { "type": "messaggio" }, { "type": "messaggio" }
+  ]}]
+}
+{% endschema %}

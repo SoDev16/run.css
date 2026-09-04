@@ -1,0 +1,41 @@
+{%- liquid
+  assign p = product
+  if section.settings.prodotto != blank
+    assign p = section.settings.prodotto
+  endif
+  assign v = p.selected_or_first_available_variant
+-%}
+{%- if p != blank -%}
+<div class="barra-fissa" id="barraFissa">
+  {%- if section.settings.nota != blank -%}
+    <p class="barra-fissa__nota">{{ section.settings.nota }}</p>
+  {%- endif -%}
+  {%- form 'product', p -%}
+    <input type="hidden" name="id" value="{{ v.id }}">
+    <button class="acquista" type="submit">{{ section.settings.bottone }} — {{ v.price | money }}</button>
+  {%- endform -%}
+</div>
+<script>
+(() => {
+  const barra = document.getElementById('barraFissa');
+  const principale = document.querySelector('.acquisto .acquista');
+  if(!barra || !principale) return;
+  new IntersectionObserver(([e]) => {
+    barra.classList.toggle('visibile', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }, {threshold:0}).observe(principale);
+})();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barre d'achat collante",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "prodotto", "label": "Produit", "info": "Laisser vide sur une fiche produit." },
+    { "type": "text", "id": "nota", "label": "Mention", "default": "Prova di 120 giorni \u00b7 Garanzia a vita" },
+    { "type": "text", "id": "bottone", "label": "Bouton", "default": "Aggiungi al carrello" }
+  ],
+  "presets": [{ "name": "Barre d'achat collante" }]
+}
+{% endschema %}

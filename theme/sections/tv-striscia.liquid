@@ -1,0 +1,56 @@
+<div class="wrap">
+  <div class="striscia">
+    <div class="striscia__piste">
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          <span class="striscia__voce" {{ block.shopify_attributes }}>
+            <svg viewBox="0 0 24 24"><path d="m12 3 8 5-8 13-8-13 8-5Z" stroke-linejoin="round"/></svg>
+            {{ block.settings.testo }}
+          </span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bandeau défilant",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "voce",
+      "name": "Mention",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "testo",
+          "label": "Texte",
+          "default": "Senza PFAS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bandeau défilant",
+      "blocks": [
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

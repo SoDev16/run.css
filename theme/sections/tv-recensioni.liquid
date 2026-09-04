@@ -1,0 +1,145 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    <div class="valutazioni">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'valutazione' -%}
+          <div class="valutazione" {{ block.shopify_attributes }}>
+            <span class="valutazione__nome">{{ block.settings.nome }}</span>
+            <span class="valutazione__barre">
+              {%- for i in (1..5) -%}<i{% if i <= block.settings.punteggio %} class="piena"{% endif %}></i>{%- endfor -%}
+            </span>
+            <span class="valutazione__voto">{{ block.settings.voto | default: '—' }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="riga-recensioni">
+      <span class="riga-recensioni__stelle"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></span>
+      <span class="riga-recensioni__conteggio">{{ section.settings.conteggio }}</span>
+      {%- if section.settings.link != blank -%}
+        <a class="scrivi" href="{{ section.settings.link }}">{{ section.settings.scrivi }}</a>
+      {%- endif -%}
+    </div>
+    <div class="griglia-recensioni">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'recensione' -%}
+          <article class="recensione" {{ block.shopify_attributes }}>
+            <div class="recensione__foto">
+              {%- if block.settings.foto != blank -%}
+                {{ block.settings.foto | image_url: width: 500 | image_tag: alt: '', loading: 'lazy' }}
+              {%- else -%}
+                <div class="ph"><span>Photo client</span></div>
+              {%- endif -%}
+            </div>
+            <div class="recensione__corpo">
+              <p class="recensione__nome">{{ block.settings.nome }}</p>
+              <span class="recensione__stelle"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></span>
+              <p class="recensione__testo">{{ block.settings.testo }}</p>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Avis clients",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Ecco cosa dicono i nostri clienti."
+    },
+    {
+      "type": "text",
+      "id": "conteggio",
+      "label": "Mention à côté des étoiles",
+      "default": "Recensioni verificate"
+    },
+    {
+      "type": "text",
+      "id": "scrivi",
+      "label": "Libellé du bouton",
+      "default": "Scrivi una recensione"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Lien du bouton"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "valutazione",
+      "name": "Note détaillée",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "nome",
+          "label": "Critère",
+          "default": "Qualità del prodotto"
+        },
+        {
+          "type": "range",
+          "id": "punteggio",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Barres pleines",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "voto",
+          "label": "Note affichée"
+        }
+      ]
+    },
+    {
+      "type": "recensione",
+      "name": "Avis",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "foto",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "nome",
+          "label": "Nom",
+          "default": "Marilyn A."
+        },
+        {
+          "type": "textarea",
+          "id": "testo",
+          "label": "Avis"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis clients",
+      "blocks": [
+        {
+          "type": "valutazione"
+        },
+        {
+          "type": "recensione"
+        },
+        {
+          "type": "recensione"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

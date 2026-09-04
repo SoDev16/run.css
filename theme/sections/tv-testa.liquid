@@ -1,0 +1,36 @@
+{%- comment -%} En-tête : menu, logo, panier {%- endcomment -%}
+<header class="testa">
+  <div class="wrap testa__in">
+    <button class="icona" aria-label="{{ 'sections.header.menu' | t }}" id="tvApriMenu">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+
+    <a class="testa__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 600 | image_tag:
+           alt: shop.name, loading: 'eager', style: 'height:' | append: section.settings.altezza | append: 'px;width:auto' }}
+      {%- else -%}
+        <span style="font-weight:600;letter-spacing:.1em">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <a class="icona carrello" href="{{ routes.cart_url }}" id="apriCarrello" aria-label="{{ 'sections.header.cart' | t }}">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8L4 7Z" stroke-linejoin="round"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7" stroke-linecap="round"/></svg>
+      <span class="carrello__conteggio" data-tv-conteggio>{{ cart.item_count }}</span>
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "En-tête",
+  "tag": "section",
+  "class": "shopify-section-group-header-group",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "range", "id": "altezza", "min": 18, "max": 60, "step": 2, "unit": "px",
+      "label": "Hauteur du logo", "default": 34 }
+  ],
+  "presets": [{ "name": "En-tête" }]
+}
+{% endschema %}

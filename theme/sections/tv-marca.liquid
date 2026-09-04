@@ -1,0 +1,47 @@
+<div class="wrap">
+  <section class="sezione" style="padding-block:0">
+    <div class="marca">
+      <div class="marca__sfondo">
+        {%- if section.settings.sfondo != blank -%}
+          {{ section.settings.sfondo | image_url: width: 1600 | image_tag: alt: '', loading: 'lazy' }}
+        {%- else -%}
+          <div class="ph"><span>Image d'ambiance</span></div>
+        {%- endif -%}
+      </div>
+      <div class="marca__testo">
+        <h2>{{ section.settings.titolo }}</h2>
+        {{ section.settings.testo }}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Bloc de marque",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "sfondo",
+      "label": "Image de fond"
+    },
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Radicato nella tradizione."
+    },
+    {
+      "type": "richtext",
+      "id": "testo",
+      "label": "Texte"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bloc de marque"
+    }
+  ]
+}
+{% endschema %}

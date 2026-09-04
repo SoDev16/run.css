@@ -1,0 +1,57 @@
+<div class="wrap">
+  <section class="sezione" style="padding-block:0">
+    <div class="rivelazione">
+      {%- for block in section.blocks -%}
+        <p class="rivelazione__riga{% if block.settings.forte %} forte{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.testo }}</p>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Texte à révélation",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "riga",
+      "name": "Ligne",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "testo",
+          "label": "Texte",
+          "default": "Da noi"
+        },
+        {
+          "type": "checkbox",
+          "id": "forte",
+          "label": "Mettre en valeur",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Texte à révélation",
+      "blocks": [
+        {
+          "type": "riga"
+        },
+        {
+          "type": "riga"
+        },
+        {
+          "type": "riga"
+        },
+        {
+          "type": "riga"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

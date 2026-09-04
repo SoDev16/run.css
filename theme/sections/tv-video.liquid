@@ -1,0 +1,91 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    <div class="video-fila">
+      {%- for block in section.blocks -%}
+        <div class="video-carta" {{ block.shopify_attributes }}>
+          <div class="video-carta__schermo">
+            {%- if block.settings.video != blank -%}
+              {{ block.settings.video | video_tag: image_size: '600x', playsinline: true, controls: true, muted: true }}
+            {%- elsif block.settings.copertina != blank -%}
+              {{ block.settings.copertina | image_url: width: 600 | image_tag: alt: '', loading: 'lazy' }}
+              <span class="video-carta__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            {%- else -%}
+              <div class="ph"><span>{{ block.settings.nota }}</span></div>
+              <span class="video-carta__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.citazione != blank -%}
+            <p class="video-carta__citazione">{{ block.settings.citazione }}</p>
+          {%- endif -%}
+          <span class="video-carta__stelle"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Témoignages vidéo",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Approvata da chi cucina ogni giorno."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Vidéo",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Vidéo"
+        },
+        {
+          "type": "image_picker",
+          "id": "copertina",
+          "label": "Image de couverture"
+        },
+        {
+          "type": "text",
+          "id": "nota",
+          "label": "Description de la vidéo attendue",
+          "default": "Vidéo à ajouter"
+        },
+        {
+          "type": "text",
+          "id": "citazione",
+          "label": "Citation",
+          "default": "« … »"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Témoignages vidéo",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

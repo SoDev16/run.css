@@ -1,0 +1,127 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    {%- assign profili = section.blocks | where: 'type', 'profilo' -%}
+    <div class="profili" role="tablist">
+      {%- for block in profili -%}
+        <button class="profilo" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="tvg-{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.nome }}</button>
+      {%- endfor -%}
+    </div>
+    {%- for profilo in profili -%}
+      <div class="testimonianze" id="tvg-{{ profilo.id }}"{% unless forloop.first %} hidden{% endunless %}>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'testimonianza' and block.settings.profilo == profilo.settings.nome -%}
+            <article class="testimonianza" {{ block.shopify_attributes }}>
+              <div class="testimonianza__testa">
+                {%- if block.settings.ritratto != blank -%}
+                  {{ block.settings.ritratto | image_url: width: 120 | image_tag: alt: '', class: 'testimonianza__ritratto' }}
+                {%- else -%}
+                  <span class="testimonianza__ritratto">photo</span>
+                {%- endif -%}
+                <span>
+                  <span class="testimonianza__nome">{{ block.settings.nome }}</span>
+                  <span class="testimonianza__stelle"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></span>
+                </span>
+              </div>
+              <p>{{ block.settings.testo }}</p>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+    <div class="frecce">
+      <button class="freccia" aria-label="Precedente"><svg viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="freccia" aria-label="Successivo"><svg viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </section>
+</div>
+<script>
+document.querySelectorAll('.profili .profilo').forEach(p => p.addEventListener('click', () => {
+  document.querySelectorAll('.profili .profilo').forEach(x => {
+    x.setAttribute('aria-selected','false');
+    const g = document.getElementById(x.getAttribute('aria-controls')); if(g) g.hidden = true;
+  });
+  p.setAttribute('aria-selected','true');
+  const g = document.getElementById(p.getAttribute('aria-controls')); if(g) g.hidden = false;
+}));
+document.querySelectorAll('.freccia').forEach((f,i) => f.addEventListener('click', () => {
+  const v = [...document.querySelectorAll('.testimonianze')].find(t => !t.hidden);
+  if(v) v.scrollBy({left:(i?1:-1)*v.clientWidth*0.85, behavior:'smooth'});
+}));
+</script>
+
+{% schema %}
+{
+  "name": "Avis par profil",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Cosa ne pensano, profilo per profilo."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "profilo",
+      "name": "Profil (onglet)",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "nome",
+          "label": "Nom du profil",
+          "default": "Chef"
+        }
+      ]
+    },
+    {
+      "type": "testimonianza",
+      "name": "Témoignage",
+      "limit": 40,
+      "settings": [
+        {
+          "type": "text",
+          "id": "profilo",
+          "label": "Profil auquel il appartient",
+          "default": "Chef"
+        },
+        {
+          "type": "text",
+          "id": "nome",
+          "label": "Nom du client",
+          "default": "Giulia"
+        },
+        {
+          "type": "image_picker",
+          "id": "ritratto",
+          "label": "Portrait"
+        },
+        {
+          "type": "textarea",
+          "id": "testo",
+          "label": "Témoignage"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis par profil",
+      "blocks": [
+        {
+          "type": "profilo"
+        },
+        {
+          "type": "testimonianza"
+        },
+        {
+          "type": "testimonianza"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

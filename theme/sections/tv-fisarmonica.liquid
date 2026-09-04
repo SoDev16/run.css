@@ -1,0 +1,66 @@
+<div class="wrap">
+  <section class="sezione" style="padding-top:0">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    <div class="fisarmonica">
+      {%- for block in section.blocks -%}
+        <details class="piega" {{ block.shopify_attributes }}>
+          <summary class="piega__testa">{{ block.settings.titolo }}<span class="piega__piu" aria-hidden="true"></span></summary>
+          <div class="piega__corpo">{{ block.settings.contenuto }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Accordéons",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "piega",
+      "name": "Volet",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "titolo",
+          "label": "Titre",
+          "default": "Dettagli, cura e utilizzo"
+        },
+        {
+          "type": "richtext",
+          "id": "contenuto",
+          "label": "Contenu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordéons",
+      "blocks": [
+        {
+          "type": "piega"
+        },
+        {
+          "type": "piega"
+        },
+        {
+          "type": "piega"
+        },
+        {
+          "type": "piega"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

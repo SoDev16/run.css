@@ -1,0 +1,82 @@
+<div class="wrap">
+  <section class="sezione" style="padding-block:0">
+    <div class="merita">
+      {%- if section.settings.titolo != blank -%}<h2 class="merita__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+      <ul class="merita__elenco">
+        {%- for block in section.blocks -%}
+          <li class="merita__voce" {{ block.shopify_attributes }}>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 7.5 3.6v5c0 4.4-3.1 8.5-7.5 9.8-4.4-1.3-7.5-5.4-7.5-9.8v-5L12 3Z"/></svg>
+            {{ block.settings.testo }}
+          </li>
+        {%- endfor -%}
+      </ul>
+      <div class="merita__foto">
+        {%- if section.settings.foto != blank -%}
+          {{ section.settings.foto | image_url: width: 900 | image_tag: alt: '', loading: 'lazy' }}
+        {%- else -%}
+          <div class="ph"><span>Vue de dessus de la poêle</span></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Liste à révélation",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Il tuo corpo merita di meglio."
+    },
+    {
+      "type": "image_picker",
+      "id": "foto",
+      "label": "Photo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "voce",
+      "name": "Argument",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "testo",
+          "label": "Texte",
+          "default": "Senza PFAS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Liste à révélation",
+      "blocks": [
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        },
+        {
+          "type": "voce"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

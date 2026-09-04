@@ -1,103 +1,784 @@
 {
   "sections": {
-    "main": {
-      "type": "main-product",
+    "prodotto": {
+      "type": "tv-prodotto",
+      "settings": {
+        "promo_titolo": "Offerta di lancio",
+        "promo_sotto": "Coperchio premium incluso con ogni padella",
+        "promo_etichetta": "GRATIS!",
+        "promo_valore": "49,00 €",
+        "voto": "4,9",
+        "voto_nota": "recensioni verificate",
+        "sommario": "<p>Cucina senza pensieri, lava senza sfregare. <strong>Testata da un laboratorio indipendente, priva di tossine.</strong> Costruzione a 5 strati — con <strong>garanzia a vita</strong> e <strong>120 giorni di prova</strong> senza rischi.</p>",
+        "pillola": "Offerta valida oggi",
+        "etichetta_misura": "Scegli la misura",
+        "guida_testo": "Guida alle misure",
+        "etichetta_offerte": "Oppure risparmia con un set",
+        "bottone": "Aggiungi al carrello",
+        "laboratorio": "<p>Analizzata da un laboratorio indipendente — 30 sostanze testate</p>",
+        "mostra_pagamenti": true,
+        "pagamenti_testo": "Pagamento sicuro e garantito"
+      },
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "a1": {
+          "type": "argomento",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "testo": "<p>Senza PFAS, PTFE e PFOA.<br><strong>Nessun interferente ormonale.</strong></p>"
           }
         },
-        "title": {
-          "type": "title"
-        },
-        "price": {
-          "type": "price"
-        },
-        "variant_picker": {
-          "type": "variant_picker",
+        "a2": {
+          "type": "argomento",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "testo": "<p>Naturalmente <strong>antiaderente</strong><br>grazie alla superficie microincisa.</p>"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
+        "p1": {
+          "type": "pastiglia",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "testo": "Indistruttibile a vita"
           }
         },
-        "description": {
-          "type": "description"
-        },
-        "share": {
-          "type": "share",
+        "p2": {
+          "type": "pastiglia",
           "settings": {
-            "share_label": "Share"
+            "testo": "Adatta a induzione"
+          }
+        },
+        "p3": {
+          "type": "pastiglia",
+          "settings": {
+            "testo": "Adatta al forno"
+          }
+        },
+        "p4": {
+          "type": "pastiglia",
+          "settings": {
+            "testo": "Lavabile in lavastoviglie"
           }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
-      ],
+        "a1",
+        "a2",
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    },
+    "garanzie": {
+      "type": "tv-garanzie",
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_position": "left",
-        "gallery_layout": "stacked",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "titolo": "Spedito dall'Italia"
+      },
+      "blocks": {
+        "g1": {
+          "type": "garanzia",
+          "settings": {
+            "testo": "Spedizione gratuita e resi facili"
+          }
+        },
+        "g2": {
+          "type": "garanzia",
+          "settings": {
+            "testo": "120 giorni di garanzia"
+          }
+        },
+        "g3": {
+          "type": "garanzia",
+          "settings": {
+            "testo": "Garanzia a vita"
+          }
+        },
+        "g4": {
+          "type": "garanzia",
+          "settings": {
+            "testo": "100% priva di tossine"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    "schede": {
+      "type": "tv-schede",
+      "settings": {},
+      "blocks": {
+        "s1": {
+          "type": "scheda",
+          "settings": {
+            "etichetta": "Benefici<br>per la salute",
+            "titolo": "Un nuovo standard di sicurezza, prestazioni e durata.",
+            "contenuto": "<p><strong>Titanio puro — il metallo più sicuro a contatto con il corpo.</strong> Usato da decenni negli impianti medici per la sua biocompatibilità.</p><p><strong>Antiaderente senza sostanze chimiche.</strong> La superficie è microincisa, non rivestita.</p>"
+          }
+        },
+        "s2": {
+          "type": "scheda",
+          "settings": {
+            "etichetta": "Purezza<br>certificata",
+            "titolo": "Verificata, non solo dichiarata.",
+            "contenuto": "<p>Da completare con il tuo rapporto di laboratorio: nome del laboratorio, data e sostanze ricercate.</p>"
+          }
+        },
+        "s3": {
+          "type": "scheda",
+          "settings": {
+            "etichetta": "Titanio<br>e gli altri",
+            "titolo": "Il titanio e tutti gli altri.",
+            "tabella": "<table class=\"confronto\"><thead><tr><th></th><th>Antiaderente</th><th>Acciaio inox</th><th class=\"noi\">Titanio Vero</th></tr></thead><tbody>\n<tr><th>Superficie non tossica</th><td>✕</td><td>✓</td><td class=\"noi\">✓</td></tr>\n<tr><th>Resiste alle alte temperature</th><td>✕</td><td>✓</td><td class=\"noi\">✓</td></tr>\n<tr><th>Facile da pulire</th><td>✓</td><td>✕</td><td class=\"noi\">✓</td></tr>\n<tr><th>Non si deforma</th><td>✕</td><td>✓</td><td class=\"noi\">✓</td></tr>\n<tr><th>Lavabile in lavastoviglie</th><td>✕</td><td>✓</td><td class=\"noi\">✓</td></tr>\n<tr><th>Utensili in metallo</th><td>✕</td><td>✓</td><td class=\"noi\">✓</td></tr>\n<tr><th>Quanto dura</th><td><span class=\"durata\">1 anno</span></td><td><span class=\"durata\">5–7 anni</span></td><td class=\"noi\"><span class=\"durata forte\">Per sempre</span></td></tr>\n</tbody></table>"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "fisarmonica": {
+      "type": "tv-fisarmonica",
+      "settings": {},
+      "blocks": {
+        "f1": {
+          "type": "piega",
+          "settings": {
+            "titolo": "Dettagli, cura e utilizzo",
+            "contenuto": "<p>Costruzione a 5 strati, compatibile con tutti i piani cottura, induzione compresa.</p>"
+          }
+        },
+        "f2": {
+          "type": "piega",
+          "settings": {
+            "titolo": "In sintesi dalle recensioni",
+            "contenuto": "<p>Da riempire con le tue vere recensioni.</p>"
+          }
+        },
+        "f3": {
+          "type": "piega",
+          "settings": {
+            "titolo": "Spedizione, resi e garanzia",
+            "contenuto": "<p>Diritto di recesso di 14 giorni previsto dalla legge, esteso a 120 giorni.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ]
+    },
+    "impegno": {
+      "type": "tv-impegno",
+      "settings": {
+        "testo": "Una parte del tuo ordine finanzia lo sviluppo della prossima generazione di utensili da cucina senza sostanze tossiche."
       }
     },
-    "disclosures": {
-      "type": "disclosures",
+    "confronto": {
+      "type": "tv-carte",
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 0
-      }
+        "titolo": "È ora di ripensare le tue padelle.",
+        "intro": "Rischi tossici, manutenzione, durata: nessuna di queste superfici regge il confronto con il titanio."
+      },
+      "blocks": {
+        "c1": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Antiaderente / Teflon",
+            "testo": "Il rivestimento rilascia PFAS, le cosiddette sostanze chimiche eterne. Si scheggia e non regge il calore: quello che se ne va finisce nel piatto.",
+            "nota_foto": "Poêle antiadhésive dont le revêtement s'écaille"
+          }
+        },
+        "c2": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Acciaio inox",
+            "testo": "Richiede molto olio e reagisce con gli alimenti acidi — altera il sapore e cede metalli. Difficile da pulire.",
+            "nota_foto": "Poêle en acier avec aliments collés"
+          }
+        },
+        "c3": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Ghisa",
+            "testo": "Pesante, lenta a scaldarsi, va ricondizionata. Un errore di lavaggio e arrugginisce.",
+            "nota_foto": "Poêle en fonte rouillée"
+          }
+        },
+        "c4": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Ceramica",
+            "testo": "Antiaderente all'inizio, poi non più. Perde efficacia in pochi mesi.",
+            "nota_foto": "Poêle céramique ternie"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
     },
-    "related-products": {
-      "type": "related-products",
+    "rivelazione1": {
+      "type": "tv-rivelazione",
+      "settings": {},
+      "blocks": {
+        "r1": {
+          "type": "riga",
+          "settings": {
+            "testo": "Da noi"
+          }
+        },
+        "r2": {
+          "type": "riga",
+          "settings": {
+            "testo": "l'assenza di tossine"
+          }
+        },
+        "r3": {
+          "type": "riga",
+          "settings": {
+            "testo": "non è un dettaglio."
+          }
+        },
+        "r4": {
+          "type": "riga",
+          "settings": {
+            "testo": "È il punto di partenza.",
+            "forte": true
+          }
+        },
+        "r5": {
+          "type": "riga",
+          "settings": {
+            "testo": "Altri ci provano."
+          }
+        },
+        "r6": {
+          "type": "riga",
+          "settings": {
+            "testo": "Nessuno ci arriva."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ]
+    },
+    "vantaggi": {
+      "type": "tv-carte",
       "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 28
+        "titolo": "I vantaggi di passare al titanio."
+      },
+      "blocks": {
+        "v1": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Vivere più a lungo, meglio",
+            "testo": "Tossine, metalli pesanti e microplastiche accelerano l'invecchiamento cellulare. Il titanio elimina l'esposizione alla fonte.",
+            "nota_foto": "Couple qui danse dans la cuisine"
+          }
+        },
+        "v2": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Comodità senza compromessi",
+            "testo": "La superficie microincisa fa scivolare il cibo senza rivestimento chimico.",
+            "nota_foto": "Gros plan macro sur la surface"
+          }
+        },
+        "v3": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Meno olio, stessa resa",
+            "testo": "Serve pochissimo grasso perché il cibo tocca meno superficie.",
+            "nota_foto": "Œuf qui glisse dans la poêle"
+          }
+        },
+        "v4": {
+          "type": "carta",
+          "settings": {
+            "titolo": "Una volta, per sempre",
+            "testo": "Non si deforma, non si graffia, non si consuma. È l'ultima padella che comprerai.",
+            "nota_foto": "Poêle après des années d'usage"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ]
+    },
+    "mosaico": {
+      "type": "tv-mosaico",
+      "settings": {
+        "titolo": "Nelle cucine di chi l'ha già provata.",
+        "intro": "Foto inviate dai clienti."
+      },
+      "blocks": {
+        "f1": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f2": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f3": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f4": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f5": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f6": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f7": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f8": {
+          "type": "foto",
+          "settings": {}
+        },
+        "f9": {
+          "type": "foto",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9"
+      ]
+    },
+    "rivelazione2": {
+      "type": "tv-rivelazione",
+      "settings": {},
+      "blocks": {
+        "q1": {
+          "type": "riga",
+          "settings": {
+            "testo": "Hai un corpo solo."
+          }
+        },
+        "q2": {
+          "type": "riga",
+          "settings": {
+            "testo": "Una vita sola."
+          }
+        },
+        "q3": {
+          "type": "riga",
+          "settings": {
+            "testo": "Ogni scelta che fai"
+          }
+        },
+        "q4": {
+          "type": "riga",
+          "settings": {
+            "testo": "o la rispetta,"
+          }
+        },
+        "q5": {
+          "type": "riga",
+          "settings": {
+            "testo": "o la consuma.",
+            "forte": true
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
+    },
+    "video": {
+      "type": "tv-video",
+      "settings": {
+        "titolo": "Chi l'ha provata non torna indietro."
+      },
+      "blocks": {
+        "w1": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : pâtes qui glissent",
+            "citazione": "« Antiaderente senza rivestimento: è tutta un'altra cosa »"
+          }
+        },
+        "w2": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : œuf sans matière grasse",
+            "citazione": "« L'uovo scivola via da solo, senza olio »"
+          }
+        },
+        "w3": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : nettoyage à l'éponge",
+            "citazione": "« Si pulisce in tre secondi, senza sfregare »"
+          }
+        },
+        "w4": {
+          "type": "video",
+          "settings": {
+            "nota": "Vidéo : viande saisie",
+            "citazione": "« Rosola come una padella da ristorante »"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ]
+    },
+    "profili": {
+      "type": "tv-recensioni-profili",
+      "settings": {
+        "titolo": "Cosa ne pensano, profilo per profilo."
+      },
+      "blocks": {
+        "pr1": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Chef"
+          }
+        },
+        "pr2": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Benessere"
+          }
+        },
+        "pr3": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Sportivi"
+          }
+        },
+        "pr4": {
+          "type": "profilo",
+          "settings": {
+            "nome": "Famiglie"
+          }
+        },
+        "te5": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Chef",
+            "nome": "Jason",
+            "testo": "« Cucino tutti i giorni per lavoro. Rosola bene, niente punti caldi, niente attaccature. »"
+          }
+        },
+        "te6": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Chef",
+            "nome": "Elena",
+            "testo": "« La uso per il pesce, che è la prova del nove. Si stacca intero, ogni volta. »"
+          }
+        },
+        "te7": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Benessere",
+            "nome": "Giulia",
+            "testo": "« Ho eliminato tutte le padelle antiaderenti di casa. »"
+          }
+        },
+        "te8": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Benessere",
+            "nome": "Marco",
+            "testo": "« La sostituzione più semplice da fare per ridurre l'esposizione chimica. »"
+          }
+        },
+        "te9": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Sportivi",
+            "nome": "Luca",
+            "testo": "« Preparo gli stessi piatti ogni giorno. Ho bisogno che funzioni sempre. »"
+          }
+        },
+        "te10": {
+          "type": "testimonianza",
+          "settings": {
+            "profilo": "Famiglie",
+            "nome": "Francesca",
+            "testo": "« Tre figli, cucino due volte al giorno. Nessun graffio dopo mesi. »"
+          }
+        }
+      },
+      "block_order": [
+        "pr1",
+        "pr2",
+        "pr3",
+        "pr4",
+        "te5",
+        "te6",
+        "te7",
+        "te8",
+        "te9",
+        "te10"
+      ]
+    },
+    "strati": {
+      "type": "tv-strati",
+      "settings": {
+        "titolo": "Progettata dall'interno verso l'esterno."
+      },
+      "blocks": {
+        "st1": {
+          "type": "strato",
+          "settings": {
+            "titolo": "Titanio puro in superficie",
+            "testo": "Non tossico. Antiaderente per forma, non per rivestimento."
+          }
+        },
+        "st2": {
+          "type": "strato",
+          "settings": {
+            "titolo": "Terzo strato in alluminio riciclato",
+            "testo": "Distribuisce il calore fino ai bordi."
+          }
+        },
+        "st3": {
+          "type": "strato",
+          "settings": {
+            "titolo": "Secondo strato in alluminio riciclato",
+            "testo": "Stabilizza la temperatura interna."
+          }
+        },
+        "st4": {
+          "type": "strato",
+          "settings": {
+            "titolo": "Primo strato in alluminio riciclato",
+            "testo": "Assorbe il calore rapidamente."
+          }
+        },
+        "st5": {
+          "type": "strato",
+          "settings": {
+            "titolo": "Acciaio inox per induzione",
+            "testo": "Aggiunge resistenza e conduttività magnetica."
+          }
+        }
+      },
+      "block_order": [
+        "st1",
+        "st2",
+        "st3",
+        "st4",
+        "st5"
+      ]
+    },
+    "faq": {
+      "type": "tv-faq",
+      "settings": {
+        "titolo": "Domande frequenti"
+      },
+      "blocks": {
+        "d1": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Come può essere antiaderente senza rivestimento?",
+            "risposta": "<p>La superficie è microincisa, non ricoperta. I micro-rilievi riducono i punti di contatto: il cibo scivola invece di aderire.</p>"
+          }
+        },
+        "d2": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Il titanio è sicuro a contatto con gli alimenti?",
+            "risposta": "<p>Il titanio è usato da decenni negli impianti medici per la sua stabilità: non reagisce e non rilascia particelle.</p>"
+          }
+        },
+        "d3": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Funziona su induzione, gas e vetroceramica?",
+            "risposta": "<p>Sì, su tutti i piani cottura. Il fondo in acciaio inox garantisce la conduttività magnetica.</p>"
+          }
+        },
+        "d4": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Posso metterla in forno?",
+            "risposta": "<p>Sì. Nessun rivestimento significa nessuna temperatura limite legata a una pellicola.</p>"
+          }
+        },
+        "d5": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Posso lavarla in lavastoviglie?",
+            "risposta": "<p>Sì. Non c'è rivestimento da preservare.</p>"
+          }
+        },
+        "d6": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Posso usare utensili in metallo?",
+            "risposta": "<p>Sì. Niente da graffiare.</p>"
+          }
+        },
+        "d7": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Serve olio o burro?",
+            "risposta": "<p>Molto poco, e spesso niente.</p>"
+          }
+        },
+        "d8": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Che cos'è la costruzione a 5 strati?",
+            "risposta": "<p>Titanio in superficie, tre strati di alluminio riciclato, acciaio inox sul fondo.</p>"
+          }
+        },
+        "d9": {
+          "type": "domanda",
+          "settings": {
+            "domanda": "Come funzionano i resi?",
+            "risposta": "<p>Diritto di recesso di 14 giorni previsto dalla legge, esteso a 120 giorni.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5",
+        "d6",
+        "d7",
+        "d8",
+        "d9"
+      ]
+    },
+    "recensioni": {
+      "type": "tv-recensioni",
+      "settings": {
+        "titolo": "Ecco cosa dicono i nostri clienti.",
+        "conteggio": "Recensioni verificate",
+        "scrivi": "Scrivi una recensione"
+      },
+      "blocks": {
+        "va1": {
+          "type": "valutazione",
+          "settings": {
+            "nome": "Qualità del prodotto",
+            "punteggio": 5
+          }
+        },
+        "va2": {
+          "type": "valutazione",
+          "settings": {
+            "nome": "Rapporto qualità-prezzo",
+            "punteggio": 4
+          }
+        },
+        "va3": {
+          "type": "valutazione",
+          "settings": {
+            "nome": "Soddisfazione",
+            "punteggio": 5
+          }
+        },
+        "re1": {
+          "type": "recensione",
+          "settings": {
+            "nome": "Marilyn A.",
+            "testo": "Prima volta stasera. Cotoletta impanata con salsa, cotta alla perfezione."
+          }
+        },
+        "re2": {
+          "type": "recensione",
+          "settings": {
+            "nome": "Patrizia C.",
+            "testo": "La uso da diverse settimane. Peso perfetto, cottura uniforme."
+          }
+        },
+        "re3": {
+          "type": "recensione",
+          "settings": {
+            "nome": "Giovanna S.",
+            "testo": "La padella è bellissima e antiaderente esattamente come promesso."
+          }
+        },
+        "re4": {
+          "type": "recensione",
+          "settings": {
+            "nome": "Roberto M.",
+            "testo": "Scettico all'inizio, convinto dopo una settimana."
+          }
+        }
+      },
+      "block_order": [
+        "va1",
+        "va2",
+        "va3",
+        "re1",
+        "re2",
+        "re3",
+        "re4"
+      ]
+    },
+    "barra": {
+      "type": "tv-barra-fissa",
+      "settings": {
+        "nota": "Prova di 120 giorni · Garanzia a vita",
+        "bottone": "Aggiungi al carrello"
       }
     }
   },
   "order": [
-    "main",
-    "disclosures",
-    "related-products"
+    "prodotto",
+    "garanzie",
+    "schede",
+    "fisarmonica",
+    "impegno",
+    "confronto",
+    "rivelazione1",
+    "vantaggi",
+    "mosaico",
+    "rivelazione2",
+    "video",
+    "profili",
+    "strati",
+    "faq",
+    "recensioni",
+    "barra"
   ]
 }

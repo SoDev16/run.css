@@ -1,0 +1,93 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    {%- if section.settings.intro != blank -%}<p class="sezione__intro">{{ section.settings.intro }}</p>{%- endif -%}
+    <div class="carte">
+      {%- for block in section.blocks -%}
+        <article class="carta" {{ block.shopify_attributes }}>
+          <div class="carta__foto">
+            {%- if block.settings.foto != blank -%}
+              {{ block.settings.foto | image_url: width: 800 | image_tag: alt: block.settings.titolo, loading: 'lazy' }}
+            {%- else -%}
+              <div class="ph"><span>{{ block.settings.nota_foto }}</span></div>
+            {%- endif -%}
+          </div>
+          <div class="carta__corpo">
+            <h3 class="carta__titolo">{{ block.settings.titolo }}</h3>
+            <p class="carta__testo">{{ block.settings.testo }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Rangée de cartes",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "È ora di ripensare le tue padelle."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introduction"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "carta",
+      "name": "Carte",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "foto",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "nota_foto",
+          "label": "Description de la photo attendue",
+          "default": "Photo à ajouter"
+        },
+        {
+          "type": "text",
+          "id": "titolo",
+          "label": "Titre",
+          "default": "Antiaderente / Teflon"
+        },
+        {
+          "type": "textarea",
+          "id": "testo",
+          "label": "Texte"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rangée de cartes",
+      "blocks": [
+        {
+          "type": "carta"
+        },
+        {
+          "type": "carta"
+        },
+        {
+          "type": "carta"
+        },
+        {
+          "type": "carta"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,82 @@
+<div class="wrap">
+  <section class="sezione">
+    <div class="schede" role="tablist">
+      {%- for block in section.blocks -%}
+        <button class="scheda" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="tvp-{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.etichetta }}</button>
+      {%- endfor -%}
+    </div>
+    {%- for block in section.blocks -%}
+      <div class="pannello" id="tvp-{{ block.id }}" role="tabpanel"{% unless forloop.first %} hidden{% endunless %}>
+        {%- if block.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ block.settings.titolo }}</h2>{%- endif -%}
+        {%- if block.settings.contenuto != blank -%}<div class="sezione__intro">{{ block.settings.contenuto }}</div>{%- endif -%}
+        {%- if block.settings.tabella != blank -%}<div class="tabella-libera">{{ block.settings.tabella }}</div>{%- endif -%}
+      </div>
+    {%- endfor -%}
+  </section>
+</div>
+<script>
+document.querySelectorAll('.schede .scheda').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.schede .scheda').forEach(x => {
+    x.setAttribute('aria-selected','false');
+    const p = document.getElementById(x.getAttribute('aria-controls')); if(p) p.hidden = true;
+  });
+  t.setAttribute('aria-selected','true');
+  const p = document.getElementById(t.getAttribute('aria-controls')); if(p) p.hidden = false;
+}));
+</script>
+
+{% schema %}
+{
+  "name": "Onglets d'arguments",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "scheda",
+      "name": "Onglet",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "etichetta",
+          "label": "Libellé de l'onglet",
+          "default": "Benefici per la salute"
+        },
+        {
+          "type": "text",
+          "id": "titolo",
+          "label": "Titre du panneau",
+          "default": "Un nuovo standard di sicurezza."
+        },
+        {
+          "type": "richtext",
+          "id": "contenuto",
+          "label": "Contenu"
+        },
+        {
+          "type": "html",
+          "id": "tabella",
+          "label": "Tableau ou contenu libre (HTML)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Onglets d'arguments",
+      "blocks": [
+        {
+          "type": "scheda"
+        },
+        {
+          "type": "scheda"
+        },
+        {
+          "type": "scheda"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

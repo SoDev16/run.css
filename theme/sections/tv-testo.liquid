@@ -1,0 +1,49 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}
+      <h2 class="sezione__titolo" style="text-align:left;color:{{ section.settings.colore_titolo }}">{{ section.settings.titolo }}</h2>
+    {%- endif -%}
+    {%- if section.settings.testo != blank -%}
+      <div class="sezione__intro" style="text-align:left;margin-inline:0">{{ section.settings.testo }}</div>
+    {%- endif -%}
+    {%- if section.settings.foto != blank -%}
+      {{ section.settings.foto | image_url: width: 1400 | image_tag: alt: '', loading: 'lazy', style: 'border-radius:16px;margin-top:24px' }}
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Bloc de texte",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "La nostra missione è semplice."
+    },
+    {
+      "type": "color",
+      "id": "colore_titolo",
+      "label": "Couleur du titre",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "testo",
+      "label": "Texte"
+    },
+    {
+      "type": "image_picker",
+      "id": "foto",
+      "label": "Photo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bloc de texte"
+    }
+  ]
+}
+{% endschema %}

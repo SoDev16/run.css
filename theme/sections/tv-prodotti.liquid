@@ -1,0 +1,98 @@
+{%- comment -%}
+  Une carte aujourd'hui, une grille dès qu'il y aura d'autres produits :
+  la mise en page s'adapte seule au nombre d'articles de la collection.
+{%- endcomment -%}
+<div class="wrap">
+  <section class="sezione">
+    <div class="testa-sezione">
+      {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+      {%- if section.settings.bottone != blank -%}
+        <a class="acquista" style="width:auto;padding:14px 26px;font-size:15px"
+           href="{{ section.settings.collezione.url | default: routes.all_products_collection_url }}">{{ section.settings.bottone }}</a>
+      {%- endif -%}
+    </div>
+    <div class="prodotti">
+      {%- assign lista = section.settings.collezione.products -%}
+      {%- if lista.size == 0 -%}{%- assign lista = collections.all.products -%}{%- endif -%}
+      {%- for prodotto in lista limit: section.settings.quanti -%}
+        <article class="prodotto-carta">
+          {%- if prodotto.compare_at_price > prodotto.price -%}
+            {%- assign sconto = prodotto.compare_at_price | minus: prodotto.price -%}
+            <span class="prodotto-carta__badge">{{ section.settings.badge }} {{ sconto | money_without_trailing_zeros }}</span>
+          {%- endif -%}
+          <a class="prodotto-carta__foto" href="{{ prodotto.url }}">
+            {%- if prodotto.featured_media != blank -%}
+              {{ prodotto.featured_media | image_url: width: 700 | image_tag: alt: prodotto.title, loading: 'lazy' }}
+            {%- else -%}
+              <div class="ph"><span>Photo produit</span></div>
+            {%- endif -%}
+          </a>
+          <div class="prodotto-carta__corpo">
+            <h3 class="prodotto-carta__nome"><a href="{{ prodotto.url }}" style="text-decoration:none">{{ prodotto.title }}</a></h3>
+            <p class="prodotto-carta__testo">{{ prodotto.description | strip_html | truncate: 110 }}</p>
+            <p class="prodotto-carta__prezzi">
+              {%- if prodotto.compare_at_price > prodotto.price -%}
+                <span class="prodotto-carta__barrato">{{ prodotto.compare_at_price | money }}</span>
+              {%- endif -%}
+              <span class="prodotto-carta__prezzo">{{ prodotto.price | money }}</span>
+            </p>
+          </div>
+        </article>
+      {%- else -%}
+        <article class="prodotto-carta">
+          <div class="prodotto-carta__foto"><div class="ph"><span>Ajoute ton produit dans Shopify</span></div></div>
+          <div class="prodotto-carta__corpo">
+            <h3 class="prodotto-carta__nome">Aucun produit pour l'instant</h3>
+            <p class="prodotto-carta__testo">Choisis une collection dans les réglages de cette section.</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Grille de produits",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "I nostri prodotti"
+    },
+    {
+      "type": "collection",
+      "id": "collezione",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "quanti",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Nombre de produits",
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "bottone",
+      "label": "Bouton",
+      "default": "Vedi tutto"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Préfixe du badge de remise",
+      "default": "Risparmia"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grille de produits"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+<div class="wrap">
+  <a class="promo-verde" href="{{ section.settings.link | default: '#' }}">
+    <span>{{ section.settings.testo }}</span>
+    <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Bandeau promotionnel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "testo",
+      "label": "Texte"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Lien"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bandeau promotionnel"
+    }
+  ]
+}
+{% endschema %}

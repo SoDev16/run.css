@@ -1,0 +1,73 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    <div class="fisarmonica">
+      {%- for block in section.blocks -%}
+        <details class="piega" {{ block.shopify_attributes }}>
+          <summary class="piega__testa">{{ block.settings.domanda }}<span class="piega__piu" aria-hidden="true"></span></summary>
+          <div class="piega__corpo">{{ block.settings.risposta }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Questions fréquentes",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Domande frequenti"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "domanda",
+      "name": "Question",
+      "limit": 30,
+      "settings": [
+        {
+          "type": "text",
+          "id": "domanda",
+          "label": "Question",
+          "default": "Come può essere antiaderente senza rivestimento?"
+        },
+        {
+          "type": "richtext",
+          "id": "risposta",
+          "label": "Réponse"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Questions fréquentes",
+      "blocks": [
+        {
+          "type": "domanda"
+        },
+        {
+          "type": "domanda"
+        },
+        {
+          "type": "domanda"
+        },
+        {
+          "type": "domanda"
+        },
+        {
+          "type": "domanda"
+        },
+        {
+          "type": "domanda"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

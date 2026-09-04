@@ -1,0 +1,83 @@
+<div class="wrap">
+  <section class="sezione">
+    {%- if section.settings.titolo != blank -%}<h2 class="sezione__titolo">{{ section.settings.titolo }}</h2>{%- endif -%}
+    {%- if section.settings.intro != blank -%}<p class="sezione__intro">{{ section.settings.intro }}</p>{%- endif -%}
+    <div class="mosaico">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.foto != blank -%}
+          {{ block.settings.foto | image_url: width: 600 | image_tag: alt: '', loading: 'lazy' }}
+        {%- else -%}
+          <div class="ph"><span>Photo client</span></div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Mosaïque clients",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titolo",
+      "label": "Titre",
+      "default": "Nelle cucine di chi l'ha già provata."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introduction"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "foto",
+      "name": "Photo",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "foto",
+          "label": "Photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mosaïque clients",
+      "blocks": [
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        },
+        {
+          "type": "foto"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

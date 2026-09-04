@@ -1,0 +1,1152 @@
+/* ==========================================================================
+   Titanio Vero — feuille de style
+   Les couleurs sont relevées sur la page de référence, pas estimées.
+   ========================================================================== */
+
+:root{
+  /* Couleurs */
+  --nero:        #121212;   /* fond de page */
+  --nero-2:      #1C1C1C;   /* cartes, blocs surélevés */
+  --verde:       #002418;   /* panneaux verts */
+  --verde-2:     #06301F;   /* bordure des panneaux verts */
+  --rosso:       #BF092F;   /* bandeau et bouton d'achat */
+  --rosso-scuro: #7B1F2A;   /* bas du dégradé du bouton */
+  --oro:         #A3825F;   /* badges, boutons secondaires */
+  --beige:       #BDA589;   /* titres de section */
+  --beige-100:   #D4C7B4;   /* texte beige clair */
+  --crema:       #F5F0E8;   /* cartes d'avis */
+  --bianco:      #FFFFFF;
+  --grigio:      #A8A8A8;   /* texte secondaire */
+  --grigio-2:    #6E6E6E;   /* texte tertiaire, prix barré */
+  --linea:       #2A2A2A;   /* filets de séparation */
+  --verde-vivo:  #1E9E5A;   /* pastille « offerta » */
+
+  /* Typographie */
+  --font: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Rythme */
+  --gap:   16px;
+  --pad:   20px;          /* marge latérale mobile */
+  --radius: 12px;
+  --radius-lg: 16px;
+  --max: 1180px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  overflow-x:hidden;
+  background:var(--nero);
+  color:var(--bianco);
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{ max-width:100%; display:block; }
+button{ font:inherit; color:inherit; }
+a{ color:inherit; }
+
+.wrap{ padding-inline:var(--pad); }
+@media (min-width:940px){
+  :root{ --pad:48px; }
+  .wrap{ max-width:var(--max); margin-inline:auto; }
+}
+@media (min-width:1240px){ :root{ --pad:0px; } .wrap{ padding-inline:24px; } }
+
+/* ---------- emplacements provisoires pour tes photos ------------------- */
+.ph{
+  position:relative;
+  background:
+    repeating-linear-gradient(135deg,#1E1E1E 0 10px,#232323 10px 20px);
+  border:1px dashed #3A3A3A;
+  border-radius:var(--radius);
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+  color:#6E6E6E; font-size:12px; line-height:1.4; letter-spacing:.02em;
+  padding:14px;
+}
+.ph span{ max-width:26ch; }
+.ph::after{
+  content:"PHOTO"; position:absolute; top:8px; left:10px;
+  font-size:9px; letter-spacing:.16em; color:#4A4A4A;
+}
+
+/* ==========================================================================
+   1. Bandeau d'annonce
+   ========================================================================== */
+.annuncio{
+  background:var(--rosso);
+  overflow:hidden;
+  height:38px;
+  display:flex; align-items:center;
+}
+.annuncio__piste{
+  display:flex; align-items:center;
+  animation:scorri 22s linear infinite;
+  white-space:nowrap;
+}
+.annuncio__voce{
+  padding-inline:28px;
+  font-size:12.5px; font-weight:700;
+  letter-spacing:.045em; text-transform:uppercase;
+}
+.annuncio__voce a{ text-underline-offset:3px; }
+@keyframes scorri{ to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion:reduce){
+  .annuncio__piste{ animation:none; justify-content:center; width:100%; }
+}
+
+/* ==========================================================================
+   2. En-tête
+   ========================================================================== */
+.testa{
+  position:sticky; top:0; z-index:60;
+  background:var(--nero);
+  border-bottom:1px solid var(--linea);
+}
+.testa__in{
+  display:grid; grid-template-columns:44px 1fr 44px;
+  align-items:center; gap:8px;
+  height:66px;
+}
+.testa__logo{ justify-self:center; }
+.testa__logo img{ height:34px; width:auto; }
+.icona{
+  width:44px; height:44px; display:grid; place-items:center;
+  background:none; border:0; cursor:pointer;
+}
+.icona svg{ width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:1.7; }
+.carrello{ position:relative; }
+.carrello__conteggio{
+  position:absolute; top:6px; right:4px;
+  min-width:17px; height:17px; padding:0 4px;
+  background:var(--rosso); color:#fff;
+  border-radius:9px; font-size:10px; font-weight:700;
+  display:grid; place-items:center;
+}
+
+/* ==========================================================================
+   Mise en page du produit — une colonne sur mobile, deux sur ordinateur
+   ========================================================================== */
+@media (min-width:940px){
+  .prodotto{
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:56px;
+    align-items:start;
+    padding-top:34px;
+  }
+  .prodotto > .galleria{ position:sticky; top:94px; padding-top:0; }
+  .prodotto > .acquisto{ padding-top:0; max-width:540px; }
+}
+
+/* ==========================================================================
+   3. Galerie produit
+   ========================================================================== */
+.galleria{ padding-top:10px; }
+.galleria__scena{
+  position:relative;
+  aspect-ratio:1/1;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:linear-gradient(160deg,#191919,#0E0E0E);
+}
+.galleria__scena .ph{ position:absolute; inset:0; border-radius:0; border:0; background:none; }
+
+.promo{
+  position:absolute; inset:14px 14px auto 14px;
+  text-align:center; pointer-events:none;
+}
+.promo__titolo{
+  margin:0; color:var(--rosso); font-size:20px; font-weight:800;
+  letter-spacing:.01em;
+}
+.promo__sotto{
+  margin:4px 0 0; font-size:15px; font-weight:500; color:var(--bianco);
+}
+.promo__prezzo{
+  margin-top:10px; display:inline-flex; align-items:baseline; gap:8px;
+}
+.promo__gratis{ color:var(--rosso); font-size:22px; font-weight:800; }
+.promo__barrato{
+  color:var(--bianco); font-size:19px; font-weight:700;
+  text-decoration:line-through; text-decoration-color:var(--rosso);
+  text-decoration-thickness:2.5px;
+}
+
+.miniature{
+  display:flex; gap:8px; margin-top:10px;
+  overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+}
+.miniature::-webkit-scrollbar{ display:none; }
+.miniature__voce{
+  flex:none; width:74px; aspect-ratio:1/1;
+  border-radius:9px; overflow:hidden;
+  border:1.5px solid transparent;
+  scroll-snap-align:start;
+  position:relative; cursor:pointer;
+  background:#1A1A1A;
+}
+.miniature__voce[aria-current="true"]{ border-color:var(--bianco); }
+.miniature__voce .ph{ position:absolute; inset:0; border:0; border-radius:0; font-size:9px; padding:4px; }
+.miniature__voce .ph::after{ display:none; }
+.miniature__play{
+  position:absolute; inset:0; display:grid; place-items:center;
+  background:rgba(0,0,0,.25);
+}
+.miniature__play svg{ width:26px; height:26px; fill:#fff; }
+
+@media (min-width:940px){
+  .miniature__voce{ width:88px; }
+  .promo__titolo{ font-size:26px; }
+  .promo__sotto{ font-size:17px; }
+}
+
+/* ==========================================================================
+   4. Bloc d'achat
+   ========================================================================== */
+.acquisto{ padding-top:22px; }
+
+.titolo{
+  margin:0 0 12px;
+  font-size:27px; line-height:1.18; font-weight:600;
+  letter-spacing:-.015em; text-wrap:balance;
+}
+@media (min-width:940px){ .titolo{ font-size:33px; } }
+
+.voto{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.voto__stelle{ display:flex; gap:2px; }
+.voto__stelle svg{ width:19px; height:19px; fill:var(--oro); }
+.voto__testo{ font-size:15px; color:var(--bianco); }
+.voto__testo b{ font-weight:600; }
+
+.sommario{
+  margin:0 0 20px; font-size:15.5px; line-height:1.55; color:var(--grigio);
+}
+.sommario b{ color:var(--bianco); font-weight:600; }
+
+.prezzo{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.prezzo__barrato{
+  font-size:29px; font-weight:400; color:var(--grigio-2);
+  text-decoration:line-through; text-decoration-thickness:2px;
+}
+.prezzo__ora{ font-size:33px; font-weight:700; letter-spacing:-.02em; }
+.prezzo__pillola{
+  margin-left:auto;
+  background:var(--verde-vivo); color:#fff;
+  padding:9px 18px; border-radius:999px;
+  font-size:15px; font-weight:600; white-space:nowrap;
+}
+
+/* deux arguments avec pictogramme */
+.argomenti{
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  margin-bottom:22px;
+}
+@media (max-width:520px){ .argomenti{ grid-template-columns:1fr; } }
+.argomento{ display:flex; gap:10px; align-items:flex-start; }
+.argomento svg{ width:26px; height:26px; flex:none; stroke:var(--grigio); fill:none; stroke-width:1.3; margin-top:1px; }
+.argomento p{ margin:0; font-size:14.5px; line-height:1.35; color:var(--grigio); }
+.argomento b{ color:var(--bianco); font-weight:600; }
+
+/* quatre pastilles défilantes */
+.pastiglie{
+  display:flex; gap:8px; overflow-x:auto; scrollbar-width:none;
+  padding-bottom:12px; margin-bottom:6px;
+}
+.pastiglie::-webkit-scrollbar{ display:none; }
+.pastiglia{
+  flex:none; width:92px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:9px;
+}
+.pastiglia__cerchio{
+  width:52px; height:52px; border-radius:50%;
+  border:1px solid #3A3A3A; display:grid; place-items:center;
+}
+.pastiglia__cerchio svg{ width:25px; height:25px; stroke:var(--beige-100); fill:none; stroke-width:1.2; }
+.pastiglia span{ font-size:13px; line-height:1.28; color:var(--beige-100); }
+.barra-scorrimento{
+  height:3px; background:#2A2A2A; border-radius:2px; margin-bottom:26px;
+  max-width:50%;
+}
+@media (min-width:940px){
+  .pastiglie{ overflow:visible; justify-content:space-between; }
+  .pastiglia{ width:auto; flex:1; }
+  .barra-scorrimento{ display:none; }
+}
+.barra-scorrimento i{ display:block; height:100%; width:40%; background:#555; border-radius:2px; }
+
+/* sélecteur de taille */
+.riga-etichetta{
+  display:flex; align-items:baseline; justify-content:space-between;
+  margin-bottom:12px;
+}
+.riga-etichetta h2{ margin:0; font-size:19px; font-weight:600; }
+.riga-etichetta a{ font-size:15px; text-decoration:underline; text-underline-offset:4px; color:var(--bianco); }
+
+.taglie{ display:flex; margin-bottom:28px; }
+.taglia{
+  flex:1; padding:13px 6px; text-align:center; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; border-right-width:0;
+  color:var(--grigio); font-size:14.5px; line-height:1.3;
+  transition:color .15s, border-color .15s;
+}
+.taglia:first-child{ border-radius:10px 0 0 10px; }
+.taglia:last-child{ border-right-width:1px; border-radius:0 10px 10px 0; }
+.taglia b{ display:block; font-weight:600; }
+.taglia[aria-pressed="true"]{
+  color:var(--bianco); border-color:var(--bianco); border-right-width:1px;
+  border-radius:10px; position:relative; z-index:1;
+}
+.taglia:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
+
+/* offres groupées */
+.offerte{ display:flex; flex-direction:column; gap:14px; margin-bottom:26px; }
+.offerta{
+  position:relative; text-align:left; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; border-radius:var(--radius);
+  padding:20px 18px 18px;
+  display:grid; grid-template-columns:1fr auto; gap:6px 16px;
+  transition:border-color .15s;
+}
+.offerta[aria-pressed="true"]{ border-color:var(--bianco); }
+.offerta:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
+.offerta__nome{ grid-column:1; min-width:0; margin:0; font-size:16.5px; font-weight:700; line-height:1.3; }
+.offerta__dettaglio{ min-width:0; margin:0; font-size:13.5px; line-height:1.4; color:var(--grigio); grid-column:1; }
+.offerta__prezzi{ grid-column:2; grid-row:1/3; text-align:right; align-self:start; padding-top:9px; }
+.offerta__prezzo{ display:block; font-size:23px; font-weight:700; }
+.offerta__valore{ display:block; font-size:13px; color:var(--grigio); margin-top:2px; }
+.offerta__badge{
+  position:absolute; top:0; right:0;
+  background:var(--oro); color:#1A1208;
+  font-size:11.5px; font-weight:700; letter-spacing:.03em;
+  padding:5px 12px; border-radius:0 11px 0 11px;
+}
+
+/* bouton d'achat */
+.acquista{
+  display:block; width:100%; cursor:pointer;
+  padding:20px 16px; border:0; border-radius:11px;
+  background:linear-gradient(180deg,var(--rosso) 0%,var(--rosso-scuro) 100%);
+  color:#F2E9E9; font-size:21px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase;
+  box-shadow:0 6px 22px -10px rgba(191,9,47,.75);
+}
+.acquista:active{ transform:translateY(1px); }
+.acquista:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+
+/* bandeau laboratoire */
+.laboratorio{
+  display:flex; align-items:center; gap:14px;
+  background:#C7C7C7; color:#1A1A1A;
+  border-radius:10px; padding:14px 16px; margin-top:14px;
+}
+.laboratorio__spunta{ width:34px; flex:none; }
+.laboratorio__spunta svg{ width:34px; height:34px; fill:#4C6FE0; }
+.laboratorio__testo{ font-size:14.5px; line-height:1.35; border-left:1px solid #A0A0A0; padding-left:14px; }
+.laboratorio__data{
+  background:#EDEDED; border-radius:5px; padding:1px 7px;
+  font-size:13px; font-weight:600; white-space:nowrap;
+}
+
+/* paiements */
+.pagamenti{ text-align:center; margin-top:20px; }
+.pagamenti__titolo{
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  font-size:14.5px; color:var(--grigio); margin-bottom:12px;
+}
+.pagamenti__titolo svg{ width:17px; height:17px; stroke:var(--grigio); fill:none; stroke-width:1.5; }
+.pagamenti__loghi{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+.pagamenti__loghi div{
+  width:54px; height:36px; border-radius:6px; background:#fff;
+  display:grid; place-items:center;
+  font-size:9px; font-weight:800; color:#25324C; letter-spacing:.02em;
+}
+
+/* ==========================================================================
+   5. Panneau vert des garanties
+   ========================================================================== */
+.garanzie{
+  margin-top:24px; border-radius:var(--radius-lg); overflow:hidden;
+  border:1px solid var(--verde-2); background:var(--verde);
+}
+.garanzie__testa{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  padding:18px 16px; border-bottom:1px solid var(--verde-2);
+}
+.garanzie__bandiera{
+  width:44px; height:30px; border-radius:3px; overflow:hidden; flex:none;
+  display:grid; grid-template-rows:1fr 1fr 1fr;
+}
+.garanzie__bandiera i:nth-child(1){ background:#008C45; }
+.garanzie__bandiera i:nth-child(2){ background:#F4F5F0; }
+.garanzie__bandiera i:nth-child(3){ background:#CD212A; }
+.garanzie__testa h2{ margin:0; font-size:24px; font-weight:600; }
+.garanzie__griglia{
+  display:grid; grid-template-columns:1fr 1fr; gap:20px 16px; padding:22px 18px;
+}
+@media (max-width:420px){ .garanzie__griglia{ grid-template-columns:1fr; } }
+.garanzia{ display:flex; gap:11px; align-items:flex-start; }
+.garanzia svg{ width:27px; height:27px; flex:none; stroke:var(--beige-100); fill:none; stroke-width:1.2; }
+.garanzia span{ font-size:14.5px; line-height:1.32; color:var(--beige-100); }
+
+/* ==========================================================================
+   6. Barre d'achat collante (mobile)
+   ========================================================================== */
+.barra-fissa{
+  position:fixed; left:0; right:0; bottom:0; z-index:70;
+  background:rgba(18,18,18,.96);
+  backdrop-filter:blur(10px);
+  border-top:1px solid var(--linea);
+  padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+  transform:translateY(110%);
+  transition:transform .28s ease;
+}
+.barra-fissa.visibile{ transform:none; }
+.barra-fissa__nota{
+  text-align:center; font-size:11.5px; letter-spacing:.04em;
+  color:var(--grigio); margin:0 0 8px; text-transform:uppercase;
+}
+.barra-fissa .acquista{ padding:15px; font-size:17px; }
+@media (min-width:940px){ .barra-fissa{ display:none; } }
+
+/* titre de section, commun aux blocs suivants */
+.sezione{ padding:56px 0; }
+.sezione__titolo{
+  margin:0 0 10px; color:var(--beige);
+  font-size:29px; line-height:1.2; font-weight:600; letter-spacing:-.01em;
+  text-wrap:balance;
+}
+@media (min-width:940px){ .sezione__titolo{ font-size:38px; text-align:center; } }
+
+/* pied de page provisoire */
+.segnaposto-fine{
+  margin:46px 0 130px; padding:26px 0; border-top:1px solid var(--linea);
+  color:var(--grigio-2); font-size:13.5px; text-align:center;
+}
+
+/* ==========================================================================
+   7. Onglets
+   ========================================================================== */
+.schede{
+  display:flex; border-bottom:1px solid var(--linea);
+  margin-bottom:26px; gap:0;
+}
+.scheda{
+  flex:1; padding:14px 8px 13px; cursor:pointer;
+  background:none; border:0; border-bottom:2px solid transparent;
+  color:var(--grigio); font-size:15px; line-height:1.25; font-weight:500;
+  transition:color .15s, border-color .15s;
+}
+.scheda[aria-selected="true"]{ color:var(--bianco); border-bottom-color:var(--bianco); font-weight:600; }
+.scheda:focus-visible{ outline:2px solid var(--oro); outline-offset:-2px; }
+.pannello[hidden]{ display:none; }
+
+/* liste à coches */
+.spunte{ list-style:none; margin:0 0 22px; padding:0; display:flex; flex-direction:column; gap:22px; }
+.spunte li{ display:grid; grid-template-columns:26px 1fr; gap:0 12px; }
+.spunte svg{ width:22px; height:22px; grid-row:1/3; margin-top:2px; stroke:var(--bianco); fill:none; stroke-width:1.4; }
+.spunte b{ font-size:16.5px; font-weight:600; line-height:1.32; }
+.spunte p{ margin:6px 0 0; font-size:15px; line-height:1.5; color:var(--grigio); }
+.spunte li[data-nascosto]{ display:none; }
+.spunte.aperta li[data-nascosto]{ display:grid; }
+
+.mostra-altro{
+  display:block; width:100%; padding:16px; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; border-radius:10px;
+  color:var(--bianco); font-size:16.5px; font-weight:500;
+}
+.mostra-altro:hover{ border-color:#5A5A5A; }
+.mostra-altro:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
+
+/* ==========================================================================
+   8. Tableau comparatif
+   ========================================================================== */
+.confronto{ width:100%; border-collapse:collapse; font-size:14px; }
+.confronto th, .confronto td{
+  padding:13px 6px; text-align:center; border-bottom:1px solid var(--linea);
+  vertical-align:middle;
+}
+.confronto thead th{
+  font-size:12.5px; font-weight:600; line-height:1.25; color:var(--grigio);
+  padding-bottom:14px; border-bottom-color:#3A3A3A;
+}
+.confronto thead th.noi{ color:var(--beige); font-size:13.5px; font-weight:700; }
+.confronto tbody th{
+  text-align:left; font-weight:400; color:var(--bianco); font-size:14px;
+  padding-left:0; width:40%;
+}
+.confronto td.noi{ background:rgba(189,165,137,.07); }
+.confronto tbody tr:last-child th, .confronto tbody tr:last-child td{ border-bottom:0; }
+.confronto svg{ width:19px; height:19px; }
+.si{ stroke:#42C216; fill:none; stroke-width:2.2; }
+.no{ stroke:#7A7A7A; fill:none; stroke-width:2.2; }
+.durata{ font-size:13.5px; font-weight:600; }
+.durata.forte{ color:var(--beige); }
+
+/* ==========================================================================
+   9. Accordéons
+   ========================================================================== */
+.fisarmonica{ border-top:1px solid var(--linea); }
+.piega{ border-bottom:1px solid var(--linea); }
+.piega__testa{
+  width:100%; display:flex; align-items:center; gap:14px;
+  padding:20px 0; cursor:pointer; text-align:left;
+  background:none; border:0; font-size:16.5px; font-weight:500; line-height:1.3;
+}
+.piega__testa:focus-visible{ outline:2px solid var(--oro); outline-offset:-2px; }
+.piega__icona{ width:26px; height:26px; flex:none; stroke:var(--grigio); fill:none; stroke-width:1.2; }
+.piega__piu{
+  margin-left:auto; width:20px; height:20px; flex:none; position:relative;
+}
+.piega__piu::before, .piega__piu::after{
+  content:""; position:absolute; inset:50% 0 auto 0; height:1.6px;
+  background:var(--bianco); transform:translateY(-50%);
+  transition:transform .22s ease, opacity .22s ease;
+}
+.piega__piu::after{ transform:translateY(-50%) rotate(90deg); }
+.piega[open] .piega__piu::after{ transform:translateY(-50%) rotate(0); opacity:0; }
+.piega__corpo{
+  padding:0 0 22px; margin:0; font-size:15px; line-height:1.6; color:var(--grigio);
+  max-width:66ch;
+}
+.piega__corpo p{ margin:0 0 12px; }
+.piega__corpo p:last-child{ margin-bottom:0; }
+
+/* ==========================================================================
+   10. Panneau d'engagement
+   ========================================================================== */
+.impegno{
+  display:flex; gap:16px; align-items:flex-start;
+  background:var(--verde); border:1px solid var(--verde-2);
+  border-radius:var(--radius-lg); padding:22px 20px; margin-top:30px;
+}
+.impegno svg{ width:32px; height:32px; flex:none; stroke:var(--beige); fill:none; stroke-width:1.2; }
+.impegno p{
+  margin:0; padding-left:16px; border-left:1px solid var(--verde-2);
+  font-size:14.5px; line-height:1.55; color:var(--beige-100);
+}
+@media (min-width:940px){
+  .impegno{ padding:26px 28px; }
+  .impegno p{ font-size:15.5px; }
+}
+
+/* ==========================================================================
+   11. Rangée de cartes défilantes
+       Défilement horizontal sur mobile, grille sur ordinateur.
+   ========================================================================== */
+.sezione__intro{
+  margin:0 0 30px; font-size:16px; line-height:1.55; color:var(--grigio);
+  max-width:56ch;
+}
+@media (min-width:940px){
+  .sezione__intro{ text-align:center; margin-inline:auto; font-size:17px; }
+}
+
+.carte{
+  display:flex; gap:14px;
+  overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  margin-inline:calc(var(--pad) * -1);
+  padding-inline:var(--pad);
+  padding-bottom:4px;
+}
+.carte::-webkit-scrollbar{ display:none; }
+.carta{
+  flex:none; width:min(78vw,320px);
+  scroll-snap-align:start;
+  background:var(--nero-2);
+  border:1px solid #2E2E2E;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.carta__foto{ aspect-ratio:4/3; }
+.carta__foto .ph{ height:100%; border:0; border-radius:0; }
+.carta__corpo{ padding:20px 18px 22px; display:flex; flex-direction:column; flex:1; }
+.carta__titolo{ margin:0 0 10px; font-size:20px; font-weight:600; line-height:1.25; }
+.carta__testo{ margin:0; font-size:14.5px; line-height:1.55; color:var(--grigio); }
+.carta__altro{
+  margin-top:14px; align-self:flex-start;
+  background:none; border:0; padding:0; cursor:pointer;
+  color:var(--grigio); font-size:14.5px; text-decoration:underline;
+  text-underline-offset:3px;
+}
+.carta__altro:hover{ color:var(--bianco); }
+
+@media (min-width:940px){
+  .carte{
+    display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+    overflow:visible; margin-inline:0; padding-inline:0; gap:20px;
+  }
+  .carta{ width:auto; }
+}
+
+/* ==========================================================================
+   12. Bloc à révélation au défilement
+   ========================================================================== */
+.rivelazione{
+  background:var(--verde);
+  margin-inline:calc(var(--pad) * -1);
+  padding:110px var(--pad);
+  text-align:center;
+}
+.rivelazione__riga{
+  margin:0 0 26px;
+  font-size:clamp(23px,6.2vw,34px); line-height:1.28; font-weight:400;
+  color:var(--beige);
+  opacity:.16;
+  transition:opacity .55s ease;
+  text-wrap:balance;
+}
+.rivelazione__riga:last-child{ margin-bottom:0; }
+.rivelazione__riga.accesa{ opacity:1; }
+.rivelazione__riga.forte{ font-weight:600; }
+@media (prefers-reduced-motion:reduce){
+  .rivelazione__riga{ opacity:1; transition:none; }
+}
+@media (min-width:940px){
+  .rivelazione{ border-radius:var(--radius-lg); margin-inline:0; padding:130px 40px; }
+  .rivelazione__riga{ font-size:38px; margin-bottom:32px; }
+}
+
+/* ==========================================================================
+   13. Mosaïque clients
+   ========================================================================== */
+.mosaico{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:3px;
+  margin-inline:calc(var(--pad) * -1);
+}
+.mosaico .ph{ aspect-ratio:1/1; border-radius:0; border:0; font-size:10px; padding:6px; }
+.mosaico .ph::after{ display:none; }
+@media (min-width:940px){
+  .mosaico{ margin-inline:0; border-radius:var(--radius-lg); overflow:hidden; gap:4px; }
+}
+
+/* ==========================================================================
+   14. Carrousel de témoignages vidéo
+   ========================================================================== */
+.video-fila{
+  display:flex; gap:12px; overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  margin-inline:calc(var(--pad) * -1); padding-inline:var(--pad);
+}
+.video-fila::-webkit-scrollbar{ display:none; }
+.video-carta{ flex:none; width:min(64vw,270px); scroll-snap-align:center; }
+.video-carta__schermo{
+  position:relative; aspect-ratio:9/16; border-radius:var(--radius);
+  overflow:hidden; background:#1A1A1A;
+}
+.video-carta__schermo .ph{ position:absolute; inset:0; border:0; border-radius:0; }
+.video-carta__play{
+  position:absolute; inset:0; display:grid; place-items:center;
+  background:rgba(0,0,0,.2); pointer-events:none;
+}
+.video-carta__play svg{ width:46px; height:46px; fill:#fff; filter:drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
+.video-carta__citazione{
+  margin:14px 0 8px; font-size:15px; line-height:1.4; font-style:italic;
+  color:var(--bianco); text-align:center;
+}
+.video-carta__stelle{ display:flex; justify-content:center; gap:2px; }
+.video-carta__stelle svg{ width:15px; height:15px; fill:var(--oro); }
+@media (min-width:940px){
+  .video-fila{ justify-content:center; margin-inline:0; padding-inline:0; gap:20px; }
+  .video-carta{ width:240px; }
+}
+
+/* ==========================================================================
+   15. Avis par profil
+   ========================================================================== */
+.profili{
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  border:1px solid #3A3A3A; border-radius:10px; overflow:hidden;
+  margin-bottom:30px;
+}
+.profilo{
+  padding:15px 10px; cursor:pointer; background:none; border:0;
+  border-right:1px solid #3A3A3A; border-bottom:1px solid #3A3A3A;
+  color:var(--grigio); font-size:14.5px; line-height:1.25;
+}
+.profilo:nth-child(2n){ border-right:0; }
+.profilo:nth-last-child(-n+2){ border-bottom:0; }
+.profilo[aria-selected="true"]{ background:var(--oro); color:#1A1208; font-weight:600; }
+/* nombre impair de profils : le dernier prend toute la largeur au lieu de laisser un trou */
+.profili > .profilo:last-child:nth-child(odd){ grid-column:1 / -1; border-right:0; }
+.profilo:focus-visible{ outline:2px solid var(--bianco); outline-offset:-3px; }
+@media (min-width:940px){
+  .profili{ grid-template-columns:repeat(4,1fr); max-width:760px; margin-inline:auto; }
+  .profilo{ border-bottom:0; }
+  .profilo:nth-child(2n){ border-right:1px solid #3A3A3A; }
+  .profilo:last-child{ border-right:0; }
+}
+
+.testimonianze{
+  display:flex; gap:14px; overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  margin-inline:calc(var(--pad) * -1); padding-inline:var(--pad);
+}
+.testimonianze::-webkit-scrollbar{ display:none; }
+.testimonianze[hidden]{ display:none; }
+.testimonianza{
+  flex:none; width:min(84vw,340px); scroll-snap-align:start;
+  background:var(--crema); color:#1E1B16;
+  border-radius:var(--radius-lg); padding:22px 20px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.testimonianza__testa{ display:flex; align-items:center; gap:12px; }
+.testimonianza__ritratto{
+  width:46px; height:46px; border-radius:10px; flex:none;
+  background:repeating-linear-gradient(135deg,#DCD5C8 0 8px,#E4DED3 8px 16px);
+  display:grid; place-items:center; font-size:9px; color:#9A9184;
+}
+.testimonianza__nome{ font-size:15.5px; font-weight:600; }
+.testimonianza__stelle{ display:flex; gap:2px; margin-top:3px; }
+.testimonianza__stelle svg{ width:15px; height:15px; fill:var(--oro); }
+.testimonianza p{ margin:0; font-size:15px; line-height:1.55; }
+.frecce{ display:flex; justify-content:center; gap:12px; margin-top:26px; }
+.freccia{
+  width:52px; height:46px; border-radius:10px; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; display:grid; place-items:center;
+}
+.freccia svg{ width:20px; height:20px; stroke:var(--bianco); fill:none; stroke-width:1.8; }
+.freccia:hover{ border-color:#666; }
+.freccia:focus-visible{ outline:2px solid var(--oro); outline-offset:2px; }
+@media (min-width:940px){ .testimonianze{ margin-inline:0; padding-inline:0; } }
+
+/* ==========================================================================
+   16. Vue éclatée des couches
+   ========================================================================== */
+.strati{
+  display:grid; grid-template-columns:44% 1fr; gap:0 14px;
+  background:var(--verde); border-radius:var(--radius-lg);
+  padding:30px 20px 34px;
+  margin-inline:calc(var(--pad) * -1);
+}
+.strati__foto{ grid-row:1 / span 5; }
+.strati__foto .ph{ height:100%; min-height:340px; background:none; border-color:#123A2A; color:#4E7A66; }
+.strato{ display:flex; gap:12px; align-items:flex-start; padding-block:14px; }
+.strato__trattino{ width:32px; height:1px; background:var(--oro); flex:none; margin-top:12px; }
+.strato b{ display:block; font-size:15px; font-weight:600; line-height:1.28; }
+.strato span{ display:block; margin-top:5px; font-size:13.5px; line-height:1.4; color:var(--beige-100); }
+@media (min-width:940px){
+  .strati{ margin-inline:0; padding:48px 44px; grid-template-columns:46% 1fr; gap:0 40px; }
+  .strati__foto .ph{ min-height:520px; }
+  .strato b{ font-size:17px; }
+  .strato span{ font-size:15px; }
+}
+
+/* ==========================================================================
+   17. Widget d'avis clients
+   ========================================================================== */
+.valutazioni{ display:flex; flex-direction:column; gap:14px; margin-bottom:26px; }
+.valutazione{ display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:14px; }
+.valutazione__nome{ font-size:15.5px; font-weight:600; }
+.valutazione__barre{ display:flex; gap:5px; }
+.valutazione__barre i{ display:block; width:26px; height:9px; background:#3A3A3A; border-radius:2px; }
+.valutazione__barre i.piena{ background:var(--bianco); }
+.valutazione__voto{ font-size:16px; font-weight:600; min-width:30px; text-align:right; font-variant-numeric:tabular-nums; }
+
+.riga-recensioni{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding-block:18px; border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  margin-bottom:22px;
+}
+.riga-recensioni__stelle{ display:flex; gap:2px; }
+.riga-recensioni__stelle svg{ width:20px; height:20px; fill:#F2C037; }
+.riga-recensioni__conteggio{ font-size:16px; }
+.scrivi{
+  margin-left:auto; padding:12px 22px; cursor:pointer;
+  background:none; border:1px solid #3A3A3A; border-radius:9px;
+  color:var(--bianco); font-size:15px;
+}
+.scrivi:hover{ border-color:#666; }
+
+.griglia-recensioni{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (min-width:940px){ .griglia-recensioni{ grid-template-columns:repeat(4,1fr); gap:16px; } }
+.recensione{ background:#2E2E2E; border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
+.recensione__foto{ aspect-ratio:1/1; }
+.recensione__foto .ph{ height:100%; border:0; border-radius:0; font-size:10px; }
+.recensione__foto .ph::after{ display:none; }
+.recensione__corpo{ padding:14px 14px 16px; }
+.recensione__nome{ font-size:15px; font-weight:700; margin:0 0 6px; }
+.recensione__stelle{ display:flex; gap:1px; margin-bottom:8px; }
+.recensione__stelle svg{ width:14px; height:14px; fill:#F2C037; }
+.recensione__testo{ margin:0; font-size:13.5px; line-height:1.5; color:#D8D8D8; }
+
+/* ==========================================================================
+   18. Pied de page
+   ========================================================================== */
+.piede{
+  margin-top:60px; padding:44px 0 0;
+  border-top:1px solid var(--linea);
+}
+.piede__logo img{ height:30px; width:auto; margin-bottom:22px; }
+.piede__colonne{
+  display:grid; grid-template-columns:1fr 1fr; gap:30px 20px; margin-bottom:34px;
+}
+@media (min-width:940px){ .piede__colonne{ grid-template-columns:repeat(4,1fr); } }
+.piede__colonne h3{
+  margin:0 0 14px; font-size:11.5px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--beige);
+}
+.piede__colonne ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.piede__colonne a{ font-size:14.5px; color:var(--grigio); text-decoration:none; }
+.piede__colonne a:hover{ color:var(--bianco); text-decoration:underline; text-underline-offset:3px; }
+.piede__assistenza{
+  background:var(--verde); border:1px solid var(--verde-2); border-radius:var(--radius);
+  padding:18px 20px; margin-bottom:30px;
+}
+.piede__assistenza b{ display:block; font-size:13px; color:var(--beige); margin-bottom:5px;
+  letter-spacing:.06em; text-transform:uppercase; }
+.piede__assistenza span{ font-size:19px; font-weight:600; }
+.piede__basso{
+  display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center;
+  padding:22px 0 130px; border-top:1px solid var(--linea);
+  font-size:13px; color:var(--grigio-2);
+}
+.piede__basso .pagamenti__loghi{ margin-left:auto; }
+.piede__basso .pagamenti__loghi div{ width:44px; height:28px; font-size:8px; }
+@media (min-width:940px){ .piede__basso{ padding-bottom:40px; } }
+
+/* ==========================================================================
+   19. Tiroir panier
+       Volontairement clair, à l'inverse de la page : le passage à l'achat
+       change d'ambiance, comme sur la référence.
+   ========================================================================== */
+.velo{
+  position:fixed; inset:0; z-index:80;
+  background:rgba(0,0,0,.55);
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.velo.aperto{ opacity:1; pointer-events:auto; }
+
+.carrello{
+  --c-fondo:#F5F5F5; --c-carta:#FFFFFF; --c-grigio:#E4E4E4;
+  --c-testo:#1A1A1A; --c-tenue:#6B6B6B; --c-linea:#D6D6D6;
+  --c-rosso:#9A2230; --c-pill:#D6F5DC; --c-pill-testo:#146B36;
+
+  position:fixed; top:0; right:0; bottom:0; z-index:90;
+  width:min(100%,460px);
+  background:var(--c-fondo); color:var(--c-testo);
+  display:flex; flex-direction:column;
+  transform:translateX(101%); transition:transform .32s cubic-bezier(.4,0,.2,1);
+  box-shadow:-14px 0 40px rgba(0,0,0,.45);
+}
+.carrello.aperto{ transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .carrello, .velo{ transition:none; }
+}
+
+.carrello__testa{
+  position:relative; flex:none;
+  background:var(--c-carta); border-bottom:1px solid var(--c-linea);
+  padding:18px 56px; text-align:center;
+  font-size:19px; font-weight:500;
+}
+.carrello__chiudi{
+  position:absolute; top:50%; right:10px; transform:translateY(-50%);
+  width:44px; height:44px; display:grid; place-items:center;
+  background:none; border:0; cursor:pointer; color:var(--c-testo);
+}
+.carrello__chiudi svg{ width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.7; }
+
+.carrello__timer{
+  flex:none; background:var(--c-grigio); padding:13px 16px;
+  text-align:center; font-size:14.5px; color:var(--c-rosso);
+}
+.carrello__timer b{ font-weight:700; font-variant-numeric:tabular-nums; }
+
+.carrello__corpo{ flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+
+/* ligne produit */
+.riga{
+  background:var(--c-carta); padding:16px;
+  display:grid; grid-template-columns:74px 1fr auto; gap:0 14px;
+}
+.riga__foto{
+  width:74px; height:74px; border-radius:8px; overflow:hidden;
+  background:repeating-linear-gradient(135deg,#E8E8E8 0 9px,#EFEFEF 9px 18px);
+  display:grid; place-items:center; font-size:9px; color:#9A9A9A; text-align:center;
+  grid-row:1 / span 3;
+}
+.riga__nome{ margin:0; font-size:17px; font-weight:700; line-height:1.25; }
+.riga__variante{ margin:8px 0 0; font-size:15px; color:var(--c-tenue); }
+.riga__prezzi{ grid-column:3; grid-row:1 / span 2; text-align:right; }
+.riga__barrato{ display:block; font-size:16px; color:#9A9A9A; text-decoration:line-through; }
+.riga__ora{ display:block; font-size:19px; font-weight:700; margin-top:2px; }
+.riga__risparmio{
+  display:inline-flex; align-items:center; gap:6px; margin-top:8px;
+  background:var(--c-pill); color:var(--c-pill-testo);
+  border-radius:7px; padding:7px 10px; font-size:14px; line-height:1.2; font-weight:500;
+}
+.riga__risparmio svg{ width:15px; height:15px; fill:currentColor; }
+.riga__base{ grid-column:2 / span 2; display:flex; align-items:center; gap:14px; margin-top:14px; }
+.quantita{ display:flex; border:1px solid var(--c-linea); border-radius:8px; overflow:hidden; }
+.quantita button{
+  width:42px; height:42px; background:var(--c-carta); border:0; cursor:pointer;
+  font-size:20px; color:var(--c-testo); display:grid; place-items:center;
+}
+.quantita button:hover{ background:#EFEFEF; }
+.quantita span{
+  width:44px; display:grid; place-items:center; font-size:16px;
+  border-inline:1px solid var(--c-linea); font-variant-numeric:tabular-nums;
+}
+.cestino{
+  margin-left:auto; width:42px; height:42px; background:none; border:0; cursor:pointer;
+  display:grid; place-items:center; color:var(--c-testo);
+}
+.cestino svg{ width:21px; height:21px; stroke:currentColor; fill:none; stroke-width:1.6; }
+
+/* ventes additionnelles */
+.aggiunte{ background:var(--c-grigio); padding:24px 16px 26px; }
+.aggiunte__titolo{
+  margin:0 0 18px; text-align:center; color:var(--verde);
+  font-size:23px; font-weight:700; line-height:1.2;
+}
+.aggiunte__griglia{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.aggiunta{
+  background:var(--verde); border-radius:var(--radius);
+  padding:16px 12px 18px; text-align:center; color:#fff;
+  display:flex; flex-direction:column; gap:10px;
+}
+.aggiunta__foto{
+  width:78px; height:78px; margin:0 auto; border-radius:10px;
+  background:#0A2E20; display:grid; place-items:center;
+  font-size:9px; color:#4E7A66; text-align:center; padding:6px;
+}
+.aggiunta__nome{ margin:0; font-size:14.5px; font-weight:700; line-height:1.3; }
+.aggiunta__prezzi{ font-size:16px; font-weight:700; }
+.aggiunta__prezzi s{ font-weight:400; font-size:14px; color:#9FB3AA; margin-left:5px; }
+.aggiunta select{
+  width:100%; padding:11px 10px; border-radius:8px; border:0;
+  background:#fff; color:var(--c-testo); font:inherit; font-size:14px;
+}
+.aggiunta__add{
+  align-self:center; padding:11px 26px; cursor:pointer;
+  background:#fff; color:var(--c-testo); border:0; border-radius:8px;
+  font-size:14.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+}
+.aggiunta__add:hover{ background:#EDEDED; }
+
+/* pied du tiroir */
+.carrello__piede{
+  flex:none; background:var(--c-grigio); padding:18px 16px calc(18px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--c-linea);
+}
+.totale{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+.totale__nome{ font-size:16px; color:var(--c-testo); }
+.totale__valore{ font-size:16px; }
+.totale.forte .totale__nome{ font-size:20px; font-weight:700; }
+.totale.forte .totale__valore{ font-size:20px; font-weight:700; }
+.paga{
+  display:block; width:100%; margin-top:14px; padding:19px 16px; cursor:pointer;
+  background:var(--c-rosso); color:#F4EAEA; border:0; border-radius:10px;
+  font-size:20px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+}
+.paga:hover{ background:#851C29; }
+.paga:focus-visible{ outline:2px solid #1A1A1A; outline-offset:3px; }
+.carrello__fiducia{
+  margin:16px 0 14px; text-align:center; font-size:14px; font-weight:600;
+  color:#5E5E5E; line-height:1.4;
+}
+.carrello__pagamenti{ display:flex; justify-content:center; gap:7px; flex-wrap:wrap; }
+.carrello__pagamenti div{
+  width:52px; height:34px; border-radius:6px; background:#fff;
+  border:1px solid #DADADA; display:grid; place-items:center;
+  font-size:8.5px; font-weight:800; color:#25324C;
+}
+.carrello__vuoto{ padding:60px 24px; text-align:center; color:var(--c-tenue); font-size:16px; }
+
+/* ==========================================================================
+   20. Page d'accueil — bannière
+   ========================================================================== */
+.eroe{
+  position:relative; min-height:min(88vh,760px);
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; overflow:hidden;
+  margin-inline:calc(var(--pad) * -1);
+}
+.eroe__sfondo{ position:absolute; inset:0; }
+.eroe__sfondo .ph{ height:100%; border:0; border-radius:0; align-items:flex-end; padding-bottom:18px; }
+.eroe__sfondo::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(18,18,18,.55) 0%,rgba(18,18,18,.35) 45%,rgba(18,18,18,.8) 100%);
+}
+.eroe__testo{ position:relative; z-index:1; padding:70px var(--pad); max-width:640px; }
+.eroe__occhiello{
+  margin:0 0 16px; font-size:12.5px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:#DCDCDC;
+}
+.eroe h1{
+  margin:0 0 18px; font-size:clamp(31px,8vw,54px); line-height:1.1;
+  font-weight:500; letter-spacing:-.02em; text-wrap:balance;
+}
+.eroe__sotto{
+  margin:0 0 28px; font-size:16.5px; line-height:1.55; color:#D2D2D2;
+}
+.eroe__sotto b{ color:#fff; font-weight:600; }
+.eroe .acquista{ width:auto; display:inline-block; padding:18px 42px; font-size:17px; }
+.eroe__voto{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-top:22px; font-size:15px; color:#E4E4E4;
+}
+.eroe__voto .voto__stelle svg{ width:18px; height:18px; }
+
+/* ==========================================================================
+   21. Bandeaux de confiance et de promotion
+   ========================================================================== */
+.striscia{
+  background:var(--verde); overflow:hidden; height:60px;
+  display:flex; align-items:center;
+  margin-inline:calc(var(--pad) * -1);
+}
+.striscia__piste{ display:flex; align-items:center; animation:scorri 26s linear infinite; white-space:nowrap; }
+.striscia__voce{
+  display:flex; align-items:center; gap:10px; padding-inline:26px;
+  font-size:13px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--beige-100);
+}
+.striscia__voce svg{ width:22px; height:22px; stroke:var(--beige-100); fill:none; stroke-width:1.2; }
+@media (prefers-reduced-motion:reduce){ .striscia__piste{ animation:none; } }
+
+.promo-verde{
+  display:flex; align-items:center; gap:14px;
+  background:var(--verde); border-block:1px solid var(--verde-2);
+  padding:20px var(--pad); margin-inline:calc(var(--pad) * -1);
+  color:var(--beige-100); font-size:15.5px; line-height:1.35;
+  text-decoration:none;
+}
+.promo-verde b{ color:#fff; text-decoration:underline; text-underline-offset:4px; }
+.promo-verde svg{ width:26px; height:26px; margin-left:auto; flex:none; stroke:currentColor; fill:none; stroke-width:1.5; }
+@media (min-width:940px){
+  .promo-verde{ justify-content:center; gap:20px; font-size:17px; }
+  .promo-verde svg{ margin-left:0; }
+}
+
+/* ==========================================================================
+   22. Bloc produits — une carte aujourd'hui, une grille demain
+   ========================================================================== */
+.testa-sezione{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; margin-bottom:26px; flex-wrap:wrap;
+}
+.testa-sezione .sezione__titolo{ margin:0; text-align:left; flex:1; min-width:200px; }
+@media (min-width:940px){ .testa-sezione .sezione__titolo{ text-align:left; } }
+
+.prodotti{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px;
+}
+.prodotto-carta{
+  position:relative; background:var(--nero-2);
+  border:1px solid #2E2E2E; border-radius:var(--radius-lg); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.prodotto-carta__badge{
+  position:absolute; top:14px; left:14px; z-index:1;
+  background:var(--rosso); color:#fff; border-radius:8px;
+  padding:7px 13px; font-size:13px; font-weight:600;
+}
+.prodotto-carta__foto{ aspect-ratio:1/1; }
+.prodotto-carta__foto .ph{ height:100%; border:0; border-radius:0; }
+.prodotto-carta__corpo{ padding:20px 18px 22px; display:flex; flex-direction:column; gap:9px; flex:1; }
+.prodotto-carta__nome{ margin:0; font-size:18px; font-weight:600; line-height:1.3; }
+.prodotto-carta__testo{ margin:0; font-size:14.5px; line-height:1.5; color:var(--grigio); flex:1; }
+.prodotto-carta__prezzi{ display:flex; align-items:baseline; gap:10px; margin-top:4px; }
+.prodotto-carta__barrato{ font-size:17px; color:var(--grigio-2); text-decoration:line-through; }
+.prodotto-carta__prezzo{ font-size:23px; font-weight:700; }
+
+/* ==========================================================================
+   23. « Il tuo corpo merita » — liste qui s'allume au défilement
+   ========================================================================== */
+.merita{
+  background:var(--verde); margin-inline:calc(var(--pad) * -1);
+  padding:70px var(--pad) 0; text-align:center; overflow:hidden;
+}
+.merita__titolo{
+  margin:0 0 40px; color:var(--beige); font-size:clamp(27px,7vw,38px);
+  font-weight:500; line-height:1.2;
+}
+.merita__elenco{ list-style:none; margin:0 0 50px; padding:0; display:flex; flex-direction:column; gap:26px; }
+.merita__voce{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  font-size:clamp(17px,4.6vw,23px); line-height:1.3; color:var(--beige-100);
+  opacity:.3; transition:opacity .5s ease;
+}
+.merita__voce svg{ width:30px; height:30px; flex:none; stroke:currentColor; fill:none; stroke-width:1.2; }
+.merita__voce.accesa{ opacity:1; color:#fff; font-weight:500; }
+@media (prefers-reduced-motion:reduce){ .merita__voce{ opacity:1; } }
+.merita__foto{ max-width:520px; margin:0 auto; }
+.merita__foto .ph{ aspect-ratio:1/1; border-color:#123A2A; color:#4E7A66; background:none; }
+
+/* ==========================================================================
+   24. Bloc de marque
+   ========================================================================== */
+.marca{
+  position:relative; margin-inline:calc(var(--pad) * -1);
+  padding:74px var(--pad); overflow:hidden;
+}
+.marca__sfondo{ position:absolute; inset:0; }
+.marca__sfondo .ph{ height:100%; border:0; border-radius:0; align-items:flex-end; padding-bottom:14px; }
+.marca__sfondo::after{ content:""; position:absolute; inset:0; background:rgba(18,18,18,.82); }
+.marca__testo{ position:relative; z-index:1; max-width:660px; margin-inline:auto; }
+.marca h2{
+  margin:0 0 24px; font-size:clamp(28px,7vw,42px); line-height:1.15; font-weight:500;
+}
+.marca h2 em{ font-style:normal; color:var(--beige); }
+.marca p{ margin:0 0 16px; font-size:16px; line-height:1.65; color:var(--grigio); }
+.marca p i{ color:#fff; font-style:italic; }
+.marca__firma{ margin-top:30px; display:flex; align-items:center; gap:14px; }
+.marca__firma span{ font-size:15px; color:var(--grigio); }
+
+/* ==========================================================================
+   25. Infolettre
+   ========================================================================== */
+.lettera{
+  background:var(--verde); margin-inline:calc(var(--pad) * -1);
+  padding:60px var(--pad); text-align:center;
+}
+.lettera h2{
+  margin:0 0 16px; font-size:clamp(25px,6.4vw,36px); line-height:1.2; font-weight:500;
+  color:#fff; text-wrap:balance;
+}
+.lettera h2 em{ font-style:normal; color:var(--beige); }
+.lettera p{ margin:0 auto 28px; max-width:52ch; font-size:15.5px; line-height:1.6; color:var(--beige-100); }
+.lettera__forma{
+  display:flex; max-width:480px; margin-inline:auto;
+  border:1px solid #2E5A47; border-radius:999px; overflow:hidden; background:transparent;
+}
+.lettera__forma input{
+  flex:1; min-width:0; padding:16px 22px; border:0; background:transparent;
+  color:#fff; font:inherit; font-size:16px;
+}
+.lettera__forma input::placeholder{ color:#7D9A8C; }
+.lettera__forma input:focus{ outline:none; }
+.lettera__forma button{
+  padding:16px 28px; border:0; cursor:pointer; background:#fff; color:#0D1F18;
+  font-size:16px; font-weight:600; border-radius:999px;
+}
+.lettera__nota{ margin:16px 0 0; font-size:13.5px; color:#6F8C7E; }
+
+/* ==========================================================================
+   26. Cohabitation avec Dawn
+       base.css habille des éléments génériques (bouton, liste, details).
+       On rétablit ce dont nos sections ont besoin, sans toucher au reste
+       du thème, qui sert encore aux pages panier, recherche et 404.
+   ========================================================================== */
+.sezione button, .acquisto button, .carrello button, .eroe button,
+.piede button, .lettera button{ letter-spacing:inherit; }
+.sezione ul, .piede ul, .spunte, .merita__elenco{ list-style:none; }
+.piega summary::-webkit-details-marker{ display:none; }
+.piega summary{ list-style:none; }
+.piega summary::marker{ content:""; }
+.shopify-section{ margin:0; }
+.tv-nascosto{ display:none !important; }

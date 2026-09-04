@@ -1,0 +1,272 @@
+{%- comment -%}
+  Bloc d'achat. Prix, variantes, images et stock viennent de la fiche produit ;
+  tout le reste est réglable dans le personnalisateur.
+{%- endcomment -%}
+{%- liquid
+  assign p = product
+  if section.settings.prodotto != blank
+    assign p = section.settings.prodotto
+  endif
+  assign v = p.selected_or_first_available_variant
+-%}
+
+<div class="wrap">
+<div class="prodotto">
+
+  {%- comment -%} galerie {%- endcomment -%}
+  <section class="galleria">
+    <div class="galleria__scena">
+      {%- if v.featured_media != blank -%}
+        {{ v.featured_media | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(min-width:940px) 50vw, 100vw', widths: '400,600,900,1200', id: 'tvImmagine' }}
+      {%- elsif p.featured_media != blank -%}
+        {{ p.featured_media | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(min-width:940px) 50vw, 100vw', widths: '400,600,900,1200', id: 'tvImmagine' }}
+      {%- else -%}
+        <div class="ph"><span>Ajoute les photos du produit dans Shopify</span></div>
+      {%- endif -%}
+
+      {%- if section.settings.promo_titolo != blank -%}
+        <div class="promo">
+          <p class="promo__titolo">{{ section.settings.promo_titolo }}</p>
+          {%- if section.settings.promo_sotto != blank -%}
+            <p class="promo__sotto">{{ section.settings.promo_sotto }}</p>
+          {%- endif -%}
+          {%- if section.settings.promo_valore != blank -%}
+            <p class="promo__prezzo">
+              <span class="promo__gratis">{{ section.settings.promo_etichetta }}</span>
+              <span class="promo__barrato">{{ section.settings.promo_valore }}</span>
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if p.media.size > 1 -%}
+      <div class="miniature">
+        {%- for media in p.media -%}
+          <button class="miniature__voce" type="button"
+                  data-tv-media="{{ media | image_url: width: 1200 }}"
+                  {% if forloop.first %}aria-current="true"{% endif %}>
+            {{ media | image_url: width: 200 | image_tag: alt: media.alt, loading: 'lazy' }}
+            {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+              <span class="miniature__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            {%- endif -%}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </section>
+
+  {%- comment -%} colonne d'achat {%- endcomment -%}
+  <section class="acquisto">
+    <h1 class="titolo">{{ p.title }}</h1>
+
+    {%- if section.settings.voto != blank -%}
+      <div class="voto">
+        <span class="voto__stelle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <span class="voto__testo"><b>{{ section.settings.voto }}</b>{% if section.settings.voto_nota != blank %} — {{ section.settings.voto_nota }}{% endif %}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.sommario != blank -%}
+      <div class="sommario">{{ section.settings.sommario }}</div>
+    {%- endif -%}
+
+    <div class="prezzo" id="tvPrezzo">
+      {%- if v.compare_at_price > v.price -%}
+        <span class="prezzo__barrato">{{ v.compare_at_price | money }}</span>
+      {%- endif -%}
+      <span class="prezzo__ora">{{ v.price | money }}</span>
+      {%- if section.settings.pillola != blank -%}
+        <span class="prezzo__pillola">{{ section.settings.pillola }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="argomenti">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'argomento' -%}
+            <div class="argomento" {{ block.shopify_attributes }}>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8" stroke-linecap="round"/></svg>
+              <p>{{ block.settings.testo }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="pastiglie">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'pastiglia' -%}
+            <div class="pastiglia" {{ block.shopify_attributes }}>
+              <span class="pastiglia__cerchio">
+                {%- if block.settings.icona != blank -%}
+                  {{ block.settings.icona | image_url: width: 60 | image_tag: alt: '' }}
+                {%- else -%}
+                  <svg viewBox="0 0 24 24"><path d="m12 3 8 5-8 13-8-13 8-5Z" stroke-linejoin="round"/></svg>
+                {%- endif -%}
+              </span>
+              <span>{{ block.settings.testo }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- form 'product', p, id: 'tvForma', class: 'tv-forma' -%}
+      <input type="hidden" name="id" value="{{ v.id }}" id="tvVariante">
+
+      {%- for option in p.options_with_values -%}
+        <div class="riga-etichetta">
+          <h2>{{ section.settings.etichetta_misura | default: option.name }}</h2>
+          {%- if section.settings.guida_link != blank -%}
+            <a href="{{ section.settings.guida_link }}">{{ section.settings.guida_testo }}</a>
+          {%- endif -%}
+        </div>
+        <div class="taglie" role="group" aria-label="{{ option.name }}">
+          {%- for value in option.values -%}
+            <button class="taglia" type="button"
+                    data-tv-opzione="{{ forloop.parentloop.index0 }}"
+                    data-tv-valore="{{ value | escape }}"
+                    aria-pressed="{% if option.selected_value == value %}true{% else %}false{% endif %}">
+              <b>{{ value }}</b>
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+
+      {%- assign offerte = section.blocks | where: 'type', 'offerta' -%}
+      {%- if offerte.size > 0 -%}
+        <div class="riga-etichetta"><h2>{{ section.settings.etichetta_offerte }}</h2></div>
+        <div class="offerte">
+          {%- for block in offerte -%}
+            {%- assign bp = block.settings.prodotto -%}
+            <a class="offerta" href="{{ bp.url | default: '#' }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.badge != blank -%}
+                <span class="offerta__badge">{{ block.settings.badge }}</span>
+              {%- endif -%}
+              <p class="offerta__nome">{{ block.settings.nome | default: bp.title }}</p>
+              <p class="offerta__dettaglio">{{ block.settings.dettaglio }}</p>
+              <span class="offerta__prezzi">
+                <span class="offerta__prezzo">{% if bp != blank %}{{ bp.price | money }}{% else %}{{ block.settings.prezzo }}{% endif %}</span>
+                {%- if block.settings.valore != blank -%}
+                  <span class="offerta__valore">{{ block.settings.valore }}</span>
+                {%- endif -%}
+              </span>
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <button class="acquista" type="submit" {% unless v.available %}disabled{% endunless %}>
+        {%- if v.available -%}{{ section.settings.bottone }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+      </button>
+    {%- endform -%}
+
+    {%- if section.settings.laboratorio != blank -%}
+      <div class="laboratorio">
+        <span class="laboratorio__spunta"><svg viewBox="0 0 24 24"><path d="M4 13.5 9 19 20 5.5l-2.4-1.9L9 14.4 6.2 11.3 4 13.5Z"/></svg></span>
+        <span class="laboratorio__testo">{{ section.settings.laboratorio }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.mostra_pagamenti -%}
+      <div class="pagamenti">
+        <p class="pagamenti__titolo">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.4 2.5L15.5 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {{ section.settings.pagamenti_testo }}
+        </p>
+        <div class="pagamenti__loghi">
+          {%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag }}{%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </section>
+
+</div>
+</div>
+
+<script>
+(() => {
+  const varianti = {{ p.variants | json }};
+  const scelte = {{ p.selected_or_first_available_variant.options | json }};
+  const campo = document.getElementById('tvVariante');
+  const prezzo = document.getElementById('tvPrezzo');
+  const immagine = document.getElementById('tvImmagine');
+
+  function euro(c){ return (c/100).toLocaleString('{{ request.locale.iso_code }}', {style:'currency', currency:'{{ cart.currency.iso_code }}'}); }
+
+  function aggiorna(){
+    const v = varianti.find(x => x.options.every((o,i) => o === scelte[i]));
+    if(!v) return;
+    campo.value = v.id;
+    let html = '';
+    if(v.compare_at_price > v.price) html += '<span class="prezzo__barrato">'+euro(v.compare_at_price)+'</span>';
+    html += '<span class="prezzo__ora">'+euro(v.price)+'</span>';
+    const pill = prezzo.querySelector('.prezzo__pillola');
+    prezzo.innerHTML = html;
+    if(pill) prezzo.appendChild(pill);
+    if(immagine && v.featured_image) immagine.src = v.featured_image.src;
+    const bottone = document.querySelector('.acquisto .acquista');
+    if(bottone){ bottone.disabled = !v.available; }
+  }
+
+  document.querySelectorAll('.taglia').forEach(b => b.addEventListener('click', () => {
+    const i = Number(b.dataset.tvOpzione);
+    document.querySelectorAll('.taglia[data-tv-opzione="'+i+'"]').forEach(x => x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    scelte[i] = b.dataset.tvValore;
+    aggiorna();
+  }));
+
+  document.querySelectorAll('.miniature__voce').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.miniature__voce').forEach(x => x.removeAttribute('aria-current'));
+    b.setAttribute('aria-current','true');
+    if(immagine && b.dataset.tvMedia) immagine.src = b.dataset.tvMedia;
+  }));
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bloc d'achat",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "prodotto", "label": "Produit",
+      "info": "À renseigner sur la page d'accueil. Sur une fiche produit, laisser vide." },
+    { "type": "header", "content": "Habillage promotionnel de la photo" },
+    { "type": "text", "id": "promo_titolo", "label": "Titre", "default": "Offerta di lancio" },
+    { "type": "text", "id": "promo_sotto", "label": "Sous-titre", "default": "Coperchio premium incluso con ogni padella" },
+    { "type": "text", "id": "promo_etichetta", "label": "Mention", "default": "GRATIS!" },
+    { "type": "text", "id": "promo_valore", "label": "Valeur barrée", "default": "49,00 €" },
+    { "type": "header", "content": "Note" },
+    { "type": "text", "id": "voto", "label": "Note affichée", "default": "4,9" },
+    { "type": "text", "id": "voto_nota", "label": "Mention à côté de la note", "default": "recensioni verificate" },
+    { "type": "header", "content": "Textes" },
+    { "type": "richtext", "id": "sommario", "label": "Résumé sous le titre" },
+    { "type": "text", "id": "pillola", "label": "Pastille verte à côté du prix", "default": "Offerta valida oggi" },
+    { "type": "text", "id": "etichetta_misura", "label": "Titre du sélecteur de variante", "default": "Scegli la misura" },
+    { "type": "text", "id": "guida_testo", "label": "Libellé du lien guide", "default": "Guida alle misure" },
+    { "type": "url", "id": "guida_link", "label": "Lien du guide des tailles" },
+    { "type": "text", "id": "etichetta_offerte", "label": "Titre des offres groupées", "default": "Oppure risparmia con un set" },
+    { "type": "text", "id": "bottone", "label": "Bouton d'achat", "default": "Aggiungi al carrello" },
+    { "type": "richtext", "id": "laboratorio", "label": "Bandeau laboratoire" },
+    { "type": "header", "content": "Paiement" },
+    { "type": "checkbox", "id": "mostra_pagamenti", "label": "Afficher les moyens de paiement", "default": true },
+    { "type": "text", "id": "pagamenti_testo", "label": "Mention", "default": "Pagamento sicuro e garantito" }
+  ],
+  "blocks": [
+    { "type": "argomento", "name": "Argument à pictogramme", "limit": 4, "settings": [
+      { "type": "richtext", "id": "testo", "label": "Texte" } ]},
+    { "type": "pastiglia", "name": "Pastille d'usage", "limit": 6, "settings": [
+      { "type": "text", "id": "testo", "label": "Texte", "default": "Adatta al forno" },
+      { "type": "image_picker", "id": "icona", "label": "Pictogramme (facultatif)" } ]},
+    { "type": "offerta", "name": "Offre groupée", "limit": 4, "settings": [
+      { "type": "product", "id": "prodotto", "label": "Produit du set" },
+      { "type": "text", "id": "nome", "label": "Nom affiché" },
+      { "type": "text", "id": "dettaglio", "label": "Détail" },
+      { "type": "text", "id": "badge", "label": "Badge d'angle", "default": "Più venduto" },
+      { "type": "text", "id": "prezzo", "label": "Prix si aucun produit n'est lié" },
+      { "type": "text", "id": "valore", "label": "Valeur barrée", "default": "(valore 899 €)" } ]}
+  ],
+  "presets": [{ "name": "Bloc d'achat" }]
+}
+{% endschema %}
