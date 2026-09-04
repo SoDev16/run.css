@@ -539,3 +539,95 @@ a{ color:inherit; }
   .impegno{ padding:26px 28px; }
   .impegno p{ font-size:15.5px; }
 }
+
+/* ==========================================================================
+   11. Rangée de cartes défilantes
+       Défilement horizontal sur mobile, grille sur ordinateur.
+   ========================================================================== */
+.sezione__intro{
+  margin:0 0 30px; font-size:16px; line-height:1.55; color:var(--grigio);
+  max-width:56ch;
+}
+@media (min-width:940px){
+  .sezione__intro{ text-align:center; margin-inline:auto; font-size:17px; }
+}
+
+.carte{
+  display:flex; gap:14px;
+  overflow-x:auto; scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  margin-inline:calc(var(--pad) * -1);
+  padding-inline:var(--pad);
+  padding-bottom:4px;
+}
+.carte::-webkit-scrollbar{ display:none; }
+.carta{
+  flex:none; width:min(78vw,320px);
+  scroll-snap-align:start;
+  background:var(--nero-2);
+  border:1px solid #2E2E2E;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.carta__foto{ aspect-ratio:4/3; }
+.carta__foto .ph{ height:100%; border:0; border-radius:0; }
+.carta__corpo{ padding:20px 18px 22px; display:flex; flex-direction:column; flex:1; }
+.carta__titolo{ margin:0 0 10px; font-size:20px; font-weight:600; line-height:1.25; }
+.carta__testo{ margin:0; font-size:14.5px; line-height:1.55; color:var(--grigio); }
+.carta__altro{
+  margin-top:14px; align-self:flex-start;
+  background:none; border:0; padding:0; cursor:pointer;
+  color:var(--grigio); font-size:14.5px; text-decoration:underline;
+  text-underline-offset:3px;
+}
+.carta__altro:hover{ color:var(--bianco); }
+
+@media (min-width:940px){
+  .carte{
+    display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+    overflow:visible; margin-inline:0; padding-inline:0; gap:20px;
+  }
+  .carta{ width:auto; }
+}
+
+/* ==========================================================================
+   12. Bloc à révélation au défilement
+   ========================================================================== */
+.rivelazione{
+  background:var(--verde);
+  margin-inline:calc(var(--pad) * -1);
+  padding:110px var(--pad);
+  text-align:center;
+}
+.rivelazione__riga{
+  margin:0 0 26px;
+  font-size:clamp(23px,6.2vw,34px); line-height:1.28; font-weight:400;
+  color:var(--beige);
+  opacity:.16;
+  transition:opacity .55s ease;
+  text-wrap:balance;
+}
+.rivelazione__riga:last-child{ margin-bottom:0; }
+.rivelazione__riga.accesa{ opacity:1; }
+.rivelazione__riga.forte{ font-weight:600; }
+@media (prefers-reduced-motion:reduce){
+  .rivelazione__riga{ opacity:1; transition:none; }
+}
+@media (min-width:940px){
+  .rivelazione{ border-radius:var(--radius-lg); margin-inline:0; padding:130px 40px; }
+  .rivelazione__riga{ font-size:38px; margin-bottom:32px; }
+}
+
+/* ==========================================================================
+   13. Mosaïque clients
+   ========================================================================== */
+.mosaico{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:3px;
+  margin-inline:calc(var(--pad) * -1);
+}
+.mosaico .ph{ aspect-ratio:1/1; border-radius:0; border:0; font-size:10px; padding:6px; }
+.mosaico .ph::after{ display:none; }
+@media (min-width:940px){
+  .mosaico{ margin-inline:0; border-radius:var(--radius-lg); overflow:hidden; gap:4px; }
+}
