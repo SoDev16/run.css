@@ -2,14 +2,12 @@
 
 ## Le concept
 
-Le **poinçon** (*punzone*) : la marque frappée dans un métal précieux pour certifier
-qu'il est authentique. « Ti » est le symbole chimique du titane.
+Un logotype pur : le nom en capitales grasses très espacées, un filet, puis
+« VERO » en dessous, léger et étiré à la même largeur.
 
-Le nom dit « vrai titane », le logo le prouve. C'est la même promesse que la section
-« toutes les poêles en titane ne sont pas authentiques » de la page de vente.
-
-Les pans coupés du poinçon se retrouvent dans les lettres : le sommet du A et la
-pointe du V sont biseautés de la même façon. Tout le système parle le même langage.
+Les terminaisons des lettres sont **coupées en biseau** — le geste du métal
+taillé. Le A est un chevron sans barre, comme un pan coupé. C'est ce qui donne
+au mot son caractère : rien n'est arrondi, tout est facetté.
 
 ## Les fichiers
 
@@ -18,11 +16,19 @@ pointe du V sont biseautés de la même façon. Tout le système parle le même 
 | `logo-principale.svg` | Usage courant : en-tête du site, e-mails, factures |
 | `logo-principale-bianco.svg` | Le même sur fond foncé ou sur photo |
 | `logo-principale-verde.svg` | Le même en vert profond, sur fond clair |
-| `logotipo-lineare.svg` | Bandeau de site étroit, signature, tampon |
-| `logo-verticale.svg` | Formats carrés : réseaux sociaux, packaging, étiquettes |
-| `marchio.svg` | Le poinçon seul, à partir de 48 px |
-| `favicon.svg` | Onglet du navigateur — version pleine, lisible en petit |
+| `logo-su-verde.svg` | Bloc complet, blanc sur vert — bandeaux, publicités |
+| `logo-tm.svg` | Avec le ™ — voir la note ci-dessous |
+| `monogramma.svg` | Le monogramme TV seul |
+| `favicon.svg` | Onglet du navigateur, à partir de 16 px |
 | `apple-touch-icon.png` | Icône iPhone / Android (180 px) |
+
+### ™ ou ® ?
+
+Le fichier par défaut n'en porte aucun. Utilise `logo-tm.svg` (**™**) dès
+maintenant : il ne demande aucune formalité et signale que tu revendiques la
+marque. Le **®** est réservé aux marques effectivement enregistrées — s'en
+servir avant l'enregistrement est une infraction en Italie comme en France.
+Une fois ton dépôt EUIPO accordé, je te sors la version ®.
 
 Les `.svg` sont vectoriels : ils restent nets à n'importe quelle taille, du favicon
 au panneau d'exposition. Ce sont eux qu'il faut charger dans Shopify.
@@ -50,6 +56,9 @@ quelques imprimeurs).
 ## Le lettrage
 
 Dessiné en vectoriel, lettre par lettre — ce n'est pas une police du commerce.
-Personne d'autre ne l'a, et il n'y a **aucune licence à payer**.
-Le générateur est conservé pour pouvoir produire d'autres mots dans le même
-alphabet (« PADELLA », une baseline, un packaging) si le besoin vient.
+Personne d'autre ne l'a, et il n'y a **aucune licence à payer**, y compris sur
+du packaging imprimé.
+
+`genera-logo.py` conserve l'alphabet : lance-le pour régénérer tous les
+fichiers, ou appelle `logotipo("MOT", "SOUS-TITRE", couleur)` pour composer
+un autre mot dans le même dessin.
