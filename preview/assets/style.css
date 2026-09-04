@@ -814,3 +814,152 @@ a{ color:inherit; }
 .piede__basso .pagamenti__loghi{ margin-left:auto; }
 .piede__basso .pagamenti__loghi div{ width:44px; height:28px; font-size:8px; }
 @media (min-width:940px){ .piede__basso{ padding-bottom:40px; } }
+
+/* ==========================================================================
+   19. Tiroir panier
+       Volontairement clair, à l'inverse de la page : le passage à l'achat
+       change d'ambiance, comme sur la référence.
+   ========================================================================== */
+.velo{
+  position:fixed; inset:0; z-index:80;
+  background:rgba(0,0,0,.55);
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.velo.aperto{ opacity:1; pointer-events:auto; }
+
+.carrello{
+  --c-fondo:#F5F5F5; --c-carta:#FFFFFF; --c-grigio:#E4E4E4;
+  --c-testo:#1A1A1A; --c-tenue:#6B6B6B; --c-linea:#D6D6D6;
+  --c-rosso:#9A2230; --c-pill:#D6F5DC; --c-pill-testo:#146B36;
+
+  position:fixed; top:0; right:0; bottom:0; z-index:90;
+  width:min(100%,460px);
+  background:var(--c-fondo); color:var(--c-testo);
+  display:flex; flex-direction:column;
+  transform:translateX(101%); transition:transform .32s cubic-bezier(.4,0,.2,1);
+  box-shadow:-14px 0 40px rgba(0,0,0,.45);
+}
+.carrello.aperto{ transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .carrello, .velo{ transition:none; }
+}
+
+.carrello__testa{
+  position:relative; flex:none;
+  background:var(--c-carta); border-bottom:1px solid var(--c-linea);
+  padding:18px 56px; text-align:center;
+  font-size:19px; font-weight:500;
+}
+.carrello__chiudi{
+  position:absolute; top:50%; right:10px; transform:translateY(-50%);
+  width:44px; height:44px; display:grid; place-items:center;
+  background:none; border:0; cursor:pointer; color:var(--c-testo);
+}
+.carrello__chiudi svg{ width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.7; }
+
+.carrello__timer{
+  flex:none; background:var(--c-grigio); padding:13px 16px;
+  text-align:center; font-size:14.5px; color:var(--c-rosso);
+}
+.carrello__timer b{ font-weight:700; font-variant-numeric:tabular-nums; }
+
+.carrello__corpo{ flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+
+/* ligne produit */
+.riga{
+  background:var(--c-carta); padding:16px;
+  display:grid; grid-template-columns:74px 1fr auto; gap:0 14px;
+}
+.riga__foto{
+  width:74px; height:74px; border-radius:8px; overflow:hidden;
+  background:repeating-linear-gradient(135deg,#E8E8E8 0 9px,#EFEFEF 9px 18px);
+  display:grid; place-items:center; font-size:9px; color:#9A9A9A; text-align:center;
+  grid-row:1 / span 3;
+}
+.riga__nome{ margin:0; font-size:17px; font-weight:700; line-height:1.25; }
+.riga__variante{ margin:8px 0 0; font-size:15px; color:var(--c-tenue); }
+.riga__prezzi{ grid-column:3; grid-row:1 / span 2; text-align:right; }
+.riga__barrato{ display:block; font-size:16px; color:#9A9A9A; text-decoration:line-through; }
+.riga__ora{ display:block; font-size:19px; font-weight:700; margin-top:2px; }
+.riga__risparmio{
+  display:inline-flex; align-items:center; gap:6px; margin-top:8px;
+  background:var(--c-pill); color:var(--c-pill-testo);
+  border-radius:7px; padding:7px 10px; font-size:14px; line-height:1.2; font-weight:500;
+}
+.riga__risparmio svg{ width:15px; height:15px; fill:currentColor; }
+.riga__base{ grid-column:2 / span 2; display:flex; align-items:center; gap:14px; margin-top:14px; }
+.quantita{ display:flex; border:1px solid var(--c-linea); border-radius:8px; overflow:hidden; }
+.quantita button{
+  width:42px; height:42px; background:var(--c-carta); border:0; cursor:pointer;
+  font-size:20px; color:var(--c-testo); display:grid; place-items:center;
+}
+.quantita button:hover{ background:#EFEFEF; }
+.quantita span{
+  width:44px; display:grid; place-items:center; font-size:16px;
+  border-inline:1px solid var(--c-linea); font-variant-numeric:tabular-nums;
+}
+.cestino{
+  margin-left:auto; width:42px; height:42px; background:none; border:0; cursor:pointer;
+  display:grid; place-items:center; color:var(--c-testo);
+}
+.cestino svg{ width:21px; height:21px; stroke:currentColor; fill:none; stroke-width:1.6; }
+
+/* ventes additionnelles */
+.aggiunte{ background:var(--c-grigio); padding:24px 16px 26px; }
+.aggiunte__titolo{
+  margin:0 0 18px; text-align:center; color:var(--verde);
+  font-size:23px; font-weight:700; line-height:1.2;
+}
+.aggiunte__griglia{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.aggiunta{
+  background:var(--verde); border-radius:var(--radius);
+  padding:16px 12px 18px; text-align:center; color:#fff;
+  display:flex; flex-direction:column; gap:10px;
+}
+.aggiunta__foto{
+  width:78px; height:78px; margin:0 auto; border-radius:10px;
+  background:#0A2E20; display:grid; place-items:center;
+  font-size:9px; color:#4E7A66; text-align:center; padding:6px;
+}
+.aggiunta__nome{ margin:0; font-size:14.5px; font-weight:700; line-height:1.3; }
+.aggiunta__prezzi{ font-size:16px; font-weight:700; }
+.aggiunta__prezzi s{ font-weight:400; font-size:14px; color:#9FB3AA; margin-left:5px; }
+.aggiunta select{
+  width:100%; padding:11px 10px; border-radius:8px; border:0;
+  background:#fff; color:var(--c-testo); font:inherit; font-size:14px;
+}
+.aggiunta__add{
+  align-self:center; padding:11px 26px; cursor:pointer;
+  background:#fff; color:var(--c-testo); border:0; border-radius:8px;
+  font-size:14.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+}
+.aggiunta__add:hover{ background:#EDEDED; }
+
+/* pied du tiroir */
+.carrello__piede{
+  flex:none; background:var(--c-grigio); padding:18px 16px calc(18px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--c-linea);
+}
+.totale{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+.totale__nome{ font-size:16px; color:var(--c-testo); }
+.totale__valore{ font-size:16px; }
+.totale.forte .totale__nome{ font-size:20px; font-weight:700; }
+.totale.forte .totale__valore{ font-size:20px; font-weight:700; }
+.paga{
+  display:block; width:100%; margin-top:14px; padding:19px 16px; cursor:pointer;
+  background:var(--c-rosso); color:#F4EAEA; border:0; border-radius:10px;
+  font-size:20px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+}
+.paga:hover{ background:#851C29; }
+.paga:focus-visible{ outline:2px solid #1A1A1A; outline-offset:3px; }
+.carrello__fiducia{
+  margin:16px 0 14px; text-align:center; font-size:14px; font-weight:600;
+  color:#5E5E5E; line-height:1.4;
+}
+.carrello__pagamenti{ display:flex; justify-content:center; gap:7px; flex-wrap:wrap; }
+.carrello__pagamenti div{
+  width:52px; height:34px; border-radius:6px; background:#fff;
+  border:1px solid #DADADA; display:grid; place-items:center;
+  font-size:8.5px; font-weight:800; color:#25324C;
+}
+.carrello__vuoto{ padding:60px 24px; text-align:center; color:var(--c-tenue); font-size:16px; }

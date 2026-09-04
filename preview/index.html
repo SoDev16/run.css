@@ -30,7 +30,7 @@
       <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
     </button>
     <a class="testa__logo" href="#" aria-label="Titanio Vero"><img src="assets/logo.png" alt="Titanio Vero"></a>
-    <button class="icona carrello" aria-label="Carrello">
+    <button class="icona carrello" id="apriCarrello" aria-label="Carrello">
       <svg viewBox="0 0 24 24"><path d="M4 7h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8L4 7Z" stroke-linejoin="round"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7" stroke-linecap="round"/></svg>
       <span class="carrello__conteggio">0</span>
     </button>
@@ -854,6 +854,97 @@
 </main>
 
 <!-- 6 ─────────────────────────────────────────── barre d'achat collante -->
+
+<!-- ─────────────────────────────────────────── tiroir panier -->
+<div class="velo" id="velo"></div>
+<aside class="carrello" id="carrello" aria-label="Carrello" aria-hidden="true">
+
+  <div class="carrello__testa">
+    Carrello · <span id="carrelloConteggio">1</span>
+    <button class="carrello__chiudi" id="chiudiCarrello" aria-label="Chiudi">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="carrello__timer">
+    I tuoi articoli scontati sono riservati per <b id="conto">10:00</b> ⏰
+  </div>
+
+  <div class="carrello__corpo">
+
+    <div class="riga">
+      <div class="riga__foto">photo<br>produit</div>
+      <p class="riga__nome">Padella in Titanio Puro Titanio Vero®</p>
+      <p class="riga__variante">Misura : Large 30 cm</p>
+      <div class="riga__prezzi">
+        <s class="riga__barrato">389,00 €</s>
+        <span class="riga__ora">189,00 €</span>
+        <span class="riga__risparmio">
+          <svg viewBox="0 0 24 24"><path d="M20.6 12.4 12.4 20.6a2 2 0 0 1-2.8 0l-6.2-6.2a2 2 0 0 1-.6-1.4V4.4c0-1.1.9-2 2-2h8.6c.5 0 1 .2 1.4.6l5.8 5.8a2 2 0 0 1 0 2.8ZM7.5 8.5h.01"/></svg>
+          Risparmi 200 €
+        </span>
+      </div>
+      <div class="riga__base">
+        <div class="quantita">
+          <button aria-label="Diminuisci" data-passo="-1">−</button>
+          <span id="qta">1</span>
+          <button aria-label="Aumenta" data-passo="1">+</button>
+        </div>
+        <button class="cestino" aria-label="Rimuovi">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M6 7l1 12.2A1.8 1.8 0 0 0 8.8 21h6.4a1.8 1.8 0 0 0 1.8-1.8L18 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="aggiunte">
+      <h2 class="aggiunte__titolo">Completa la tua cucina :</h2>
+      <div class="aggiunte__griglia">
+        <div class="aggiunta">
+          <div class="aggiunta__foto">photo spatule</div>
+          <p class="aggiunta__nome">Spatola in Titanio Puro</p>
+          <p class="aggiunta__prezzi">49,00 € <s>89,00 €</s></p>
+          <select aria-label="Variante">
+            <option>Spatola</option>
+            <option>Schiumarola</option>
+            <option>Mestolo</option>
+          </select>
+          <button class="aggiunta__add">Aggiungi</button>
+        </div>
+        <div class="aggiunta">
+          <div class="aggiunta__foto">photo couvercle</div>
+          <p class="aggiunta__nome">Coperchio in vetro temperato</p>
+          <p class="aggiunta__prezzi">39,00 € <s>69,00 €</s></p>
+          <select aria-label="Misura">
+            <option>26 cm</option>
+            <option>28 cm</option>
+            <option selected>30 cm</option>
+          </select>
+          <button class="aggiunta__add">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="carrello__piede">
+    <div class="totale">
+      <span class="totale__nome">Hai risparmiato</span>
+      <span class="totale__valore">− 200,00 €</span>
+    </div>
+    <div class="totale forte">
+      <span class="totale__nome">Totale</span>
+      <span class="totale__valore" id="subtotale">189,00 €</span>
+    </div>
+    <button class="paga">Vai al pagamento</button>
+    <p class="carrello__fiducia">Prova di 120 giorni · Garanzia a vita · Spedizione gratuita</p>
+    <div class="carrello__pagamenti">
+      <div>VISA</div><div>MASTER</div><div>AMEX</div>
+      <div>PAYPAL</div><div>APPLE</div><div>CONTR.</div>
+    </div>
+  </div>
+
+</aside>
+
 <div class="barra-fissa" id="barraFissa">
   <p class="barra-fissa__nota">120 giorni di prova · Garanzia a vita</p>
   <button class="acquista">Aggiungi al carrello — 189&nbsp;€</button>
@@ -925,6 +1016,47 @@ document.querySelectorAll('.freccia').forEach((f,i)=>f.addEventListener('click',
   const vista=[...document.querySelectorAll('.testimonianze')].find(t=>!t.hidden);
   if(vista) vista.scrollBy({left:(i?1:-1)*(vista.clientWidth*0.85),behavior:'smooth'});
 }));
+
+// ── tiroir panier ────────────────────────────────────────────────────────
+const carrello=document.getElementById('carrello'), velo=document.getElementById('velo');
+function apriCarrello(){
+  carrello.classList.add('aperto'); velo.classList.add('aperto');
+  carrello.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  document.getElementById('chiudiCarrello').focus();
+}
+function chiudiCarrello(){
+  carrello.classList.remove('aperto'); velo.classList.remove('aperto');
+  carrello.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.getElementById('apriCarrello').addEventListener('click',apriCarrello);
+document.getElementById('chiudiCarrello').addEventListener('click',chiudiCarrello);
+velo.addEventListener('click',chiudiCarrello);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && carrello.classList.contains('aperto')) chiudiCarrello(); });
+document.querySelectorAll('.acquista').forEach(b=>b.addEventListener('click',apriCarrello));
+
+// quantité et sous-total
+const PREZZO=189, BARRATO=389;
+const euro=n=>n.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+let qta=1;
+document.querySelectorAll('.quantita button').forEach(b=>b.addEventListener('click',()=>{
+  qta=Math.max(1, qta+Number(b.dataset.passo));
+  document.getElementById('qta').textContent=qta;
+  document.getElementById('carrelloConteggio').textContent=qta;
+  document.querySelector('.carrello__conteggio').textContent=qta;
+  document.getElementById('subtotale').textContent=euro(PREZZO*qta);
+  document.querySelector('.totale .totale__valore').textContent='− '+euro((BARRATO-PREZZO)*qta);
+}));
+
+// compte à rebours de réservation
+let resta=10*60;
+const conto=document.getElementById('conto');
+setInterval(()=>{
+  if(resta<=0) return;
+  resta--;
+  conto.textContent=String(Math.floor(resta/60)).padStart(2,'0')+':'+String(resta%60).padStart(2,'0');
+},1000);
 </script>
 </body>
 </html>
