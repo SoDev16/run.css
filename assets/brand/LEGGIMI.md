@@ -5,49 +5,63 @@ mises aux formats dont Shopify a besoin.
 
 ## Les fichiers
 
+### Chromé — la version principale
+
 | Fichier | Où l'utiliser |
 |---|---|
-| `logo-bianco.png` | **Le fichier principal.** Lettrage blanc, fond transparent — pour l'en-tête du site, les fonds foncés, les photos |
-| `logo-verde.png` | Lettrage vert sur fond transparent — pour les fonds blancs ou crème |
-| `logo-bronzo.png` | Variante bronze, si tu veux l'accorder aux boutons |
-| `logo-su-verde.png` | L'original, fond vert compris — pour les publicités et les visuels sociaux |
-| `shopify-logo-header.png` | 600 px de large, taille d'affichage de l'en-tête |
-| `shopify-logo-2x.png` | 1200 px, la version écran Retina |
-| `favicon.png` | 512 px — le T du logo sur carré vert |
-| `favicon-bronzo.png` | Le même sur carré bronze |
+| `logo-cromo.png` | **Le fichier principal.** Dégradé gris chromé, fond transparent |
+| `logo-cromo-su-nero.png` | Le même, fond noir incrusté |
+| `logo-cromo-su-verde.png` | Le même, fond vert incrusté |
+
+Le chromé demande un **fond foncé**. Sur un fond clair, la partie haute du
+dégradé est presque blanche et disparaît. Sur fond clair, prends la version
+noire.
+
+### Monochrome — pour tout le reste
+
+| Fichier | Où l'utiliser |
+|---|---|
+| `logo-bianco.png` | Blanc, fond transparent |
+| `logo-bianco-su-nero.png` | Blanc sur noir |
+| `logo-nero.png` | Noir, fond transparent |
+| `logo-nero-su-bianco.png` | Noir sur blanc — factures, documents, tampons |
+| `logo-verde.png` | Vert, fond transparent |
+
+### Formats prêts
+
+| Fichier | Usage |
+|---|---|
+| `shopify-logo-header.png` | 600 px, en-tête du site |
+| `shopify-logo-2x.png` | 1200 px, écrans Retina |
+| `favicon.png` | Le T chromé sur carré vert |
+| `favicon-nero.png` | Le T chromé sur carré noir |
+| `favicon-chiaro.png` | Le T noir sur carré blanc |
 | `apple-touch-icon.png` | 180 px, icône iPhone et Android |
 
-Tous les PNG sont à **fond transparent**, sauf `logo-su-verde` et les favicons.
-C'est ce qui compte : l'image que tu m'as envoyée avait le fond vert incrusté,
-elle aurait affiché un rectangle vert sur toute autre couleur de fond.
+## La palette
 
-## Les couleurs
+Relevée dans le code de la référence, pas inventée.
 
-Relevées directement dans ton logo.
-
-| Rôle | Code |
-|---|---|
-| Vert profond — fond, logo, sections sombres | `#00211C` |
-| Blanc — lettrage sur fond foncé | `#FFFFFF` |
-| Bronze — boutons d'achat, accents, prix | `#B57C46` |
-| Crème — fonds clairs | `#F5F0E8` |
-| Rouge — prix barrés, urgence | `#D43140` |
-| Vert vif — « en stock », validations | `#42C216` |
+| Rôle | Code | Constat |
+|---|---|---|
+| Rouge — bandeau d'annonce et boutons d'achat | `#D43140` | Leur couleur d'action. Bandeau du haut, bouton principal, prix barrés. |
+| Vert profond — fond des sections sombres | `#002418` | La couleur de fond dominante. |
+| Blanc — texte sur fond foncé | `#FFFFFF` | 146 déclarations : l'essentiel du contenu est sur fond sombre. |
+| Bronze — icônes, étoiles, accents | `#B57C46` | 227 occurrences, presque toutes dans des pictogrammes. |
+| Vert vif — pastille « en stock » | `#42C216` | Point clignotant. |
+| Bleu clair — section scientifique | `#C6E3FA` | Fond de la section laboratoire, avec `#6EA9D7` pour les textes. |
+| Sable — bordures | `#BCA588` | Marginal : filets 2 px sur les blocs verts, quelques petits textes. |
 
 ## Deux points à savoir
 
-**Le logo est en pixels, pas en vectoriel.** Pour le site, aucun problème : les
-fichiers fournis sont assez grands pour tous les écrans. Mais pour du packaging
-imprimé, un carton ou une gravure, il te faudra une version vectorielle (.svg).
-Redemande-la à ChatGPT, ou je le redessine à l'identique en vectoriel — une
-heure de travail, à faire seulement quand tu passeras à l'impression.
+**Le logo est en pixels, pas en vectoriel.** Pour le site, aucun problème.
+Pour un packaging imprimé ou une gravure, il faudra un `.svg` — à demander
+le moment venu, pas maintenant.
 
-**Le lettrage est fin.** C'est ce qui le rend élégant, mais en dessous de
-120 px de large sur mobile les traits s'effacent. Dans l'en-tête du site, je
-lui donnerai une largeur minimale pour qu'il reste lisible.
+**Le lettrage est fin.** En dessous de 120 px de large sur mobile, les traits
+s'effacent. L'en-tête du site lui donnera une largeur minimale.
 
 ## Le ™
 
-N'affiche pas de **®** tant que ta marque n'est pas enregistrée : c'est une
-infraction en Italie comme en France. Le **™** est libre d'usage et signale
-déjà que tu revendiques la marque.
+N'affiche pas de **®** tant que la marque n'est pas enregistrée : c'est une
+infraction en Italie comme en France. Le **™** est libre d'usage.
