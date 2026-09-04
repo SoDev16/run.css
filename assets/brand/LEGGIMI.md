@@ -7,15 +7,21 @@ mises aux formats dont Shopify a besoin.
 
 ### Chromé — la version principale
 
+C'est ton fichier, détouré. Le rendu chromé n'a pas été retouché : seul le
+fond vert a été retiré, avec une correction de la frange verte laissée sur
+les bords translucides.
+
 | Fichier | Où l'utiliser |
 |---|---|
-| `logo-cromo.png` | **Le fichier principal.** Dégradé gris chromé, fond transparent |
-| `logo-cromo-su-nero.png` | Le même, fond noir incrusté |
-| `logo-cromo-su-verde.png` | Le même, fond vert incrusté |
+| `logo-cromo.png` | **Le fichier principal.** Fond transparent |
+| `logo-cromo-su-nero.png` | Fond noir incrusté |
+| `logo-cromo-su-verde.png` | Fond vert incrusté |
+| `logo-cromo-su-bianco.png` | Fond blanc — à n'utiliser qu'en dépannage |
+| `monogramma-t.png` | Le T seul, chromé, fond transparent |
 
-Le chromé demande un **fond foncé**. Sur un fond clair, la partie haute du
-dégradé est presque blanche et disparaît. Sur fond clair, prends la version
-noire.
+Le chromé demande un **fond foncé**. Sur fond clair, les reflets clairs des
+lettres se confondent avec le fond. Pour les fonds clairs, prends
+`logo-nero.png`.
 
 ### Monochrome — pour tout le reste
 
