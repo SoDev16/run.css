@@ -1,64 +1,53 @@
 # Titanio Vero — identité de marque
 
-## Le concept
-
-Un logotype pur : le nom en capitales grasses très espacées, un filet, puis
-« VERO » en dessous, léger et étiré à la même largeur.
-
-Les terminaisons des lettres sont **coupées en biseau** — le geste du métal
-taillé. Le A est un chevron sans barre, comme un pan coupé. C'est ce qui donne
-au mot son caractère : rien n'est arrondi, tout est facetté.
+Le logotype vient de toi. Ce dossier contient ses déclinaisons, détourées et
+mises aux formats dont Shopify a besoin.
 
 ## Les fichiers
 
 | Fichier | Où l'utiliser |
 |---|---|
-| `logo-principale.svg` | Usage courant : en-tête du site, e-mails, factures |
-| `logo-principale-bianco.svg` | Le même sur fond foncé ou sur photo |
-| `logo-principale-verde.svg` | Le même en vert profond, sur fond clair |
-| `logo-su-verde.svg` | Bloc complet, blanc sur vert — bandeaux, publicités |
-| `logo-tm.svg` | Avec le ™ — voir la note ci-dessous |
-| `monogramma.svg` | Le monogramme TV seul |
-| `favicon.svg` | Onglet du navigateur, à partir de 16 px |
-| `apple-touch-icon.png` | Icône iPhone / Android (180 px) |
+| `logo-bianco.png` | **Le fichier principal.** Lettrage blanc, fond transparent — pour l'en-tête du site, les fonds foncés, les photos |
+| `logo-verde.png` | Lettrage vert sur fond transparent — pour les fonds blancs ou crème |
+| `logo-bronzo.png` | Variante bronze, si tu veux l'accorder aux boutons |
+| `logo-su-verde.png` | L'original, fond vert compris — pour les publicités et les visuels sociaux |
+| `shopify-logo-header.png` | 600 px de large, taille d'affichage de l'en-tête |
+| `shopify-logo-2x.png` | 1200 px, la version écran Retina |
+| `favicon.png` | 512 px — le T du logo sur carré vert |
+| `favicon-bronzo.png` | Le même sur carré bronze |
+| `apple-touch-icon.png` | 180 px, icône iPhone et Android |
 
-### ™ ou ® ?
-
-Le fichier par défaut n'en porte aucun. Utilise `logo-tm.svg` (**™**) dès
-maintenant : il ne demande aucune formalité et signale que tu revendiques la
-marque. Le **®** est réservé aux marques effectivement enregistrées — s'en
-servir avant l'enregistrement est une infraction en Italie comme en France.
-Une fois ton dépôt EUIPO accordé, je te sors la version ®.
-
-Les `.svg` sont vectoriels : ils restent nets à n'importe quelle taille, du favicon
-au panneau d'exposition. Ce sont eux qu'il faut charger dans Shopify.
-Les `.png` sont là pour les outils qui refusent le SVG (certains réseaux sociaux,
-quelques imprimeurs).
+Tous les PNG sont à **fond transparent**, sauf `logo-su-verde` et les favicons.
+C'est ce qui compte : l'image que tu m'as envoyée avait le fond vert incrusté,
+elle aurait affiché un rectangle vert sur toute autre couleur de fond.
 
 ## Les couleurs
 
+Relevées directement dans ton logo.
+
 | Rôle | Code |
 |---|---|
-| Bronze — logo, boutons, accents | `#B57C46` |
-| Sable — fonds doux, bordures | `#BCA588` |
-| Vert profond — sections sombres, favicon | `#002418` |
+| Vert profond — fond, logo, sections sombres | `#00211C` |
+| Blanc — lettrage sur fond foncé | `#FFFFFF` |
+| Bronze — boutons d'achat, accents, prix | `#B57C46` |
 | Crème — fonds clairs | `#F5F0E8` |
 | Rouge — prix barrés, urgence | `#D43140` |
-| Vert — « en stock », validations | `#42C216` |
+| Vert vif — « en stock », validations | `#42C216` |
 
-## Trois règles
+## Deux points à savoir
 
-1. **De l'air autour.** Laisse au minimum la hauteur du poinçon comme marge libre.
-2. **Une seule couleur à la fois.** Le logo est monochrome : bronze, blanc ou vert.
-   Jamais de dégradé, jamais d'ombre portée.
-3. **Ne déforme pas.** Redimensionne toujours en conservant les proportions.
+**Le logo est en pixels, pas en vectoriel.** Pour le site, aucun problème : les
+fichiers fournis sont assez grands pour tous les écrans. Mais pour du packaging
+imprimé, un carton ou une gravure, il te faudra une version vectorielle (.svg).
+Redemande-la à ChatGPT, ou je le redessine à l'identique en vectoriel — une
+heure de travail, à faire seulement quand tu passeras à l'impression.
 
-## Le lettrage
+**Le lettrage est fin.** C'est ce qui le rend élégant, mais en dessous de
+120 px de large sur mobile les traits s'effacent. Dans l'en-tête du site, je
+lui donnerai une largeur minimale pour qu'il reste lisible.
 
-Dessiné en vectoriel, lettre par lettre — ce n'est pas une police du commerce.
-Personne d'autre ne l'a, et il n'y a **aucune licence à payer**, y compris sur
-du packaging imprimé.
+## Le ™
 
-`genera-logo.py` conserve l'alphabet : lance-le pour régénérer tous les
-fichiers, ou appelle `logotipo("MOT", "SOUS-TITRE", couleur)` pour composer
-un autre mot dans le même dessin.
+N'affiche pas de **®** tant que ta marque n'est pas enregistrée : c'est une
+infraction en Italie comme en France. Le **™** est libre d'usage et signale
+déjà que tu revendiques la marque.
