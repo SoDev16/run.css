@@ -39,3 +39,16 @@ Le fichier de réglages d'origine est conservé ici sous
 Corollaire : les écritures sont **asynchrones**. Relire un fichier moins de
 trente secondes après l'envoi donne encore l'ancienne version, ce qui fait
 prendre des écritures en cours pour des refus.
+
+## Affirmations de la référence volontairement reformulées
+
+Trois arguments du site de référence ne sont pas repris tels quels dans
+l'accordéon des bénéfices.
+
+| Référence | Pourquoi | Écrit à la place |
+|---|---|---|
+| « Conserve jusqu'à 45 % de nutriments en plus » | allégation nutritionnelle chiffrée ; le règlement CE 1924/2006 exige une substantiation scientifique | « Cuoci a fuoco medio, non altissimo » — la conduction du titane, sans chiffre |
+| « Naturellement antibactérien » | une allégation antibactérienne sur un article relève du règlement biocides UE 528/2012 | « Facile da tenere pulita » — surface lisse et non poreuse |
+| « Impossible à corroder », « impossible à détruire » | absolus indéfendables | « Resiste agli alimenti acidi », « Fatta per durare » |
+
+« SlipScale™ » est une marque de la référence et n'est pas employée.
