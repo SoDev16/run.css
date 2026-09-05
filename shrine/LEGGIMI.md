@@ -23,3 +23,19 @@ Aucune remise chiffrée (« -55 % », « SAVE [percentage] ») : en Italie, une
 annonce de réduction exige un prix de référence des trente derniers jours
 (directive Omnibus, D.Lgs. 26/2023), qu'une boutique qui ouvre ne peut pas
 établir.
+
+## Règle apprise, à respecter pour tous les fichiers de Shrine
+
+**Modifier le fichier d'origine, ne jamais le reconstruire.**
+
+Trois envois ont été refusés par `themeFilesUpsert` sans le moindre message
+d'erreur — liste vide, aucune `userError`, fichier inchangé. À chaque fois
+la cause était la même : le fichier avait été réécrit à partir de zéro au
+lieu d'être chargé puis modifié.
+
+Le fichier de réglages d'origine est conservé ici sous
+`originale-settings_data.json`. Toute modification part de lui.
+
+Corollaire : les écritures sont **asynchrones**. Relire un fichier moins de
+trente secondes après l'envoi donne encore l'ancienne version, ce qui fait
+prendre des écritures en cours pour des refus.
