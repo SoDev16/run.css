@@ -38,7 +38,8 @@
       ],
       "settings": {
         "assistenza_titolo": "Assistenza clienti",
-        "mostra_pagamenti": true
+        "mostra_pagamenti": true,
+        "logo": "shopify://shop_images/titanio_vero_logo_trans.png"
       }
     }
   },

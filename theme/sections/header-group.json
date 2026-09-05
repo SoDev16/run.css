@@ -20,7 +20,7 @@
         "m3": {
           "type": "messaggio",
           "settings": {
-            "testo": "Risparmia il 55% sul set più venduto"
+            "testo": "Senza PFAS, PTFE e PFOA"
           }
         }
       },
@@ -37,7 +37,8 @@
     "testa": {
       "type": "tv-testa",
       "settings": {
-        "altezza": 34
+        "altezza": 34,
+        "logo": "shopify://shop_images/titanio_vero_logo_trans.png"
       }
     }
   },
