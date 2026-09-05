@@ -21,6 +21,14 @@ def ids(sch):
             out.add(i["id"])
     return out
 
+def options(sch):
+    """Valeurs autorisées pour chaque réglage de type « select » ou « radio »."""
+    out = {}
+    for i in sch.get("settings", []) or []:
+        if i.get("type") in ("select", "radio") and i.get("id"):
+            out[i["id"]] = {o.get("value") for o in i.get("options", [])}
+    return out
+
 SECTIONS = {os.path.basename(p)[:-7]: schema(p) for p in glob.glob(f"{SRC}/sections/*.liquid")}
 BLOCS    = {os.path.basename(p)[:-7]: schema(p) for p in glob.glob(f"{SRC}/blocks/*.liquid")}
 
@@ -70,9 +78,13 @@ def controle_blocs(blocs, permis, ou):
             fautes.append(f"{ou} → bloc « {t} » ({cle}) n'existe pas dans Horizon")
             continue
         connus = ids(sch) | COMMUNS
-        for r in bloc.get("settings", {}):
+        choix = options(sch)
+        for r, v in bloc.get("settings", {}).items():
             if r not in connus:
                 fautes.append(f"{ou} → bloc « {t} » ({cle}) : réglage inconnu « {r} »")
+            elif r in choix and choix[r] and v not in choix[r]:
+                fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = « {v} » ; "
+                              f"valeurs permises : {sorted(choix[r])}")
         controle_blocs(bloc.get("blocks"), autorises(sch), f"{ou}/{t}")
 
 for chemin in sys.argv[1:]:
@@ -86,9 +98,13 @@ for chemin in sys.argv[1:]:
             fautes.append(f"{nom} → section « {t} » ({cle}) n'existe pas dans Horizon")
             continue
         connus = ids(sch) | COMMUNS
-        for r in sec.get("settings", {}):
+        choix = options(sch)
+        for r, v in sec.get("settings", {}).items():
             if r not in connus:
                 fautes.append(f"{nom} → section « {t} » ({cle}) : réglage inconnu « {r} »")
+            elif r in choix and choix[r] and v not in choix[r]:
+                fautes.append(f"{nom} → section « {t} » ({cle}) : « {r} » = « {v} » ; "
+                              f"valeurs permises : {sorted(choix[r])}")
         controle_blocs(sec.get("blocks"), autorises(sch, t), f"{nom}/{t}")
     for cle in d.get("order", []):
         if cle not in d.get("sections", {}):
