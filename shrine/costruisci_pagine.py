@@ -41,7 +41,7 @@ def barra_garanzie(cle):
             "text": f"<p>{txt}</p>"}}
     return {"type": "icon-bar", "blocks": blocs, "block_order": list(blocs), "settings": {
         "display_id": False, "visibility": "always-display",
-        "title": "", "title_highlight_color": ROSSO, "heading_size": "h2", "text": "",
+        "title": "", "title_highlight_color": ROSSO, "heading_size": "h1", "text": "",
         "color_scheme": "background-1", "icon_layout": "vertical",
         "icon_size": "medium", "icon_color": "accent-1",
         "cards_color_scheme": "background-1", "type": "slide",
@@ -52,10 +52,10 @@ def barra_garanzie(cle):
         "desktop_spacing": 40, "desktop_side_padding": 0,
         "desktop_padding_calc": True, "desktop_adaptive_height": False,
         "desktop_dots_position": "under", "desktop_arrows_position": "sides",
-        "columns_mobile": "2", "slider_mobile": False,
+        "columns_mobile": "1", "slider_mobile": True,
         "enable_mobile_preview": False, "mobile_adaptive_height": False,
         "mobile_dots_position": "under", "mobile_arrows_position": "under",
-        "padding_top": 28, "padding_bottom": 28,
+        "padding_top": 36, "padding_bottom": 36,
         **couleurs(),
         "custom_cards_colors_background": NERO,
         "custom_cards_gradient_background": "",
@@ -80,13 +80,13 @@ def tabella_confronto(cle):
     return {"type": "comparison-table", "blocks": blocs, "block_order": list(blocs), "settings": {
         "display_id": False, "visibility": "always-display",
         "title": "Titanio e gli altri", "title_highlight_color": ROSSO,
-        "heading_size": "h2",
+        "heading_size": "h1",
         "text": "<p>Perché il titanio puro cambia il modo di cucinare.</p>",
         "button_label": "", "link": "", "button_style_secondary": False,
         "atc_button_label": "", "atc_product": "", "atc_skip_cart": False,
         "desktop_alignment": "center", "mobile_alignment": "center",
         "color_scheme": "background-1", "layout": "table_second",
-        "style": "centered", "corner_radius": 16,
+        "style": "centered", "corner_radius": 20,
         "number_of_competitors": 1,
         "us_label": "[shop_name]", "us_label_size": 18,
         "logo_width": 90, "mobile_logo_width": 60,
@@ -133,7 +133,7 @@ def argomenti(cle):
             "text": f"<p>{txt}</p>"}}
     blocs[f"{cle}_titolo"] = {"type": "heading", "settings": {
         "title": "Un nuovo standard di sicurezza, prestazioni e durata.",
-        "title_highlight_color": ROSSO, "heading_size": "h2"}}
+        "title_highlight_color": ROSSO, "heading_size": "h1"}}
     blocs[f"{cle}_testo"] = {"type": "text", "settings": {
         "text": "<p>Il titanio non ha bisogno di rivestimenti per non attaccare. "
                 "È questa la differenza.</p>", "text_style": "body"}}
@@ -143,7 +143,7 @@ def argomenti(cle):
         "display_id": False, "visibility": "always-display",
         "color_scheme": "background-1", "icon_size": "m",
         "icon_position": "next-to-title", "icon_color": "accent-1",
-        "icon_heading_size": "h4", "icon_text_alignment": "left",
+        "icon_heading_size": "h3", "icon_text_alignment": "left",
         "icons_desktop_layout": "1-column", "icons_mobile_layout": "1-column",
         "desktop_content_alignment": "left",
         "layout": "image_first", "mobile_layout": "text_first",
@@ -163,24 +163,24 @@ def sezione_verde(cle):
     blocs = {f"{cle}_titolo": {"type": "heading", "settings": {
         "column": "col_1", "visibility": "always-display",
         "heading": "Il tuo corpo merita di meglio.",
-        "title_highlight_color": "#BDA589", "heading_size": "h2",
+        "title_highlight_color": "#BDA589", "heading_size": "h1",
         "alignment": "center", "mobile_alignment": "mobile-center",
-        "margin_top": 10, "margin_bottom": 20}}}
+        "margin_top": 20, "margin_bottom": 20}}}
     for i, t in enumerate(voci, 1):
         blocs[f"{cle}_voce{i}"] = {"type": "icon_with_text", "settings": {
             "column": f"col_{i+1}", "visibility": "always-display",
             "icon": ICO["spunta"], "filled_icon": False, "icon_size": "m",
-            "icon_position": "above-title", "icon_color": "text",
-            "icon_heading_size": "h5", "icon_text_alignment": "center",
+            "icon_position": "next-to-title", "icon_color": "accent-1",
+            "icon_heading_size": "h3", "icon_text_alignment": "left",
             "title": "", "text": f"<p>{t}</p>",
-            "margin_top": 10, "margin_bottom": 20}}
+            "margin_top": 20, "margin_bottom": 20}}
     return {"type": "custom-columns", "blocks": blocs, "block_order": list(blocs), "settings": {
         "display_id": False, "visibility": "always-display",
         "color_scheme": "accent-2",     # le vert #002418 de la référence
         "columns_count": 4,
-        "column_gap_desktop": 40, "row_gap_desktop": 30,
-        "desktop_vertical_alignment": "flex-start",
-        "column_gap_mobile": 20, "row_gap_mobile": 24,
+        "column_gap_desktop": 40, "row_gap_desktop": 40,
+        "desktop_vertical_alignment": "center",
+        "column_gap_mobile": 20, "row_gap_mobile": 30,
         "mobile_vertical_alignment": "flex-start",
         "col_1_desktop_width": 12, "col_1_mobile_width": 4, "col_1_visibility": "always-display",
         "col_2_desktop_width": 4, "col_2_mobile_width": 4, "col_2_visibility": "always-display",
@@ -188,7 +188,7 @@ def sezione_verde(cle):
         "col_4_desktop_width": 4, "col_4_mobile_width": 4, "col_4_visibility": "always-display",
         "col_5_desktop_width": 3, "col_5_mobile_width": 4, "col_5_visibility": "always-display",
         "col_6_desktop_width": 3, "col_6_mobile_width": 4, "col_6_visibility": "always-display",
-        "padding_top": 56, "padding_bottom": 56,
+        "padding_top": 36, "padding_bottom": 36,
         **couleurs("#002418", "#D4C7B4")}}
 
 # =========================================================================
@@ -208,7 +208,7 @@ open("templates/product.json", "w", encoding="utf-8").write(
 # =========================================================================
 eroe = {"type": "slideshow", "blocks": {
     "slide_1": {"type": "slide", "settings": {
-        "image_overlay_opacity": 35,
+        "image_overlay_opacity": 0,
         "heading": "Passa a una cucina senza sostanze tossiche.",
         "title_highlight_color": ROSSO, "heading_size": "h1",
         "subheading": "Titanio puro certificato. Niente PFAS, nessun rivestimento.",
@@ -222,7 +222,7 @@ eroe = {"type": "slideshow", "blocks": {
         "text_alignment_mobile": "center", **couleurs()}}},
     "block_order": ["slide_1"], "settings": {
         "visibility": "always-display", "layout": "full_bleed",
-        "slide_height": "large", "slider_visual": "dots",
+        "slide_height": "medium", "slider_visual": "dots",
         "desktop_pagination_position": "over", "auto_rotate": False,
         "change_slides_speed": 5, "show_text_below": False,
         "mobile_pagination_position": "under",
