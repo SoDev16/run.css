@@ -41,13 +41,14 @@ SECTIONS = {os.path.basename(p)[:-7]: schema(p) for p in glob.glob(f"{SRC}/secti
 BLOCS    = {os.path.basename(p)[:-7]: schema(p) for p in glob.glob(f"{SRC}/blocks/*.liquid")}
 
 def statiques(nom):
-    """Blocs posés en dur dans le code d'une section (content_for 'block'),
-    donc absents de son schéma mais parfaitement légitimes."""
-    p = f"{SRC}/sections/{nom}.liquid"
-    if not os.path.exists(p):
-        return set()
-    src = open(p, encoding="utf-8").read()
-    return set(re.findall(r"content_for\s+'block'\s*,\s*type:\s*'([^']+)'", src))
+    """Blocs posés en dur dans le code d'une section ou d'un bloc
+    (content_for 'block'), donc absents du schéma mais légitimes."""
+    for dossier in ("sections", "blocks"):
+        p = f"{SRC}/{dossier}/{nom}.liquid"
+        if os.path.exists(p):
+            src = open(p, encoding="utf-8").read()
+            return set(re.findall(r"content_for\s+'block'\s*,\s*type:\s*'([^']+)'", src))
+    return set()
 
 # réglages de mise en page injectés par Horizon dans tout bloc « présentable »
 COMMUNS = {"padding-block-start","padding-block-end","padding-inline-start",
@@ -102,7 +103,7 @@ def controle_blocs(blocs, permis, ou):
                     fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = {v}, au dessus du maximum {mx}")
                 elif pas and mn is not None and round((v - mn) % pas, 6) not in (0, pas):
                     fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = {v}, hors du pas de {pas} (départ {mn})")
-        controle_blocs(bloc.get("blocks"), autorises(sch), f"{ou}/{t}")
+        controle_blocs(bloc.get("blocks"), autorises(sch, t), f"{ou}/{t}")
 
 for chemin in sys.argv[1:]:
     s = open(chemin, encoding="utf-8").read()
