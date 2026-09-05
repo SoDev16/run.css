@@ -21,6 +21,14 @@ def ids(sch):
             out.add(i["id"])
     return out
 
+def bornes(sch):
+    """Bornes min/max des réglages numériques (« range »)."""
+    out = {}
+    for i in sch.get("settings", []) or []:
+        if i.get("type") == "range" and i.get("id"):
+            out[i["id"]] = (i.get("min"), i.get("max"), i.get("step"))
+    return out
+
 def options(sch):
     """Valeurs autorisées pour chaque réglage de type « select » ou « radio »."""
     out = {}
@@ -79,12 +87,21 @@ def controle_blocs(blocs, permis, ou):
             continue
         connus = ids(sch) | COMMUNS
         choix = options(sch)
+        bnes = bornes(sch)
         for r, v in bloc.get("settings", {}).items():
             if r not in connus:
                 fautes.append(f"{ou} → bloc « {t} » ({cle}) : réglage inconnu « {r} »")
             elif r in choix and choix[r] and v not in choix[r]:
                 fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = « {v} » ; "
                               f"valeurs permises : {sorted(choix[r])}")
+            elif r in bnes and isinstance(v, (int, float)):
+                mn, mx, pas = bnes[r]
+                if mn is not None and v < mn:
+                    fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = {v}, en dessous du minimum {mn}")
+                elif mx is not None and v > mx:
+                    fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = {v}, au dessus du maximum {mx}")
+                elif pas and mn is not None and round((v - mn) % pas, 6) not in (0, pas):
+                    fautes.append(f"{ou} → bloc « {t} » ({cle}) : « {r} » = {v}, hors du pas de {pas} (départ {mn})")
         controle_blocs(bloc.get("blocks"), autorises(sch), f"{ou}/{t}")
 
 for chemin in sys.argv[1:]:
@@ -99,12 +116,21 @@ for chemin in sys.argv[1:]:
             continue
         connus = ids(sch) | COMMUNS
         choix = options(sch)
+        bnes = bornes(sch)
         for r, v in sec.get("settings", {}).items():
             if r not in connus:
                 fautes.append(f"{nom} → section « {t} » ({cle}) : réglage inconnu « {r} »")
             elif r in choix and choix[r] and v not in choix[r]:
                 fautes.append(f"{nom} → section « {t} » ({cle}) : « {r} » = « {v} » ; "
                               f"valeurs permises : {sorted(choix[r])}")
+            elif r in bnes and isinstance(v, (int, float)):
+                mn, mx, pas = bnes[r]
+                if mn is not None and v < mn:
+                    fautes.append(f"{nom} → section « {t} » ({cle}) : « {r} » = {v}, en dessous du minimum {mn}")
+                elif mx is not None and v > mx:
+                    fautes.append(f"{nom} → section « {t} » ({cle}) : « {r} » = {v}, au dessus du maximum {mx}")
+                elif pas and mn is not None and round((v - mn) % pas, 6) not in (0, pas):
+                    fautes.append(f"{nom} → section « {t} » ({cle}) : « {r} » = {v}, hors du pas de {pas} (départ {mn})")
         controle_blocs(sec.get("blocks"), autorises(sch, t), f"{nom}/{t}")
     for cle in d.get("order", []):
         if cle not in d.get("sections", {}):

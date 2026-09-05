@@ -51,7 +51,7 @@
                 "font": "heading",
                 "text_color": "#FFFFFF",
                 "unit": "pixel",
-                "pixel_height": 30,
+                "pixel_height": 32,
                 "custom_mobile_size": false,
                 "padding-block-start": 0,
                 "padding-block-end": 6,
