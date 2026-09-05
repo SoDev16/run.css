@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "fe1c8c67-b84c-4466-a515-70df3134c1c0": {
+      "type": "announcement-bar",
+      "blocks": {
+        "annuncio_lancio": {
+          "type": "announcement",
+          "settings": {
+            "text": "Saldi di lancio Titanio Vero",
+            "text_alignment": "center",
+            "mobile_text_size": 13,
+            "desktop_text_size": 14,
+            "icon": "sell",
+            "filled_icon": false,
+            "mobile_icon_size": 16,
+            "desktop_icon_size": 18,
+            "desktop_layout": "horizontal",
+            "mobile_layout": "horizontal",
+            "hidden_products": "",
+            "enable_specific_display": false,
+            "displayed_products": ""
+          }
+        },
+        "annuncio_garanzie": {
+          "type": "announcement",
+          "settings": {
+            "text": "Spedizione gratuita · Garanzia a vita · 120 giorni di prova",
+            "text_alignment": "center",
+            "mobile_text_size": 13,
+            "desktop_text_size": 14,
+            "icon": "local_shipping",
+            "filled_icon": false,
+            "mobile_icon_size": 16,
+            "desktop_icon_size": 18,
+            "desktop_layout": "horizontal",
+            "mobile_layout": "horizontal",
+            "hidden_products": "",
+            "enable_specific_display": false,
+            "displayed_products": ""
+          }
+        },
+        "annuncio_purezza": {
+          "type": "announcement",
+          "settings": {
+            "text": "Senza PFAS, PTFE e PFOA",
+            "text_alignment": "center",
+            "mobile_text_size": 13,
+            "desktop_text_size": 14,
+            "icon": "check_circle",
+            "filled_icon": false,
+            "mobile_icon_size": 16,
+            "desktop_icon_size": 18,
+            "desktop_layout": "horizontal",
+            "mobile_layout": "horizontal",
+            "hidden_products": "",
+            "enable_specific_display": false,
+            "displayed_products": ""
+          }
+        }
+      },
+      "block_order": [
+        "annuncio_lancio",
+        "annuncio_garanzie",
+        "annuncio_purezza"
+      ],
+      "settings": {
+        "columns_desktop": 1,
+        "columns_mobile": 1,
+        "desktop_spacing": 28,
+        "mobile_spacing": 16,
+        "show_separator": false,
+        "color_scheme": "accent-1",
+        "slider_mobile": true,
+        "slider_desktop": true,
+        "type": "loop",
+        "autoplay": true,
+        "autoplay_speed": 4,
+        "hidden_products": "",
+        "enable_specific_display": false,
+        "displayed_products": "",
+        "padding_top": 11,
+        "padding_bottom": 11,
+        "custom_colors_background": "#BF092F",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#FFFFFF"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "background-1",
+        "logo_link": "/",
+        "logo_position": "middle-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "highlight_active_link": true,
+        "highlighted_link_color_scheme": "accent-1",
+        "products_mega_menu_links": "",
+        "products_mega_menu_display_collection_products": true,
+        "products_mega_menu_display_collection_images": true,
+        "products_mega_menu_display_collection_images_on_mobile": true,
+        "mobile_menu_title": "Menu",
+        "secondary_menu": "",
+        "menu_color_scheme": "background-1",
+        "mobile_logo_position": "center",
+        "display_search": false,
+        "margin_bottom": 0,
+        "padding_top": 18,
+        "padding_bottom": 18
+      }
+    }
+  },
+  "order": [
+    "fe1c8c67-b84c-4466-a515-70df3134c1c0",
+    "header"
+  ]
+}
