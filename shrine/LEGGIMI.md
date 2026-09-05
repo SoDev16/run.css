@@ -52,3 +52,15 @@ l'accordéon des bénéfices.
 | « Impossible à corroder », « impossible à détruire » | absolus indéfendables | « Resiste agli alimenti acidi », « Fatta per durare » |
 
 « SlipScale™ » est une marque de la référence et n'est pas employée.
+
+## Règle absolue : relire avant d'écrire
+
+Un envoi de `templates/product.json` a effacé un bloc que le client avait
+construit lui-même dans le personnalisateur — une comparaison de poêles en
+images. Le fichier local ne contenait pas son travail, et l'écriture a
+remplacé le fichier entier.
+
+**Avant toute écriture d'un gabarit, relire la version en ligne et y
+fusionner les modifications, jamais envoyer la copie locale telle quelle.**
+Le champ `updatedAt` du fichier indique si le client a touché au thème
+depuis le dernier envoi.
