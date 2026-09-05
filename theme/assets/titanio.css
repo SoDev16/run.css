@@ -1277,3 +1277,83 @@ a{ color:inherit; }
 .cart-drawer .drawer__inner-empty{ background:var(--c-fondo); padding:60px 24px; }
 .cart-drawer .cart__empty-text{ font-family:var(--font); color:var(--c-testo); }
 .cart-drawer .drawer__inner-empty .drawer__close{ position:static; transform:none; }
+
+/* ==========================================================================
+   CORRECTION — géométrie des vraies photos
+   --------------------------------------------------------------------------
+   Chaque emplacement portait sa forme (aspect-ratio, hauteur) sur le
+   marque-place « .ph ». Dès qu'une vraie image le remplaçait, elle arrivait
+   sans aucune contrainte et poussait la mise en page : c'est l'origine des
+   décalages. Ici la forme passe sur le conteneur, et l'image la remplit.
+
+   contain = la photo n'est jamais recadrée (produit, éclaté, portraits objet)
+   cover   = la photo remplit le cadre (ambiance, fonds, clients)
+   ========================================================================== */
+
+/* -- le conteneur porte la forme, plus le marque-place ------------------- */
+.mosaico > img,
+.mosaico > .ph{ aspect-ratio:1/1; }
+.merita__foto{ aspect-ratio:1/1; }
+.merita__foto .ph{ aspect-ratio:auto; height:100%; }
+
+/* -- l'image remplit exactement son emplacement -------------------------- */
+.galleria__scena > img,
+.galleria__scena > video,
+.miniature__voce > img,
+.video-carta__schermo > img,
+.eroe__sfondo > img,
+.eroe__sfondo > video,
+.marca__sfondo > img,
+.marca__sfondo > video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  max-width:none;
+}
+
+.carta__foto > img,
+.prodotto-carta__foto > img,
+.recensione__foto > img,
+.strati__foto > img,
+.merita__foto > img,
+.mosaico > img{
+  width:100%; height:100%;
+  max-width:none;
+}
+
+/* -- recadrage : ce qui ne doit jamais être coupé ------------------------ */
+.galleria__scena > img,
+.miniature__voce > img,
+.prodotto-carta__foto > img,
+.strati__foto > img,
+.merita__foto > img{ object-fit:contain; }
+
+/* -- recadrage : ce qui doit remplir ------------------------------------- */
+.carta__foto > img,
+.recensione__foto > img,
+.mosaico > img,
+.video-carta__schermo > img,
+.eroe__sfondo > img,
+.eroe__sfondo > video,
+.marca__sfondo > img,
+.marca__sfondo > video{ object-fit:cover; }
+
+/* -- emplacements qui n'avaient pas de forme du tout --------------------- */
+.strati__foto{ min-height:340px; }
+@media (min-width:940px){ .strati__foto{ min-height:520px; } }
+
+/* -- portraits des onglets d'avis ---------------------------------------- */
+.testimonianza__ritratto{
+  width:44px; height:44px; flex:none;
+  border-radius:50%; object-fit:cover;
+}
+
+/* -- drapeaux et pictogrammes : hauteur fixe, jamais étirés -------------- */
+.garanzie__bandiera{ height:18px; width:auto; }
+.argomento__icona img,
+.pastiglia img{ height:22px; width:auto; }
+
+/* -- filet de sécurité : aucune image ne peut dépasser sa colonne -------- */
+.prodotto img,
+.sezione img,
+.eroe img,
+.marca img{ max-width:100%; }
